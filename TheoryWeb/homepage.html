@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 //EN" "http://www.w3.org/TR/html14/strict.dtd">
+
+<html>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="stylesheet" type="text/css" href="/static/CSS/homepage.css/" />
+
+    <link rel='stylesheet' type='text/css' href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+
+<head>
+    <body>
+    
+
+<!--This is the navigation links at the top-->
+
+        <div id="header-top">
+            <ul>
+                <li><a href = "{% url TheoryWeb.views.homepage" %}>Home</a></li>
+                <li><a href=" {% Theoryweb.views.research %}">Projects</a></li>
+                <li><a href="{% url TheoryWeb.views.resume %}">Resume</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </li>
+        </div>
+        
+        
+<!--This is the Main Header and Tagline (below links)-->
+
+        <div id='top'>
+        <h1>Boomer Rogers</h1>
+            <div id="tagline">
+                Programming
+            </div>
+        </div>
+        </h1>
+            {% block content %}{% endblock %}
+            {% block footer %}
+            {% endblock %}
+    </body>
+    
+    <title>{% block title %} H. Rogers {% endblock %}</title>
+
+
+<!--This is the About Me Section-->
+
+    <body>
+    </div>
+    <div id='leftnav'>
+        <div id="mainfeature">
+            <h2>Welcome</h2>
+                <h3>About me..</h3>
+                <p>Welcome to my website. I am a first year graduate student at Aberystwyth University. I am passionate about computers, programming, social science, philosophy, politics and getting involved in new projects! I also love to snowboard, play/watch Starcraft 2 (Day9!), and adventure around the world!</p>
+        </div>
+    </div>
+        <div id='rightnav'>
+
+<!--This is for adding Updates-->
+
+        <div id='updatepanel'>
+            <h3>Latest News</h3>
+            <h4>Welcome</h4>
+            <p> Welcome to my new site for research! Making this my launching point for research that I stumble upon.</p>
+            <h4>Joining GitHub</h4>
+            <p>I've decided my passion for programming and open source software would be best utilized by contributing to GitHub's community.</p>
+            <h4>New Blog post</h4>
+            <p> New Blog post scheduled for sometime end of December beginning of January!</p>   
+        </div>
+    </body>
+    <body>
+    </div>
+
+
+<!--This is the Main Content where you can Edit Skills, etc.-->
+
+    <div id='content'>
+        <h2>Skills</h2>
+        <h3>Languages</h3>
+        <p><i>Proficient in:</i> Python, CSS, HTML 5</p>
+        <p><i>Improving in:</i> C, SQL, Java, Javascript</p>
+        <h3>Favorite Software/Libraries</h3>
+        <p> Starcraft 2, NetLogo, SPSS Django, Pygame, SciPy, Jquery</p>
+        <h3>Research Techniques</h3>
+        Agent-Based Modeling (Rule based/Behavioral modeling), Complexity Theory, Philosophy (especially Wittgenstein), and some Mathematical/Statistical Analysis
+        <h3>Operating Systems</h3>
+        <p>My main operating system is Linux (Ubuntu 12.10), while I am proficient in Mac OS 9 - OS X 10.8, Windows 98 - 8, and Android (Gingerbread and Ice Cream Sandwich)
+    </div>
+    </body>
+<!--This is the Footer at the Bottom-->
+
+    <div id='footer'>
+    <p>Powered/Designed by Boomer Rogers: (Copyright 2012)</p>
+    <p>Optimized for Google Chrome and Firefox</p>
+    </div>
+</div>
+</html>
