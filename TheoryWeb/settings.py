@@ -64,7 +64,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/home/herman/projects/website/TheoryWeb/files/static/',
+    '/TheoryWeb/files/static/',
 #     Put strings here, like "/home/html/static" or "C:/www/django/static".
 #     Always use forward slashes, even on Windows.
 #     Don't forget to use absolute paths, not relative paths.
@@ -104,7 +104,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/herman/projects/website/TheoryWeb/files/templates/',
+    '/TheoryWeb/files/templates/',
     # Don't forget to use absolute paths, not relative paths.
 )
 
