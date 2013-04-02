@@ -3,6 +3,7 @@
 import os.path
 
 PROJECT_DIR = os.path.dirname(__file__)
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -60,7 +61,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'files/css')
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'file/css')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -68,7 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static/'),
+    os.path.join(PROJECT_ROOT, 'static/'),
 #     Put strings here, like "/home/html/static" or "C:/www/django/static".
 #     Always use forward slashes, even on Windows.
 #     Don't forget to use absolute paths, not relative paths.
@@ -89,7 +90,7 @@ SECRET_KEY = '36i4-f(b*lvmh5d8o0ea86yu%se8%gu2y6084ik-t-wn3yzoki'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
