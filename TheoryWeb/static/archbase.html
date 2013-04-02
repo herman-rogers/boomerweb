@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 //EN" "http://www.w3.org/TR/html14/strict.dtd">
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/blog.css/" />
+    <link rel='stylesheet' type='text/css' href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+
+<head>
+
+<!--This is the navigation links at the top-->
+    
+    <div id="header-top">
+        <ul>
+            <li><a href="{% url TheoryWeb.views.homepage %}">Home</a></li>
+           <li><a href="{% url TheoryWeb.views.research %}">Projects</a></li>
+            <li><a href="{% url TheoryWeb.views.resume %}">Resume</a></li>
+            <li><a href="/blog">Blog</a></li>
+            {% if user.is_staff %}
+            <li><a href="{% url admin:app_list app_label='blog' %}">Admin</a></li>
+            {% endif %}
+        </li>
+    </div>        
+
+<!--This is the Main Header and Tagline (below links)-->
+
+    <div id='top'>
+    <h1>Boomer Rogers</h1>
+        <div id="tagline">
+            Random Thoughts
+        </div>
+    </div>
+    </h1>
+
+    <title>MyBlog</title>
+</head>
+<div id='container'>
+    <body>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</div>  
+</div>
+
+<div id='footer'>
+    <p>Powered/Designed by Boomer Rogers: (Copyright 2012)</p>
+    <p>Optimized for Google Chrome and Firefox</p>
+</div>
+</html>
