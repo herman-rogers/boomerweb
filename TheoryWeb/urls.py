@@ -6,7 +6,7 @@ import oembed
 admin.autodiscover()
 oembed.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('http://damp-meadow-7987.herokuapp.com/',
     (r'^homepage/$', 'TheoryWeb.views.homepage'),
     (r'^research/$', 'TheoryWeb.views.research'),
     url(r'^blog/', include('blog.urls')),
