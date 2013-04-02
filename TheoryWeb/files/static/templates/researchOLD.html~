@@ -1,0 +1,9 @@
+        
+    
+            <script>
+            $("#slider").click(function(event) {
+                $('html, body').animate({
+                    scrollTop: $("#header-top").offset().top
+                }, 100);
+            });           
+            </script>

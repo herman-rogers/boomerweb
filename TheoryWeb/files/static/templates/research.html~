@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 //EN" "http://www.w3.org/TR/html14/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<link rel="stylesheet" type="text/css" href="/static/CSS/research.css/">
+
+	<link rel='stylesheet' type='text/css' href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+
+</head>
+
+<!--Top Navigation Links: Home, Projects, etc.-->
+
+<body>
+
+<div id="header-top">
+    <ul>
+        <li><a href="{% url TheoryWeb.views.homepage %}">Home</a></li>
+        <li><a href="{% url TheoryWeb.views.research %}">Projects</a></li>
+        <li><a href="{% url TheoryWeb.views.resume %}">Resume</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </li>
+</div>
+    
+    <!--This is the Main Header and Tagline (below links)-->
+
+<div id='top'>
+    <h1>Boomer Rogers</h1>
+        <div id="tagline">
+            Computational Social Scientist
+        </div>
+    </h1>
+</div>
+    
+<title>{% block title %} H. Rogers {% endblock %}</title>
+    
+<!--    This is the Left and Right Side Boxes/Content-->
+    
+<div id="leftnav">
+    <p>LeftNav</p>
+</div>
+
+<!--    This is the Carousel merging with previous Content-->
+
+
+<div id="rightnav">
+    <div id="carousel">
+	    <img src="http://concentricsky.com/media/uploads/portfolio/icons/santa_fe_thumb_2.png" alt="" class="slide" />
+	    <img src=http://4.bp.blogspot.com/-cGEL08i_wEs/T_E5y2BjT4I/AAAAAAAAADk/8HqLu4Ua6Po/s1600/ubuntu-flavours.jpg alt="" class="slide" />
+	    <img src="http://www.raspberrypi.org/wp-content/uploads/2011/09/ssluj-raspberry_pi_hva.jpg" alt="" class="slide" />
+	    <img src="http://ccl.northwestern.edu/netlogo/models/models/Sample%20Models/Earth%20Science/Fire.png" alt="" class="slide" />
+	    
+<!--	    <img src="UnmarkforSlide" alt="" class="slide" />-->
+<!--	    <img src="" alt="" class="slide" />-->
+<!--	    <img src="" alt="" class="slide" />-->
+
+    </div>
+
+    <div id="carousel-controls">
+	    <span class="control current"></span>
+	    <span class="control"></span>
+	    <span class="control"></span>
+	    <span class="control"></span>
+<!--	    <span class="control">UnmarkforSlide</span>-->
+<!--	    <span class="control"></span>-->
+<!--	    <span class="control"></span>-->
+    </div>
+    
+    <ul id="carousel-descriptions">
+	    <li class="desc current"> Santa Fe institute<p>MOOC class 'Introduction to Complexity'</p></li>
+	    <li class="desc">Ubuntu<p>A Linux based operating system, highly recommended for download!</p></li>
+	    <li class="desc">Raspberry Pi<p>A Small, affordable, computer that teaches programming and doubles as an experimentation too for Python Programmers (and others)</</p></li>
+	    <li class="desc">NetLogo<p>Building multiple worlds with NetLogo, an agent-based modeling application.</p></li>
+	    
+<!--	    <li class="desc">Unmark<p>ForExtraSlide</p></li>-->
+<!--	    <li class="desc"><p></li>-->
+<!--	    <li class="desc"><p></p></li>-->
+    
+    </ul>
+        
+    <div class="textshow">
+        <h2>Browse Projects</h2>
+        <h3>FizzBuzz</h3>
+        <div>"FizzBuzz" a small 'infinite counter' that fizzes on numbers divisible by 5, buzzes on numbers divisible by 3, and fizzbuzzes when numbers are divisible by both. They give these at programming interviews and it piqued my curiosity. <a href=http://pastebin.com/NKzSL2Hh>Go to PasteBin</a></div>
+        <h3>Show/Hide Text in HTML</h3>
+        <div>A Small Jquery script that shows/hides text. It is useful when attempting to hide text within a single div tag. I found it even more useful when my slider was reliant on switching images (using img tags), and thus pages. This would allow for text to show and hide underneath each img in the slider. However, since I've replaced the slider (on projects page) with a jquery slider I no longer needed the text. Another weakness is that the Jquery script is coded into the HTML itself, rather than at the bottom of the page.<a href=http://pastebin.com/cXs66yJZ> Go to PasteBin</a></div>
+        <h3>"7Wars"</h3>
+        <div>A small text adventure game made with python. To run this you need to install python, move the file into your chosen directory and run the command "python 7wars.py". <a href=href=http://pastebin.com/tvypiLcQ>Go to PasteBin</a></div>
+        <h3>"Valley of Magog"</h3>
+        <div>This is another small text game just download the files, install python, and run "python ValleyofMagog.py". <a href=http://pastebin.com/ddVzXWpw>Go to PasteBin</a></div>
+    </div>
+</div>
+
+<div id='footer'>
+    <p>Powerered/Designed by Boomer Rogers: (Copyright 2012)</p>
+    <p>Optimized for Google Chrome and Firefox</p>
+    </div>
+</div>
+
+</body>
+
+<!--JavaScripts/Jquery-->
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.roundabout.min.js/"></script>
+
+<script>
+$(document).ready(function() {
+  $("div.textshow:eq(0)> div").hide();
+  $("div.textshow:eq(0)> h3").click(function() {
+    $(this).next().slideToggle('fast');
+  });
+});
+</script>
+
+<!--Carousel Specific Jquery-->
+
+<script type="text/javascript">
+(function($) {
+
+var $descriptions = $('#carousel-descriptions').children('li'),
+	$controls = $('#carousel-controls').find('span'),
+	$carousel = $('#carousel')
+		.roundabout({childSelector:"img", minOpacity:0, autoplay:true, autoplayDuration:4000, autoplayPauseOnHover:true, easing:"swing", effect:"bounce" })
+		.on('focus', 'img', function() {
+			var slideNum = $carousel.roundabout("getChildInFocus");
+			
+			$descriptions.add($controls).removeClass('current');
+			$($descriptions.get(slideNum)).addClass('current');
+			$($controls.get(slideNum)).addClass('current');
+		});
+
+$controls.on('click dblclick', function() {
+    
+	var slideNum = -1,
+		i = 0, len = $controls.length;
+
+	for (; i<len; i++) {
+		if (this === $controls.get(i)) {
+			slideNum = i;
+			break;
+		}
+	}
+	
+	if (slideNum >= 0) {
+		$controls.removeClass('current');
+		$(this).addClass('current');
+		$carousel.roundabout('animateToChild', slideNum);
+	}
+});
+
+}(jQuery));
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#carousel-controls").click(function () {
+      
+    });
+});
+</script>
+
+</body>
+</html>
