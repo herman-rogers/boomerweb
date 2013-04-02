@@ -1,5 +1,9 @@
 # Django settings for TheoryWeb project.
 
+import os
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -104,7 +108,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/herman/projects/website/TheoryWeb/files/templates/',
+    os.path.join(SITE_ROOT, 'templates'),
     # Don't forget to use absolute paths, not relative paths.
 )
 
