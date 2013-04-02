@@ -1,7 +1,7 @@
 # Django settings for TheoryWeb project.
-import os.path
+#import os.path
 
-PROJECT_DIR = os.path.dirnam(__file__)
+#PROJECT_DIR = os.path.dirnam(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
