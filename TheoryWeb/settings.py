@@ -2,7 +2,7 @@
 
 import os
 
-SITE_ROOT = os.path.dirname(__file__)
+templateDir = os.path.join(os.path.join(os.path.split(currDir)[0], "templates"), "Templates")
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -108,7 +108,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'templates'),
+    os.path.join(templateDir, 'templates'),
     # Don't forget to use absolute paths, not relative paths.
 )
 
