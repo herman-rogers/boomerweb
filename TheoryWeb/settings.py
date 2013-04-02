@@ -4,7 +4,7 @@ import os.path
 
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
-PROJECT_ROOT = here('/home/herman/theoryweb/mysite/TheoryWeb/')
+PROJECT_DIR = os.path.dirname(__file__)
 
 root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
@@ -112,7 +112,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    root('templates'),
+    os.path.join(PROJECT_DIR, "templates"),
     # Don't forget to use absolute paths, not relative paths.
 )
 
