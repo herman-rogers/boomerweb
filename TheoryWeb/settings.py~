@@ -89,7 +89,7 @@ SECRET_KEY = '36i4-f(b*lvmh5d8o0ea86yu%se8%gu2y6084ik-t-wn3yzoki'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-     'django.template.loaders.eggs.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +108,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, ""),
+    os.path.join(PROJECT_DIR, "templates"),
     # Don't forget to use absolute paths, not relative paths.
 )
 
