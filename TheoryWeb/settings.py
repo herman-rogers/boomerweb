@@ -1,7 +1,4 @@
 # Django settings for TheoryWeb project.
-#import os.path
-
-#PROJECT_DIR = os.path.dirnam(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -14,8 +11,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '/home/herman/projects/website/theoryweb.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -48,7 +45,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/herman/theoryweb/mysite/TheoryWeb/files/media/'
+MEDIA_ROOT = '/home/herman/projects/website/TheoryWeb/files/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -59,7 +56,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/TheoryWeb/files/static/'
+STATIC_ROOT = '/home/herman/projects/TheoryWeb/files/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -67,7 +64,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/TheoryWeb/files/static/',
+    '/home/herman/projects/website/TheoryWeb/files/static/',
 #     Put strings here, like "/home/html/static" or "C:/www/django/static".
 #     Always use forward slashes, even on Windows.
 #     Don't forget to use absolute paths, not relative paths.
@@ -107,7 +104,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(mysite, 'templates'),
+    '/home/herman/projects/website/TheoryWeb/files/templates/',
     # Don't forget to use absolute paths, not relative paths.
 )
 
