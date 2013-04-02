@@ -7,7 +7,7 @@ admin.autodiscover()
 oembed.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^$', 'TheoryWeb.views.homepage'),
+    url(r'^$', 'TheoryWeb.views.homepage'),
     (r'^research/$', 'TheoryWeb.views.research'),
     url(r'^blog/', include('blog.urls')),
     (r'^resume/$', 'TheoryWeb.views.resume'),
