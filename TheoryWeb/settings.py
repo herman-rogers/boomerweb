@@ -15,9 +15,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/herman/projects/website/theoryweb.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'NAME': 'TheoryWeb',                      # Or path to database file if using sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': '22csupueblo',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -107,7 +107,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'templates'),
+    os.path.join(mysite, 'templates'),
     # Don't forget to use absolute paths, not relative paths.
 )
 
