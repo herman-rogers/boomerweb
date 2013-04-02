@@ -104,7 +104,7 @@ ROOT_URLCONF = 'TheoryWeb.urls'
 WSGI_APPLICATION = 'TheoryWeb.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/website/TheoryWeb/files/templates/',
+    os.path.join(SITE_ROOT, 'templates'),
     # Don't forget to use absolute paths, not relative paths.
 )
 
