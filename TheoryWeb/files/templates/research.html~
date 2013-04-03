@@ -25,11 +25,8 @@
     <!--This is the Main Header and Tagline (below links)-->
 
 <div id='top'>
-    <h1>Boomer Rogers</h1>
-        <div id="tagline">
-            Computational Social Scientist
-        </div>
-    </h1>
+    <h1 class="header">Boomer Rogers</h1>
+    <div id="tagline">while x == true: print "Programming Life"</div>
 </div>
     
 <title>{% block title %} H. Rogers {% endblock %}</title>
@@ -37,7 +34,7 @@
 <!--    This is the Left and Right Side Boxes/Content-->
     
 <div id="leftnav">
-    <p>LeftNav</p>
+    <p>Still implementing features (Specifically this NavSpot) hang in there!</p>
 </div>
 
 <!--    This is the Carousel merging with previous Content-->
@@ -85,7 +82,7 @@
         <h3>Show/Hide Text in HTML</h3>
         <div>A Small Jquery script that shows/hides text. It is useful when attempting to hide text within a single div tag. I found it even more useful when my slider was reliant on switching images (using img tags), and thus pages. This would allow for text to show and hide underneath each img in the slider. However, since I've replaced the slider (on projects page) with a jquery slider I no longer needed the text. Another weakness is that the Jquery script is coded into the HTML itself, rather than at the bottom of the page.<a href=http://pastebin.com/cXs66yJZ> Go to PasteBin</a></div>
         <h3>"7Wars"</h3>
-        <div>A small text adventure game made with python. To run this you need to install python, move the file into your chosen directory and run the command "python 7wars.py". <a href=href=http://pastebin.com/tvypiLcQ>Go to PasteBin</a></div>
+        <div>A small text adventure game made with python. To run this you need to install python, move the file into your chosen directory and run the command "python 7wars.py". <a href=http://pastebin.com/tvypiLcQ>Go to PasteBin</a></div>
         <h3>"Valley of Magog"</h3>
         <div>This is another small text game just download the files, install python, and run "python ValleyofMagog.py". <a href=http://pastebin.com/ddVzXWpw>Go to PasteBin</a></div>
     </div>
@@ -101,9 +98,11 @@
 
 <!--JavaScripts/Jquery-->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="/static/CSS/jquery.roundabout.min.js/"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.lettering-0.6.1.min.js/"></script>
 
 <script>
 $(document).ready(function() {
@@ -159,6 +158,13 @@ $(document).ready(function() {
       
     });
 });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $(".header").lettering('words');
+    $("#tagline").lettering('words');
+  });
 </script>
 
 </body>

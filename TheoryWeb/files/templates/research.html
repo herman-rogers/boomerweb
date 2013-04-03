@@ -25,11 +25,8 @@
     <!--This is the Main Header and Tagline (below links)-->
 
 <div id='top'>
-    <h1>Boomer Rogers</h1>
-        <div id="tagline">
-            Computational Social Scientist
-        </div>
-    </h1>
+    <h1 class="header">Boomer Rogers</h1>
+    <div id="tagline">while x == true: print "Programming Life"</div>
 </div>
     
 <title>{% block title %} H. Rogers {% endblock %}</title>
@@ -37,7 +34,7 @@
 <!--    This is the Left and Right Side Boxes/Content-->
     
 <div id="leftnav">
-    <p>LeftNav</p>
+    <p>Still implementing features (Specifically this NavSpot) hang in there!</p>
 </div>
 
 <!--    This is the Carousel merging with previous Content-->
@@ -101,9 +98,11 @@
 
 <!--JavaScripts/Jquery-->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="/static/CSS/jquery.roundabout.min.js/"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.lettering-0.6.1.min.js/"></script>
 
 <script>
 $(document).ready(function() {
@@ -159,6 +158,13 @@ $(document).ready(function() {
       
     });
 });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $(".header").lettering('words');
+    $("#tagline").lettering('words');
+  });
 </script>
 
 </body>
