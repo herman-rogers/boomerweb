@@ -57,7 +57,7 @@
         <h4>Joining GitHub</h4>
         <p>I've just finished up some projects recently so I have more time for GitHub planning some projects with some other people that will build computer models that simulate certain social scientific phenomena (such as equilibrium). Can't wait to get it started!</p>
         <h4>Raspberry Pi</h4>
-        <p>Just got my new Raspberry Pi</p>   
+        <p>Just got my new Raspberry Pi, the HDMI cable to output to DVI, and now all I need is a Micro SDHC card adapter and I'm set to start creating!</p>   
     </div>
 </div>
 
@@ -65,16 +65,17 @@
 <!--This is the Main Content where you can Edit Skills, etc.-->
 
 <div id='content'>
-    <h2>Skills</h2>
+    <h2>Programming Interests</h2>
     <h3>Languages</h3>
     <p><i>Proficient in:</i> Python, CSS, HTML 5</p>
-    <p><i>Improving in:</i> C, SQL, Java, Javascript</p>
+    <p><i>Familiar with:</i> SQL, Javascript</p>
+    <p><i>Improving on:</i> C, Java, Ruby</p>
     <h3>Favorite Software/Libraries</h3>
-    <p> Starcraft 2, NetLogo, SPSS Django, Pygame, SciPy, Jquery</p>
+    <p> Starcraft 2, Django, Pygame, SciPy, Jquery, NetLogo, SPSS</p>
+    <h3>Operating Systems</h3>
+    <p>My main operating system is Linux (Ubuntu 12.10), while I am proficient in Mac OS 9 - OS X 10.8, Windows 98 - 8, and Android (Gingerbread and Ice Cream Sandwich)</p>
     <h3>Research Techniques</h3>
     Agent-Based Modeling (Rule based/Behavioral modeling), Complexity Theory, Philosophy (especially Wittgenstein), and some Mathematical/Statistical Analysis
-    <h3>Operating Systems</h3>
-    <p>My main operating system is Linux (Ubuntu 12.10), while I am proficient in Mac OS 9 - OS X 10.8, Windows 98 - 8, and Android (Gingerbread and Ice Cream Sandwich)
 </div>
 <!--This is the Footer at the Bottom-->
 
