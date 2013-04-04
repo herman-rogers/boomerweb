@@ -46,11 +46,11 @@ li a:visited {
 }
 
 a:hover {
-    color: #dd4814;
+    color: #353F3E;
 }
 
 li a:hover {
-    color: #dd4814;
+    color: #353F3E;
 }
 
 a:active {
@@ -127,6 +127,12 @@ h1.header .word2{
     float: left;
     word-wrap: break-word;
     font-family: Ubuntu, sans-serif;
+}
+
+#leftnav h1{
+    font-size: 20px;
+    font-family: Ubuntu, sans-serif;
+    color: #353F3E;
 }
 
 
