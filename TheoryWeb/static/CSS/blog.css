@@ -229,7 +229,7 @@ h1.header .word2{
     margin-left: 20px;
     margin-right: 20px;
     padding: 1em;
-    max-width: 50em;
+    max-width: 45em;
     word-wrap: break-word;
 }
 
@@ -291,8 +291,31 @@ h1.header .word2{
 #content h2 {
     font-size: 25px;
     font-family: Ubuntu, sans-serif;
-    margin: 0 0 .5em 0;
+/*    margin: 0 0 .5em 0;*/
+/*    margin-left: -22px; /* 15px padding + 7px border ribbon shadow*/
+/*    margin-right: -22px;*/
+/*    padding: 15px;*/
+/*    background: #353F3E;*/
+/*    -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.8) inset;*/
+/*    box-shadow: 0 -1px 0 rgba(255,255,255,.8) inset;*/
 }
+
+/*#content:h2.before, #content:h2.after {*/
+/*  left: 0;*/
+/*  bottom: -6px;*/
+/*  content:'';*/
+/*  border-top: 6px solid #555;*/
+/*  border-left: 6px solid transparent;*/
+/*}*/
+
+/*#content:h2.before {*/
+/*  border-top: 6px solid #555;*/
+/*  border-right: 6px solid transparent;*/
+/*  border-left: none;*/
+/*  left: auto;*/
+/*  right: 0;*/
+/*  bottom: -6px;*/
+/*}*/
 
 #content h3 {
     font-size: 13.5px;

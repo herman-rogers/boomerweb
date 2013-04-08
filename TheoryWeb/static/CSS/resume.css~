@@ -95,7 +95,7 @@ h1.header .word2{
     text-transform: lowercase;
     font-family: Ubuntu, sans-serif;
     font-size: 14px;
-    margin-left: 9em;
+    margin-left: 8em;
 }
 
 #tagline .word6{
@@ -113,7 +113,14 @@ h1.header .word2{
 #content{
     background-color: #F8F8FF;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius-topleft: 15px;
+    border-radius-topright: 0px;
+    border-radius-bottomright: 15px;
+    border-radius-bottomleft: 0px;
+    -webkit-border-top-left-radius: 15px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 15px;
     border: 2px solid #A8A8A8;
     -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); 
     box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
@@ -157,21 +164,39 @@ h1.header .word2{
     font-size: 15px;
     font-family: Ubuntu, sans-serif;
     color: #1A1A1A;
-    list-style: none;
+    list-style: circle;
 }
 
 #content h2 {
-    font-size: 16px;
     font-family: Ubuntu, sans-serif;
-    color: #1A1A1A;
+    font-size: 3.2em;
+    color: #dd4814;
 }
 
 #content h3 {
-    font-size: 13.5px;
+    background-color: #F2F2F2;
+    padding: 12px;
+    text-shadow: 0.5px 0.5px 0 #493854;
+    border-radius: 5px;
+    border-radius-topleft: 15px;
+    border-radius-topright: 0px;
+    border-radius-bottomright: 15px;
+    border-radius-bottomleft: 0px;
+    -webkit-border-top-left-radius: 15px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 15px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4); 
+    box-shadow: 0px 1px 6px 0px rgba(23, 69, 88, .5);
+    font-size: 16px;
     font-family: Ubuntu, sans-serif;
+    color: #353F3E;
+}
+
+#content b {
     color: #dd4814;
 }
 
 #content li {
-    list-style: none;
+    list-style: circle;
 }

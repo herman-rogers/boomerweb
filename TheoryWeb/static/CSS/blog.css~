@@ -171,9 +171,41 @@ a.blognav:active {
     padding: 0;
     margin: 0;
     font-family: Ubuntu, Helvetica, Verdana, sans-serif;
-    font-size: 35px;
-    color: #F8F8FF;
+    font-size: 40px;
 }
+
+h1.header .word1{
+    color: #F8F8FF;
+    font-family: 'Ubuntu';
+    font-weight: normal;
+}
+
+h1.header .word2{
+    color: #F8F8FF;
+    font-family: 'Ubuntu';
+}
+
+#tagline {
+    color: #dd4814;
+    font-weight: normal;
+    text-transform: lowercase;
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    margin-left: 8em;
+}
+
+#tagline .word6{
+    text-transform:uppercase;
+    font-style: italic;
+    font-size: 17px;
+}
+#tagline .word7{
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 17px;
+}
+
 
 #updatepanel{
     position: relative;
@@ -197,7 +229,7 @@ a.blognav:active {
     margin-left: 20px;
     margin-right: 20px;
     padding: 1em;
-    max-width: 50em;
+    max-width: 45em;
     word-wrap: break-word;
 }
 
@@ -212,14 +244,6 @@ a.blognav:active {
 }
 
 /*content styles -- no move functionality */
-
-#tagline {
-    font-weight: bold;
-    color: #dd4814;
-    font-style: italic;
-    font-family: Ubuntu, sans-serif;
-    font-size: 14px;
-}
 
 #header-top ul {
     font-family: Ubuntu, Helvetica, sans-serif;
@@ -267,8 +291,31 @@ a.blognav:active {
 #content h2 {
     font-size: 25px;
     font-family: Ubuntu, sans-serif;
-    margin: 0 0 .5em 0;
+/*    margin: 0 0 .5em 0;*/
+/*    margin-left: -22px; /* 15px padding + 7px border ribbon shadow*/*/
+/*    margin-right: -22px;*/
+/*    padding: 15px;*/
+/*    background: #353F3E;*/
+/*    -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.8) inset;*/
+/*    box-shadow: 0 -1px 0 rgba(255,255,255,.8) inset;*/
 }
+
+/*#content:h2.before, #content:h2.after {*/
+/*  left: 0;*/
+/*  bottom: -6px;*/
+/*  content:'';*/
+/*  border-top: 6px solid #555;*/
+/*  border-left: 6px solid transparent;*/
+/*}*/
+
+/*#content:h2.before {*/
+/*  border-top: 6px solid #555;*/
+/*  border-right: 6px solid transparent;*/
+/*  border-left: none;*/
+/*  left: auto;*/
+/*  right: 0;*/
+/*  bottom: -6px;*/
+/*}*/
 
 #content h3 {
     font-size: 13.5px;
