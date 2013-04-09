@@ -137,7 +137,6 @@ h1.header .word2{
 
 
 #rightnav{
-
     float: right;
     width: 620px;
     margin: 0em;
@@ -203,10 +202,30 @@ h1.header .word2{
     font-size: 20px;
 }
 
-#rightnav p{
-    color: #F8F8FF;
+#rightnav:hover #tooltip{
+    color: #F2F2F2;
+    background: #CCCCCC center;
     font-family: Ubuntu, sans-serif;
     font-size: 14px;
+    width: 620px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); 
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+
+}
+
+#tooltip {
+    color: #F2F2F2;
+    text-align: center;
+    background: center;
+    margin-top: 10px;
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    width: 250px;
+    -o-transition:4s;
+    -ms-transition:4s;
+    -webkit-transition:4s ease-in-out;
+    transition:4s ease-in-out; 
 }
 
 /*This is the Hide Function(s) for text under slider (Jquery)*/
@@ -243,52 +262,6 @@ h1.header .word2{
     font-family: Ubuntu, sans-serif;
     color:#dd4814;
 }
-
-
-/*This is a way to show text boxs -- storing here*/
-
-/*#slider a:active {*/
-/*    background: #333333;*/
-/*}*/
-
-/*span:after {*/
-/*    content:'';*/
-/*    position:absolute;*/
-/*    bottom:-10px;*/
-/*    width:10px;*/
-/*    height:10px;*/
-/*    border-bottom:5px solid #dfdfdf;*/
-/*    border-right:5px solid #dfdfdf;*/
-/*    background:#f8f8f8;*/
-/*    left:50%;*/
-/*    margin-left:-5px;*/
-/*    -moz-transform:rotate(45deg);*/
-/*    -webkit-transform:rotate(45deg);*/
-/*    transform:rotate(45deg);*/
-/*}*/
-
-/*span {*/
-/*    */
-/*    background: none repeat scroll 0 0 #F8F8F8;*/
-/*    border: 5px solid #DFDFDF;*/
-/*    color: #717171;*/
-/*    font-size: 13px;*/
-/*    height: 30px;*/
-/*    letter-spacing: 1px;*/
-/*    line-height: 30px;*/
-/*    margin: 0 auto;*/
-/*    position: relative;*/
-/*    text-align: center;*/
-/*    text-transform: uppercase;*/
-/*    top: -80px;*/
-/*    left:-30px;*/
-/*    display:none;*/
-/*    padding:0 20px;*/
-/*}*/
-
-/*p:hover span{*/
-/*    display:block;*/
-/*}*/
 
 
 /*Carousel Markup*/
