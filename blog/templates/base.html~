@@ -24,12 +24,9 @@
 <!--This is the Main Header and Tagline (below links)-->
 
     <div id='top'>
-    <h1>Boomer Rogers</h1>
-        <div id="tagline">
-            Random Thoughts
-        </div>
+        <h1 class="header">Boomer Rogers</h1>
+        <div id="tagline">while x == true: print "Programming Life"</div>
     </div>
-    </h1>
 
     <title>H.Rogers</title>
 
@@ -37,7 +34,7 @@
      
     <div id="updatepanel">
                 
-        <p><b>Blog Post:</b> Coming March 29th, 2013</p>
+        <p><b>Blog Post:</b> Coming April 29th, 2013</p>
         
         <h2>On This Page</h2>
             {% for post in object_list %}
@@ -91,7 +88,9 @@
 
 <!--Jquery script for moving scroll for updatepanel-->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.lettering-0.6.1.min.js/"></script>
 
 <script type="text/javascript">
 $(function () {  
@@ -114,6 +113,13 @@ $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "slow");
   return false;
 });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $(".header").lettering('words');
+    $("#tagline").lettering('words');
+  });
 </script>
 
 </body>

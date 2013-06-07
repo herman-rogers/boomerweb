@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 //EN" "http://www.w3.org/TR/html14/strict.dtd">
 
 <html>
+<head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
@@ -8,73 +9,99 @@
 
     <link rel='stylesheet' type='text/css' href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
 
-<head>
-    <body>
-    
+</head>
 
+<body>
 <!--This is the navigation links at the top-->
-
-        <div id="header-top">
-            <ul>
-                <li><a href="{% url TheoryWeb.views.homepage %}">Home</a></li>
-                <li><a href="{% url TheoryWeb.views.research %}">Projects</a></li>
-                <li><a href="{% url TheoryWeb.views.resume %}">Resume</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </li>
-        </div>
+<div id="header-top">
+    <ul>
+        <li><a href="{% url TheoryWeb.views.homepage %}">Home</a></li>
+        <li><a href="{% url TheoryWeb.views.research %}">Projects</a></li>
+        <li><a href="{% url TheoryWeb.views.resume %}">Resume</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </li>
+</div>
         
         
 <!--This is the Main Header and Tagline (below links)-->
 
-        <div id='top'>
-        <h1>Boomer Rogers</h1>
-            <div id="tagline">
-                Research in Social Science
-            </div>
-        </div>
-        </h1>
-            {% block content %}{% endblock %}
-            {% block footer %}
-            {% endblock %}
-    </body>
+<div id='top'>
+    <h1 class="header">Boomer Rogers</h1>
+    <div id="tagline">while x == true: print "Programming Life"</div>
+</div>
+    
+    {% block content %}{% endblock %}
+    {% block footer %}
+    {% endblock %}
     
     <title>{% block title %} H. Rogers {% endblock %}</title>
+    
+<!--This is the Main skills/body of the Resume starting with Objectives-->
 
-    <div id='content'>
-        <h2>Resume</h2>
-        <h3>Aspirations</h3>
-        <p> My career goals lie between both work in the acadmic field of International Relations (IR) and developing myself into a skilled programmer. Although these goals seem mutually exculsive, I think they work well together in unison. First, my academic work revolves around using theoretical ideas developed in Complexity and IR and attempt to computational model those ideas. Thus, this means that I develop 'scientific experiment' through computer models where I attempt to explain the interactions we see in social science.
-        This has led me to pursue a Masters degree in IR while simultaneously learning in my free time programming languages starting with Python, then HTML and CSS, and finally with C. Overall, my perfect career is being a programmer for an interesting software company while continuing my research interests in Social Science and Complexity theory.</p>
-        <h3>Education</h3>
-        <p><b>Aberystwyth University</b><i> – Current</i> – MSc International Relations (Research Training)<br><i>International Excellence</i> Scholar</br></p>
-        <p><b>Colorado State University</b> – Class of 2011 Pueblo, Colorado <br>Bachelor of Science in Political Science</br></p>
-        <h3>Publications and Conferences</h3>
-        <p> “<i>Biological Weapons and Security Dilemmas</i>” with David Malet, The Whitehead Journal of Diplomacy, Summer 2010, pp. 105-13.</p>
-        <p>“<i>Involving Foreign Fighters in Somalia</i>”, Centre for the Study of Terrorism and Political Violence, Presented at the University of St. Andrews, Scotland. March 2010.</p>
-        <p><i>Millennium Annual Conference</i>. London School of Economics, London, UK. October 2012.</p>
-        <h3>MOOC's</h3>
-        <p>Santa Fe Institute, Class on Introduction to Complexity Theory</p>
-        <p> University of Michigan, Model Thinking: Social Scientific Modeling
-        <h3>Relevant Classes</h3>
-        <p>Masters: Quantitative and Qualitative Research Training, Principles of Research Design</p>
-        <p>Bachelors: Statistics, Calculus, Social Statistics, Symbolic Logic</p>
-        <h3>Experience</h3>
-        <p>Canvasser, UNHCR, Washington, DC. February, 2012 – August 2012</p>
-        <p>Research Assistant, Colorado State University, Pueblo, CO. August 2009 – July 2010</p>
-        <p>Senator/Pro-Tempore, ASG, Pueblo, CO. January, 2009 – August 2010</p>
-        <p>Senate Research Intern,  Colorado Senate, Denver, CO. January – May 2010</p>
-        <p>Computer Tech Support,  Campo High School, Campo, CO. August 2006 – May 2007</p>
-        <h3>Where else you can find me</h3>
-        <li><a href="http://uk.linkedin.com/pub/herman-rogers/32/13a/765/">LinkedIn</a></li>
-        <li><a href="http://aber.academia.edu/HermanRogers">Academia.edu</a></li>
-        <li><a href="http://github.com/herman-rogers">Github</a></li>
-    </div>
+<div id='content'>
+    <h2 id ='content-title'>Resume</h2>
+    <h3>Objective(s)</h3>
+    <p>Many authors have said that loving to write has nothing to do with being a good writer. Writing is not about enjoyment (although they do) nor is it about what they recieve out of it. To them writing is a part of who they are, it is their nature to write and without writing life would be terribly <i>bland</i>.
+<p>If I could capture my life up to this point it would be that I love many things. I love reading, philosophizing (poorly), doing a bit of science, snowboarding, and playing the guitar. I am the ultimate <i>dabbler</i>. However, One thing that I have always done in my life is programming and messing with those odd machines. Disclaimer: I wouldn't say I <i>love</i> programming I just <b>do</b> programming. (Well ok I love it, too, but let me explain)</p><p> I was (and am) that kid that hides in his room messing with computers building linux boxes, bugging his uncle about his new Dune game, putting together full builds, messing with game editors, learning to burn homebrewed Sega dreamcast games, you name it. During my school breaks I would disappear for days building new things (oh no I did it again this year too!), playing with code, and just enjoying the <i>hell</i> out of myself.</p>
+    <p>So I thought, I want to pursue this full time since I <i>need</i> to do it, I don't know why its just my 'writing nature'. As a improving programmer I would love any opportunity to work with others and explore software together. I can't think of anything better than getting an internship/entry-level position with a company that shares my interests in constructing awesome software. John Carmack remarked that "all I need is pizza, diet coke, and programming". If I could do that -- to quote South Park -- "I would be <i>soo</i> happy".</p>
+    <h3>Experience</h3>
+    <p><b>LazyLibrarian, Open Source</b><br>Programmer, 01/13 – Present</p>
+    <p>Fixed a search engine error where ASCII characters entered were not being encoded into UTF-8 characters. I have also 	implemented UI improvements while continuing to deliver project information and support to the LL community.
+    </p>
+    <p><b>Django Website [www.boomerweb.me]</b><br>Programmer, 10/12 – Present</p>
+    <p>
+    Coded and launched a Python-Django based website that hosts projects, documents, and a personal blog. I continue to 	maintain this site in my free time while adding new features.
+	</p>
+    <p><b>UNHCR, Washington, DC</b><br>Canvasser, 02/12 – 08/12 </p>
+    <p>
+    Increased the presence of the UNHCR, meeting with people face-to-face to gain their support of conflicts in areas such as 	Syria, the Sudan, Egypt, etc. Accrued over $20,000 providing subsistence to fleeing refugees and stateless persons while 	learning to work with and be apart of an effective team.
+    </p>
+    <p><b>CSU - Dept. of Political Science, Pueblo, CO</b></br>Research Assistant, 09/09–08/10</p>
+    <p>
+    Researched international relations topics with Dr. David Malet on CBRN weapons/biological security dilemmas through 	to publication. Organized several events that hosted keynote speakers in policy areas relevant to Homeland Security.
+    </p>
+    <p><b>State Senate, Denver, CO</b><br>Senate Intern, Spring 2010</p>
+    <p>
+    Conducted research on policy such state tax laws, public policy, and executive appointments. Drafted research reports, 	senate hearing/committee meeting speeches, and various letters to constituents. Served as an IT technician managing the 	senator's personal computers through security management, file backup/retrieval, and other IT duties.
+    </p>
+    <p><b>Campo High School, Springfield, CO</b><br>Computer Tech. 05/06 – 01/08</p>
+    <p>
+    Worked with the local high school to implement networks, manage software, and build desktop systems. Managed a budget to order computer parts, purchase software, and other computer necessities the school required.
+    </p>
+    <h3>Education</h3>
+    <ul>
+        <li><p>MScEcon International Relations, University of Wales, Aberystwyth, UK<br>09/2012 – 09/2013<br><i> International Excellence</i> Scholarship<br>Classes: Statistical Research Training and Advanced Methodology</p></li>
+    <li><p>B.S. Political Science, Colorado State University, Pueblo, CO <br>08/2007 – 05/2011<br>Classes: Mathematical Statistics, Social Statistics, Calculus, and Computer Logic</p>
+    <p><b>Additional Classes</b></p></li>
+    <li><p>Udacity, Computer Science, 2012</p></li>
+    <li><p>Santa Fe Institute, Introduction to Complexity Theory, <i>February 2013-Present</i></p></li>
+    <li><p> University of Michigan, Model Thinking <i>March 2013-Present</i></p></li>
+    </ul>
+    
+    <h3>Where you can find me online</h3>
+    <li><a href="http://uk.linkedin.com/pub/herman-rogers/32/13a/765/">My LinkedIn</a></li>
+    <li><a href="http://aber.academia.edu/HermanRogers">Some Academic Papers</a></li>
+    <li><a href="http://github.com/herman-rogers">My Github Profile (took time away from github to focus on this website and grad school)</a></li>
+</div>
 
 <!--This is the Footer at the Bottom-->
-</div>
-    <div id='footer'>
+<div id='footer'>
     <p>Powered/Designed by Boomer Rogers: (Copyright 2012)</p>
     <p>Optimized for Google Chrome and Firefox</p>
-    </div>
 </div>
+
+<!--Javascript-->
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.lettering-0.6.1.min.js/"></script>
+
+<script>
+  $(document).ready(function(){
+    $(".header").lettering('words');
+    $("#tagline").lettering('words');
+  });
+</script>
+
+</body>
 </html>

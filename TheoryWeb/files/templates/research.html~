@@ -25,11 +25,8 @@
     <!--This is the Main Header and Tagline (below links)-->
 
 <div id='top'>
-    <h1>Boomer Rogers</h1>
-        <div id="tagline">
-            Computational Social Scientist
-        </div>
-    </h1>
+    <h1 class="header">Boomer Rogers</h1>
+    <div id="tagline">while x == true: print "Programming Life"</div>
 </div>
     
 <title>{% block title %} H. Rogers {% endblock %}</title>
@@ -37,40 +34,53 @@
 <!--    This is the Left and Right Side Boxes/Content-->
     
 <div id="leftnav">
-    <p>LeftNav</p>
+    <h1>Awesome Resources around the Web</h1>
+    <ul>
+        <li><a href=http://www.codinghorror.com/blog/ ><b>Coding Horror</b> -- One of my favorite blogs about programming providng information about new languages and techniques. Its also very entertaining!</li>
+        <br>
+        <li><a href=http://learncodethehardway.org/><b>LearnTheHardWay</b> -- An absolute must for learning programming! These books are simply great ways to get your hands dirty and start programming!</li>
+        <br>
+        <li><a href=https://www.coursera.org/course/modelthinking><b>Model Thinking UMich</b> -- An awesome  introductory course on Computer Modeling in the Social Sciences, and its free too!</a></li>
+        <br>
+        <li><a href=http://www.santafe.edu/ ><b>Santa Fe Institute</b> -- Home to the worlds first complexity theory focused programs, SFI is one of my all time favorite places to visit to catch up on research being done "at the edge of chaos"</a></li>
 </div>
 
 <!--    This is the Carousel merging with previous Content-->
 
-
 <div id="rightnav">
+    <div id="tooltip">try clicking or dragging me</div>
     <div id="carousel">
 	    <img src="http://concentricsky.com/media/uploads/portfolio/icons/santa_fe_thumb_2.png" alt="" class="slide" />
 	    <img src=http://4.bp.blogspot.com/-cGEL08i_wEs/T_E5y2BjT4I/AAAAAAAAADk/8HqLu4Ua6Po/s1600/ubuntu-flavours.jpg alt="" class="slide" />
 	    <img src="http://www.raspberrypi.org/wp-content/uploads/2011/09/ssluj-raspberry_pi_hva.jpg" alt="" class="slide" />
-	    <img src="http://ccl.northwestern.edu/netlogo/models/models/Sample%20Models/Earth%20Science/Fire.png" alt="" class="slide" />
+        <img src="http://ccl.northwestern.edu/netlogo/models/models/Sample%20Models/Earth%20Science/Fire.png" alt="" class="slide" />
+        
+
+<!--You can add more slide images here-->
 	    
 <!--	    <img src="UnmarkforSlide" alt="" class="slide" />-->
 <!--	    <img src="" alt="" class="slide" />-->
 <!--	    <img src="" alt="" class="slide" />-->
-
     </div>
+
 
     <div id="carousel-controls">
 	    <span class="control current"></span>
 	    <span class="control"></span>
 	    <span class="control"></span>
 	    <span class="control"></span>
+
+<!--This is where you add more dots underneath: scale with images-->
 <!--	    <span class="control">UnmarkforSlide</span>-->
 <!--	    <span class="control"></span>-->
 <!--	    <span class="control"></span>-->
     </div>
-    
+
     <ul id="carousel-descriptions">
-	    <li class="desc current"> Santa Fe institute<p>MOOC class 'Introduction to Complexity'</p></li>
-	    <li class="desc">Ubuntu<p>A Linux based operating system, highly recommended for download!</p></li>
-	    <li class="desc">Raspberry Pi<p>A Small, affordable, computer that teaches programming and doubles as an experimentation too for Python Programmers (and others)</</p></li>
-	    <li class="desc">NetLogo<p>Building multiple worlds with NetLogo, an agent-based modeling application.</p></li>
+	    <li class="desc current"> Santa Fe institute<p>Home to Complexity Theory and the MOOC 'Introduction to Complexity'. I absolutely love this institution.</p></li>
+	    <li class="desc">Ubuntu<p>My favorite Operating System that is free to use/download and which highly recommended. Also they're coming out with their own Smartphone OS! Stay tuned for that!</p></li>
+	    <li class="desc">Raspberry Pi<p>A Small, affordable, computer that will enable people to build their own software. I just recieved mine and will post pictures/updates as I get it up and running! :)</p></li>
+	    <li class="desc">NetLogo<p>Building multiple worlds with NetLogo, an agent-based modeling application. Right now I'm throwing around an idea for creating equilibrium and showing how systems can move from each equilibrium states. I'll post most soon.</p></li>
 	    
 <!--	    <li class="desc">Unmark<p>ForExtraSlide</p></li>-->
 <!--	    <li class="desc"><p></li>-->
@@ -85,7 +95,7 @@
         <h3>Show/Hide Text in HTML</h3>
         <div>A Small Jquery script that shows/hides text. It is useful when attempting to hide text within a single div tag. I found it even more useful when my slider was reliant on switching images (using img tags), and thus pages. This would allow for text to show and hide underneath each img in the slider. However, since I've replaced the slider (on projects page) with a jquery slider I no longer needed the text. Another weakness is that the Jquery script is coded into the HTML itself, rather than at the bottom of the page.<a href=http://pastebin.com/cXs66yJZ> Go to PasteBin</a></div>
         <h3>"7Wars"</h3>
-        <div>A small text adventure game made with python. To run this you need to install python, move the file into your chosen directory and run the command "python 7wars.py". <a href=href=http://pastebin.com/tvypiLcQ>Go to PasteBin</a></div>
+        <div>A small text adventure game made with python. To run this you need to install python, move the file into your chosen directory and run the command "python 7wars.py". <a href=http://pastebin.com/tvypiLcQ>Go to PasteBin</a></div>
         <h3>"Valley of Magog"</h3>
         <div>This is another small text game just download the files, install python, and run "python ValleyofMagog.py". <a href=http://pastebin.com/ddVzXWpw>Go to PasteBin</a></div>
     </div>
@@ -101,9 +111,14 @@
 
 <!--JavaScripts/Jquery-->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="/static/CSS/jquery.roundabout.min.js/"></script>
+
+<script type="text/javascript" src="/static/CSS/jquery.lettering-0.6.1.min.js/"></script>
+
+<script src="/static/CSS/jquery.event.drag-2.2.js"></script>
+<script src="/static/CSS/jquery.event.drop-2.2.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -122,7 +137,8 @@ $(document).ready(function() {
 var $descriptions = $('#carousel-descriptions').children('li'),
 	$controls = $('#carousel-controls').find('span'),
 	$carousel = $('#carousel')
-		.roundabout({childSelector:"img", minOpacity:0, autoplay:true, autoplayDuration:4000, autoplayPauseOnHover:true, easing:"swing", effect:"bounce" })
+		.roundabout({childSelector:"img", minOpacity:0, autoplay:true, autoplayDuration:4000, autoplayPauseOnHover:true, easing:"swing", enableDrag:true})
+		
 		.on('focus', 'img', function() {
 			var slideNum = $carousel.roundabout("getChildInFocus");
 			
@@ -148,17 +164,16 @@ $controls.on('click dblclick', function() {
 		$(this).addClass('current');
 		$carousel.roundabout('animateToChild', slideNum);
 	}
+    
 });
 
 }(jQuery));
 </script>
-
 <script>
-$(document).ready(function() {
-    $("#carousel-controls").click(function () {
-      
-    });
-});
+  $(document).ready(function(){
+    $(".header").lettering('words');
+    $("#tagline").lettering('words');
+  });
 </script>
 
 </body>
