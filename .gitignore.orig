@@ -1,8 +1,0 @@
-venv
-*.pyc
-*.py~
-<<<<<<< HEAD
-settings.py
-=======
-settings.py
->>>>>>> 667e50283c55c2a836206ff10fac074ed25d795d
