@@ -16,4 +16,4 @@ done point your terminal to your folder ($cd /home/your/file) and run
 $python manage.py runserver
 You're all set!
 
-To see the site in action hop on over to www.boomerweb.me
+To see the site in action hop on over to www.boomerscript.cc
