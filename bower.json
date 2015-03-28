@@ -1,0 +1,28 @@
+{
+  "name": "DevGweithdy",
+  "version": "0.0.1",
+  "homepage": "www.DevGweithdy.com",
+  "authors": [
+    "Boomer <herman.rogers@gmail.com>"
+  ],
+  "description": "Personal Developer Website",
+  "main": "index.php",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "ember",
+    "laravel"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "~3.0.0"
+  }
+}
