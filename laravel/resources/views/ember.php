@@ -10,7 +10,7 @@
   <body>
       <h1> Gweithdy App </h1>
       <script type='text/x-handlebars'>
-          <li>{{#link-to ''}}Blog{{/link-to}}</li>
+          <li>{{#link-to ''}}Workshop{{/link-to}}</li>
           <li>{{#link-to 'about'}}About{{/link-to}}</li>
           <li>{{#link-to 'blog'}}Blog{{/link-to}}</li>
           {{outlet}}
@@ -30,6 +30,7 @@
       <script src='../bower_components/handlebars/handlebars.js'></script>
       <script src='../bower_components/ember/ember.debug.js'></script>
       <script src='../bower_components/ember-data/ember-data.js'></script>
-      <script src='../app/dist/js/gweithdybuild.js'></script>
+      <script src='../app/dist/js/appsource.js'></script>
+      <script src='../app/dist/js/apptemplates.js'></script>
   </body>
 </html>
