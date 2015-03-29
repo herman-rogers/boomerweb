@@ -6,3 +6,7 @@ gulp.task( 'default', function () {
     .pipe( concat( 'gweithdybuild.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
 } );
+
+gulp.task( 'watch', function () {
+    gulp.watch( 'app/js/**/*.{js,hbs}', ['default'] );
+} );
