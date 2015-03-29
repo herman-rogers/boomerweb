@@ -11,10 +11,14 @@
 |
 */
 
-Route::controllers([
-'auth' => 'Auth\AuthController',
-'password' => 'Auth\PasswordController',
-]);
+// Route::controllers([
+// 'auth' => 'Auth\AuthController',
+// 'password' => 'Auth\PasswordController',
+// ]);
+
+Route::group(array('prefix'=>'api/v1'), function(){
+	Route::resource('posts', 'PostsController');
+});
 
 Route::get('{ember?}', function(){
 	return View::make('ember');
