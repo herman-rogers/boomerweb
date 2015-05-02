@@ -1,7 +1,7 @@
 {
-  "name": "DevGweithdy",
+  "name": "boomerweb",
   "version": "0.0.1",
-  "homepage": "www.DevGweithdy.com",
+  "homepage": "www.boomerweb.com",
   "authors": [
     "Boomer <herman.rogers@gmail.com>"
   ],
@@ -25,6 +25,6 @@
   "dependencies": {
     "handlebars": "~3.0.0",
     "ember": "~1.11.0",
-    "ember-data": "~0.0.14"
+    "ember-data": "~1.0.0-beta.16"
   }
 }

@@ -1,12 +1,15 @@
-﻿//Main Instance of Ember Application
+﻿
+//Main Instance of Ember Application
+
 App = Ember.Application.create( {
     LOG_TRANSITIONS: true
 } );
 
 App.ApplicationAdapter = DS.RESTAdapter.extend( {
-    namespace: 'api/v1'
+    namespace: 'boomerweb/app/api'
 } );
 
-App.Store = DS.Store.extend( {
+App.ApplicationStore = DS.Store.extend( {
+    revision: 16,
     adapter: 'App.ApplicationAdapter'
 } );

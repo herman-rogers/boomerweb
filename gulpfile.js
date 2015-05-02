@@ -1,27 +1,38 @@
-﻿var gulp = require( 'gulp' ),
-    concat = require( 'gulp-concat' ),
-    handlebars = require('gulp-ember-handlebars');
+﻿// Main gulp tasks that compiles the App Javascript
+// And the Ember Handle bar templates
 
-//TODO: Add HandleBars support
+var gulp = require( 'gulp' );
+var concat = require( 'gulp-concat' );
+var handlebars = require( 'gulp-handlebars' );
+var wrap = require( 'gulp-wrap' );
+var declare = require( 'gulp-declare' );
+
 gulp.task( 'watch', function () {
-    gulp.watch( 'app/js/**/*.js', ['scripts'] );
-    //gulp.watch('app/js/**/*.hbs', ['templates']);
+    gulp.watch( 'source/**/*.js', ['scripts'] );
+    gulp.watch('source/**/*.hbs', ['templates']);
 } );
 
 gulp.task( 'scripts', function () {
-    return gulp.src( 'app/js/**/*.js' )
+    return gulp.src( 'source/**/*.js' )
     .pipe( concat( 'appsource.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
 } );
 
-//gulp.task( 'templates', function () {
-//    return gulp.src( 'app/js/**/*.hbs' )
-//    .pipe( handlebars( {
-//        outputType: 'browser',
-//        namespace: 'Ember.TEMPLATES'
-//    } ) )
-//    .pipe( concat( 'apptemplates.js' ) )
-//    .pipe( gulp.dest( 'app/dist/js' ) );
-//} );
+gulp.task( 'templates', function () {
+    return gulp.src( 'source/**/*.hbs' )
+    .pipe( handlebars( {
+        handlebars: require( 'ember-handlebars' )
+    } ) )
+    .pipe( wrap( 'Ember.Handlebars.template(<%= contents %>)' ) )
+    .pipe( declare( {
+        namespace: 'Ember.TEMPLATES',
+        noRedeclare: true,
+        processName: function ( filePath ) {
+            return declare.processNameByPath( filePath.replace( 'source/', '' ) );
+        }
+    } ) )
+    .pipe( concat( 'apptemplates.js' ) )
+    .pipe( gulp.dest( 'app/dist/js' ) );
+} );
 
-gulp.task( 'default', ['scripts'] );
+gulp.task( 'default', ['scripts', 'templates'] );

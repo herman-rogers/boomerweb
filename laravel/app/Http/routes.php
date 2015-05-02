@@ -16,10 +16,15 @@
 // 'password' => 'Auth\PasswordController',
 // ]);
 
-Route::group(array('prefix'=>'api/v1'), function(){
-	Route::resource('posts', 'PostsController');
+Route::get('/', function(){
+    
+    return View::make('ember');
+    
 });
 
-Route::get('{ember?}', function(){
-	return View::make('ember');
-})->where('ember', '.*');
+//Main routes for the API
+Route::group(array('prefix' => 'api'), function(){
+    
+    Route::resource('posts', 'PostsController');
+    
+});

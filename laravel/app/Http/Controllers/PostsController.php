@@ -1,8 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \App\Posts;
+use App\Http\Requests;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller {
@@ -26,8 +28,9 @@ class PostsController extends Controller {
 				$response['posts'][] = [
 				    'id' => $post->id,
 				    'title' => $post->title,
+                    'post_body' => $post->post_body,
+                    'author' => $post->author,
 				    'date_created' => $post->date_created,
-				    'post_body' => $post->post_body
 			    ];
 			}
 			
