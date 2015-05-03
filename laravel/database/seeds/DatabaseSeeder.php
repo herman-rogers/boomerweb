@@ -27,5 +27,11 @@ class DatabaseSeeder extends Seeder {
             'post_body' => 'This is the body',
             'author' => 'Author Name'
         ) );
+        
+        Posts::create( array(
+            'title' => 'Test Post 2',
+            'post_body' => 'New Test Body',
+            'author' => 'Boomer'
+        ) );
     }
 }

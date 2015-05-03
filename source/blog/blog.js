@@ -7,7 +7,6 @@
 } );
 
 App.BlogView = Ember.View.extend( {
-    //template: Ember.TEMPLATES.App.blog
     templateName: 'blog'
 } );
 

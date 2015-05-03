@@ -16,7 +16,7 @@
 // 'password' => 'Auth\PasswordController',
 // ]);
 
-Route::get('/', function(){
+Route::get('/{data?}', function(){
     
     return View::make('ember');
     

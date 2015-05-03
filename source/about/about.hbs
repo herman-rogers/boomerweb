@@ -1,0 +1,54 @@
+﻿
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">BoomerWeb</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+                <li>{{#link-to 'blog'}}Blog{{/link-to}}</li>
+                <li>{{#link-to 'about'}}About{{/link-to}}</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Drop me a line!</h3>
+            <hr>
+            <address>
+                <strong>Email:</strong> <a href="mailto:#">herman.rogers@gmail.com</a><br><br>
+                <strong>Phone:</strong> (555)123-4567
+            </address>
+        </div>
+
+        <div class="col-sm-8 contact-form">
+            <form id="contact" method="post" class="form" role="form">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required autofocus />
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required />
+                    </div>
+                </div>
+                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
+                <br />
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 form-group">
+                        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

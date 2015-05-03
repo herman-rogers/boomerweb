@@ -30,7 +30,7 @@ class PostsController extends Controller {
 				    'title' => $post->title,
                     'post_body' => $post->post_body,
                     'author' => $post->author,
-				    'date_created' => $post->date_created,
+				    'created_at' => $post->created_at,
 			    ];
 			}
 			
