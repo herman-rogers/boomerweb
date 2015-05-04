@@ -10,14 +10,68 @@
             <a class="navbar-brand">BoomerWeb</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        {{#if loggedIn}}
+            <button class="btn btn-primary pull-right header-button"{{action 'logout'}}>
+                Log out
+            </button>
+        {{else}}
+        <button class="btn btn-primary pull-right header-button" data-toggle="modal" data-target="#myModal">
+            Log in
+        </button>
+        {{/if}}
             <ul class="nav navbar-nav">
-                <li>{{#link-to 'home'}}Home{{/link-to}}</li>
-                <li>{{#link-to 'blog'}}Blog{{/link-to}}</li>
+                <li>{{#link-to 'portfolio'}}Portfolio{{/link-to}}</li>
+                <li>{{#link-to 'blog'}}DevBlog{{/link-to}}</li>
                 <li>{{#link-to 'about'}}About{{/link-to}}</li>
             </ul>
         </div>
     </div>
 </nav>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Log in</h4>
+            </div>
+
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{input type="text" class="form-control" id="uLogin" placeholder="Login" value=email}}
+                            <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{input type="password" class="form-control" id="uPassword" placeholder="Password" value=password}}
+                            <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+                        </div>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="form-control btn btn-primary" type="submit" {{action 'login'}}>Submit</button>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
+                        <span class="sr-only">progress</span>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
 
 {{outlet}}
 

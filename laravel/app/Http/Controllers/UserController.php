@@ -1,13 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use \App\Posts;
+use \App\User;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller {
+class UserController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,27 +16,23 @@ class PostsController extends Controller {
 	 */
 	public function index()
 	{
-		try{
+		try {
 			$statusCode = 200;
 			$response = [
-					'posts' => []
+					'users' => []
 			];
 			
-			$posts = Posts::all();
+			$users = User::all();
 			
-			foreach($posts as $post){
-				$response['posts'][] = [
-				    'id' => $post->id,
-				    'title' => $post->title,
-                    'image' => $post->image,
-                    'post_body' => $post->post_body,
-                    'author' => $post->author,
-				    'created_at' => $post->created_at,
+			foreach($users as $user){
+				$response['users'][] = [
+				    'id' => $user->id,
+				    'email' => $user->email,
 			    ];
 			}
 			
 		} catch (Exception $e){
-			$statusCode = 400;
+			$statusCode = 404;
 		} finally {
 			return Response::json($response,$statusCode);
 		}
@@ -60,7 +56,23 @@ class PostsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		try {
+            $response = [
+                'user' => []    
+            ];
+            $statusCode = 200;
+            $user = User::find($id);
+            
+            $response['users'][] = [
+                'id' => $user->id,
+                'email' => $user->email,
+            ];
+            
+        } catch (\Exception $e) {
+            $statusCode = 404;
+        } finally {
+            return Response::json($response, $statusCode);
+        }
 	}
 
 	/**

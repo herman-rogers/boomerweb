@@ -2,21 +2,21 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model {
+class ContactForms extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'posts';
+	protected $table = 'contactforms';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['title', 'image', 'post_body', 'author'];
+	protected $fillable = ['name', 'email', 'message'];
 
 }
 

@@ -1,11 +1,52 @@
 ﻿<div class="container">
     <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                About
+                <small>Boomer Rogers</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <p>
+                My name is Boomer...I know "is that really your name?" ...well,
+                its a nickname but I have been Boomer since I was a kid.
+                What can I say, the name has grown on me; Speaking of childhood,
+                I also grew up with computers playing games (Commander Keen!),
+                tweaking with hardware (sometimes to my parents dismay but I did need
+                to splice those wires), messing with software and building small games.
+                Today I still love messing with computers, programming, and playing video games.
+                I'm currently a programmer and Director at West Coast Software ( among other things )
+                and I am always looking to craft awesome software!
+            </p>
+            <h1 class="page-header">
+                <small>Languages</small>
+            </h1>
+            <p>
+                <b>Proficient:</b> C#, Java, Javascript, SQL
+            </p>
+            <p>
+                <b>Can Work With:</b> C++, Python, PHP
+            </p>
+            <p>
+                <b>Frameworks:</b> Unity 3D, Unreal Engine, Ember.js, Laravel
+            </p>
+        </div>
+        <div class="col-md-5">
+            <a href="#">
+                <img class="img-responsive" src="../app/dist/images/Boomer_profile.png" alt="">
+            </a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
         <div class="col-sm-4">
             <h3>Drop me a line!</h3>
             <hr>
             <address>
                 <strong>Email:</strong> <a href="mailto:#">herman.rogers@gmail.com</a><br><br>
-                <strong>Phone:</strong> (555)123-4567
+                <strong>Skype:</strong> boomer.westcoast
             </address>
         </div>
 
@@ -13,17 +54,17 @@
             <form id="contact" method="post" class="form" role="form">
                 <div class="row">
                     <div class="col-xs-6 col-md-6 form-group">
-                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required autofocus />
+                        {{input class="form-control" id="name" name="name" placeholder="Name" type="text" value=model.name }}
                     </div>
                     <div class="col-xs-6 col-md-6 form-group">
-                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required />
+                        {{input class="form-control" id="email" name="email" placeholder="Email" value=model.email }}
                     </div>
                 </div>
-                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
+                {{textarea class="form-control" id="message" name="message" placeholder="Message" value=model.message rows="5"}}
                 <br />
                 <div class="row">
                     <div class="col-xs-12 col-md-12 form-group">
-                        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                        <button class="btn btn-primary pull-right" type="submit" {{action 'sendContactRequest'}}>Submit</button>
                     </div>
                 </div>
             </form>
