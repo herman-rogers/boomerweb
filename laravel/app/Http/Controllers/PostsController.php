@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use \App\Posts;
+use App\Posts;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\Response;
@@ -22,7 +22,8 @@ class PostsController extends Controller {
 					'posts' => []
 			];
 			
-			$posts = Posts::all();
+			$posts = \DB::table('posts')
+                ->orderBy('created_at', 'desc')->get();
 			
 			foreach($posts as $post){
 				$response['posts'][] = [
@@ -47,9 +48,26 @@ class PostsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+        $contactform = $request->input('post');
+        $response = [
+                    'posts' => []
+        ];
+        
+        try {
+            $response['posts'][] = Posts::create(array(
+                'title' => $contactform['title'],
+                'image' => 'http://placehold.it/900x300',
+                'post_body' => $contactform['post_body'],
+                'author' => $contactform['author'],
+            ));
+            
+        }
+        catch ( \Exception $e) {
+            return Response::json($response, 400);
+        }
+        return Response::json($response, 200);
 	}
 
 	/**
@@ -62,6 +80,7 @@ class PostsController extends Controller {
 	{
 		//
 	}
+    public $restful = true;
 
 	/**
 	 * Update the specified resource in storage.
@@ -69,9 +88,11 @@ class PostsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update(Request $request, $model)
+	{   
+        $model->update($request->input()['post']);
+        $response['posts'][] = $model;
+        return $response;
 	}
 
 	/**

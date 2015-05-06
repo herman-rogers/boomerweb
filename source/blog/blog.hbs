@@ -4,12 +4,39 @@
             <h1 class="page-header">
                 DevBlog
                 <small>Tech Talk</small>
+                {{#if loggedIn}}
+                {{#link-to 'addpost'class="btn btn-primary" }}
+                    <span class="glyphicon glyphicon-plus"></span>
+                        Add Post{{/link-to}}
+                <a class="btn btn-primary" {{action 'editState'}}>
+                    Edit Post
+                </a>
+                {{/if}}
+                {{#if isEditing}}
+                <a class="btn btn-primary" {{action 'savePostEdits'}}>
+                    Save Edits
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+                {{/if}}
             </h1>
         </div>
     </div>
     <div class="row">
-        {{#each post in model}}
         <div class="col-lg-8">
+            {{#each post in model}}
+            {{#if isEditing}}
+            <h1>{{input type='text' value=post.title}}</h1>
+            <p class="lead">
+                by {{input type='text' value=post.author}}
+            </p>
+            <hr>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <b>{{date-format post.created_at}}</b></p>
+            <hr>
+            <img class="img-responsive" {{bind-attr src=post.image}} alt="">
+            <hr>
+            <p class="lead">{{textarea value=post.post_body}}</p>
+            <hr>
+            {{else}}
             <h1>{{post.title}}</h1>
             <p class="lead">
                 by {{post.author}}
@@ -21,8 +48,10 @@
             <hr>
             <p class="lead">{{post.post_body}}</p>
             <hr>
+            {{/if}}
+            {{/each}}
+
         </div>
-        {{/each}}
         <div class="col-md-offset-9">
             <div class="well">
                 <h4>Blog Search</h4>

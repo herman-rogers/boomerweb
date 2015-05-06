@@ -19,3 +19,51 @@
 .btn.active {
     outline: 0;
 }
+
+/*Notifications Layout*/
+.alert
+{
+    clear: both;
+    z-index: 1000; 
+    position: fixed; 
+    right: 1em; 
+    margin-left: auto; 
+    margin-right: auto;
+    max-width: 20em;
+    max-height: 10em;
+    -webkit-animation: fade 6s;
+    -webkit-animation-fill-mode: both;
+    animation-name: fade;
+    animation-duration: 6s;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade {
+  0% { 
+      opacity: 0 
+  }
+  10% { 
+      opacity: 1 
+  }
+  90% { 
+      opacity: 1
+  }
+  100% { 
+      opacity: 0 
+  }
+}

@@ -1,0 +1,46 @@
+﻿<div class="container">
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add New Post
+                <small>Jot something down</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <h1>
+                <small>Title</small>
+            </h1>
+                {{input class="form-control" placeholder='Title' type='text' value=model.title}}
+            <h1>
+                <small>Author</small>
+            </h1>
+                {{input class="form-control" placeholder='Author' type='text' value=model.author}}
+
+            <small>Image</small>
+            <img class="img-responsive" {{bind-attr src=model.image}} alt="">
+            <hr>
+            <h1>
+                <small>Post Body</small>
+            </h1>
+            <p class="lead">
+                {{textarea class="form-control" placeholder='Post Body' value=model.post_body rows='10'}}
+            </p>
+        </div>
+        <hr>
+        <a class="btn btn-primary" {{action 'createNewPostAndContinue'}}>
+            Save and Create Another
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <a class="btn btn-primary" {{action 'createNewPost'}}>
+            Save Post
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+    <hr>
+</div>

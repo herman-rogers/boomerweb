@@ -26,7 +26,8 @@ App.AboutController = Ember.Controller.extend( {
             this.get( 'model' ).save().then( function () {
                 this.send( 'refreshModel' );
             }.bind( this ) );
-        }
+        },
+
     }
 
 } );

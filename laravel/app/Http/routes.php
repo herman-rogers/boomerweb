@@ -10,15 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Posts;
 
- //Route::controllers([
- //    'auth' => 'Auth\AuthController',
- //    'password' => 'Auth\PasswordController',
- //]);
+Route::model('posts', 'App\Posts');
 
 Route::post('login', 'AuthController@authenticate');
 
-route::post('logout', 'AuthController@logout');
+Route::post('logout', 'AuthController@logout');
 
 Route::get('/{data?}', function(){
     
@@ -30,7 +28,8 @@ Route::get('/{data?}', function(){
 Route::group(array('prefix' => 'api'), function(){
     
     Route::resource( 'users', 'UserController' );
-    Route::resource('posts', 'PostsController');
-    Route::resource('contactforms', 'ContactFormsController');
+    Route::resource( 'posts', 'PostsController' );
+    Route::resource( 'projects', 'ProjectController' );
+    Route::resource( 'contactforms', 'ContactFormsController' );
     
 });

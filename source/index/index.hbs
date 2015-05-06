@@ -11,11 +11,11 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         {{#if loggedIn}}
-            <button class="btn btn-primary pull-right header-button"{{action 'logout'}}>
+            <button class="btn btn-primary pull-right header-button" {{action 'logout'}}>
                 Log out
             </button>
         {{else}}
-        <button class="btn btn-primary pull-right header-button" data-toggle="modal" data-target="#myModal">
+        <button class="btn btn-primary pull-right header-button" data-toggle="modal"  data-target="#myModal" {{action 'showModalLogin'}}>
             Log in
         </button>
         {{/if}}
@@ -28,12 +28,15 @@
     </div>
 </nav>
 
+{{notification-component notificationMessages=currentNotifications}}
+
+{{#if modalLogin}}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Log in</h4>
+                <h4 class="modal-title" id="myModalLabel">Enter Your Details</h4>
             </div>
 
             <div class="modal-body">
@@ -71,7 +74,7 @@
         </div>
     </div>
 </div>
-
+{{/if}}
 
 {{outlet}}
 
@@ -90,15 +93,15 @@
                         <ul class="list-inline">
                             <li>
                                 <a href="https://twitter.com/boomer_web"
-                                   class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-twitter fa-lg"></i></a>
                             </li>
                             <li>
                                 <a href="https://uk.linkedin.com/pub/herman-rogers/32/13a/765"
-                                   class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-linkedin fa-lg"></i></a>
                             </li>
                             <li>
                                 <a href="https://github.com/herman-rogers"
-                                   class="btn-social btn-outline"><i class="fa fa-fw fa-github-alt"></i></a>
+                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-github fa-lg"></i></a>
                             </li>
                         </ul>
                     </div>

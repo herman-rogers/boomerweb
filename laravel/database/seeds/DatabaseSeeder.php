@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use \App\User;
 use \App\Posts;
 use \App\ContactForms;
+use \App\Project;
 
 class DatabaseSeeder extends Seeder {
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->PostsTableSeeder();
         $this->ContactFormsTableSeeder();
         $this->UsersTableSeeder();
+        $this->ProjectTableSeeder();
 	}
     
     private function PostsTableSeeder( ) {
@@ -54,10 +56,34 @@ class DatabaseSeeder extends Seeder {
     private function UsersTableSeeder() {
         Eloquent::unguard();
         DB::table( 'users' )->delete();
+        
         User::create(array(
             'email' => 'boomer@broadsword-publishing.com',
             'password' => Hash::make('tszfaaf0'),
             'remember_token' => true
+        ));
+    }
+    
+    private function ProjectTableSeeder() {
+        Eloquent::unguard();
+        DB::table( 'projects' )->delete();
+        
+        Project::create(array(
+            'type' => 'personal',
+            'name' => 'Test Project',
+            'subheading' => 'Version 1.0',
+            'image' => 'http://placehold.it/900x300',
+            'description' => 'cool new project',
+            'project_link' => 'http://www.boomerscript.cc'
+        ));
+        
+        Project::create(array(
+            'type' => 'personal',
+            'name' => 'Test Project number Two',
+            'subheading' => 'Version Beta 1.0',
+            'image' => 'http://placehold.it/900x300',
+            'description' => 'cool new project 2',
+            'code_link' => 'https://github.com/'
         ));
     }
 }
