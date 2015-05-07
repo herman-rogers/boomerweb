@@ -43,7 +43,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
       var el3 = dom.createTextNode("\n        ");
       dom.appendChild(el2, el3);
       var el3 = dom.createElement("div");
-      dom.setAttribute(el3,"class","col-lg-7");
+      dom.setAttribute(el3,"class","col-lg-8");
       var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
       var el4 = dom.createElement("p");
@@ -105,7 +105,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
       var el3 = dom.createTextNode("\n        ");
       dom.appendChild(el2, el3);
       var el3 = dom.createElement("div");
-      dom.setAttribute(el3,"class","col-md-5");
+      dom.setAttribute(el3,"class","col-md-4");
       var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
       var el4 = dom.createElement("a");
@@ -113,7 +113,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
       var el5 = dom.createTextNode("\n                ");
       dom.appendChild(el4, el5);
       var el5 = dom.createElement("img");
-      dom.setAttribute(el5,"class","img-responsive");
+      dom.setAttribute(el5,"class","img-responsive pull-right");
       dom.setAttribute(el5,"src","../app/dist/images/Boomer_profile.png");
       dom.setAttribute(el5,"alt","");
       dom.appendChild(el4, el5);
@@ -363,7 +363,7 @@ Ember.TEMPLATES['addpost'] =  Ember.HTMLBars.template((function() {
       var el5 = dom.createTextNode("\n            ");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n                ");
+      var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
       var el4 = dom.createComment("");
       dom.appendChild(el3, el4);
@@ -379,14 +379,20 @@ Ember.TEMPLATES['addpost'] =  Ember.HTMLBars.template((function() {
       var el5 = dom.createTextNode("\n            ");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n                ");
+      var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
       var el4 = dom.createComment("");
       dom.appendChild(el3, el4);
       var el4 = dom.createTextNode("\n\n            ");
       dom.appendChild(el3, el4);
-      var el4 = dom.createElement("small");
-      var el5 = dom.createTextNode("Image");
+      var el4 = dom.createElement("h1");
+      var el5 = dom.createTextNode("\n                ");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createElement("small");
+      var el6 = dom.createTextNode("Image");
+      dom.appendChild(el5, el6);
+      dom.appendChild(el4, el5);
+      var el5 = dom.createTextNode("\n            ");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
       var el4 = dom.createTextNode("\n            ");
@@ -422,33 +428,29 @@ Ember.TEMPLATES['addpost'] =  Ember.HTMLBars.template((function() {
       var el5 = dom.createTextNode("\n            ");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n        ");
+      var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
-      dom.appendChild(el2, el3);
-      var el3 = dom.createTextNode("\n        ");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createElement("hr");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createTextNode("\n        ");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createElement("a");
-      dom.setAttribute(el3,"class","btn btn-primary");
-      var el4 = dom.createTextNode("\n            Save and Create Another\n            ");
+      var el4 = dom.createElement("a");
+      dom.setAttribute(el4,"class","btn btn-primary");
+      var el5 = dom.createTextNode("\n                Save and Create Another\n                ");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createElement("span");
+      dom.setAttribute(el5,"class","glyphicon glyphicon-plus");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createTextNode("\n            ");
+      dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createElement("span");
-      dom.setAttribute(el4,"class","glyphicon glyphicon-plus");
+      var el4 = dom.createTextNode("\n            ");
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n        ");
-      dom.appendChild(el3, el4);
-      dom.appendChild(el2, el3);
-      var el3 = dom.createTextNode("\n        ");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createElement("a");
-      dom.setAttribute(el3,"class","btn btn-primary");
-      var el4 = dom.createTextNode("\n            Save Post\n            ");
-      dom.appendChild(el3, el4);
-      var el4 = dom.createElement("span");
-      dom.setAttribute(el4,"class","glyphicon glyphicon-chevron-right");
+      var el4 = dom.createElement("a");
+      dom.setAttribute(el4,"class","btn btn-primary");
+      var el5 = dom.createTextNode("\n                Save Post\n                ");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createElement("span");
+      dom.setAttribute(el5,"class","glyphicon glyphicon-chevron-right");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createTextNode("\n            ");
+      dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
       var el4 = dom.createTextNode("\n        ");
       dom.appendChild(el3, el4);
@@ -485,20 +487,19 @@ Ember.TEMPLATES['addpost'] =  Ember.HTMLBars.template((function() {
       } else {
         fragment = this.build(dom);
       }
-      var element0 = dom.childAt(fragment, [2, 3]);
-      var element1 = dom.childAt(element0, [1]);
-      var element2 = dom.childAt(element1, [11]);
-      var element3 = dom.childAt(element0, [5]);
-      var element4 = dom.childAt(element0, [7]);
-      var morph0 = dom.createMorphAt(element1,3,3);
-      var morph1 = dom.createMorphAt(element1,7,7);
-      var morph2 = dom.createMorphAt(dom.childAt(element1, [17]),1,1);
+      var element0 = dom.childAt(fragment, [2, 3, 1]);
+      var element1 = dom.childAt(element0, [11]);
+      var element2 = dom.childAt(element0, [19]);
+      var element3 = dom.childAt(element0, [21]);
+      var morph0 = dom.createMorphAt(element0,3,3);
+      var morph1 = dom.createMorphAt(element0,7,7);
+      var morph2 = dom.createMorphAt(dom.childAt(element0, [17]),1,1);
       inline(env, morph0, context, "input", [], {"class": "form-control", "placeholder": "Title", "type": "text", "value": get(env, context, "model.title")});
       inline(env, morph1, context, "input", [], {"class": "form-control", "placeholder": "Author", "type": "text", "value": get(env, context, "model.author")});
-      element(env, element2, context, "bind-attr", [], {"src": get(env, context, "model.image")});
+      element(env, element1, context, "bind-attr", [], {"src": get(env, context, "model.image")});
       inline(env, morph2, context, "textarea", [], {"class": "form-control", "placeholder": "Post Body", "value": get(env, context, "model.post_body"), "rows": "10"});
-      element(env, element3, context, "action", ["createNewPostAndContinue"], {});
-      element(env, element4, context, "action", ["createNewPost"], {});
+      element(env, element2, context, "action", ["createNewPostAndContinue"], {});
+      element(env, element3, context, "action", ["createNewPost"], {});
       return fragment;
     }
   };
@@ -514,12 +515,12 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("                    ");
+          var el1 = dom.createTextNode("                ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("span");
           dom.setAttribute(el1,"class","glyphicon glyphicon-plus");
           dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n                        Add Post");
+          var el1 = dom.createTextNode("\n                Add Post");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -560,7 +561,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("a");
         dom.setAttribute(el1,"class","btn btn-primary");
-        var el2 = dom.createTextNode("\n                    Edit Post\n                ");
+        var el2 = dom.createTextNode("\n                    Edit Posts\n                ");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -660,6 +661,18 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el1 = dom.createTextNode("            ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("h1");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("small");
+          var el3 = dom.createTextNode("Title");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("h1");
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
@@ -667,7 +680,19 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("p");
           dom.setAttribute(el1,"class","lead");
-          var el2 = dom.createTextNode("\n                by ");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("h1");
+          var el3 = dom.createTextNode("\n                    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("small");
+          var el4 = dom.createTextNode("Author");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n                ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
@@ -697,6 +722,18 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n            ");
           dom.appendChild(el0, el1);
+          var el1 = dom.createElement("h1");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("small");
+          var el3 = dom.createTextNode("Image");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n            ");
+          dom.appendChild(el0, el1);
           var el1 = dom.createElement("img");
           dom.setAttribute(el1,"class","img-responsive");
           dom.setAttribute(el1,"alt","");
@@ -704,6 +741,18 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el1 = dom.createTextNode("\n            ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("hr");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("h1");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("small");
+          var el3 = dom.createTextNode("Post Body");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n            ");
           dom.appendChild(el0, el1);
@@ -740,16 +789,16 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           } else {
             fragment = this.build(dom);
           }
-          var element1 = dom.childAt(fragment, [11]);
-          var morph0 = dom.createMorphAt(dom.childAt(fragment, [1]),0,0);
-          var morph1 = dom.createMorphAt(dom.childAt(fragment, [3]),1,1);
-          var morph2 = dom.createMorphAt(dom.childAt(fragment, [7, 2]),0,0);
-          var morph3 = dom.createMorphAt(dom.childAt(fragment, [15]),0,0);
-          inline(env, morph0, context, "input", [], {"type": "text", "value": get(env, context, "post.title")});
-          inline(env, morph1, context, "input", [], {"type": "text", "value": get(env, context, "post.author")});
+          var element1 = dom.childAt(fragment, [15]);
+          var morph0 = dom.createMorphAt(dom.childAt(fragment, [3]),0,0);
+          var morph1 = dom.createMorphAt(dom.childAt(fragment, [5]),3,3);
+          var morph2 = dom.createMorphAt(dom.childAt(fragment, [9, 2]),0,0);
+          var morph3 = dom.createMorphAt(dom.childAt(fragment, [21]),0,0);
+          inline(env, morph0, context, "input", [], {"class": "form-control", "type": "text", "value": get(env, context, "post.title")});
+          inline(env, morph1, context, "input", [], {"class": "form-control", "type": "text", "value": get(env, context, "post.author")});
           inline(env, morph2, context, "date-format", [get(env, context, "post.created_at")], {});
           element(env, element1, context, "bind-attr", [], {"src": get(env, context, "post.image")});
-          inline(env, morph3, context, "textarea", [], {"value": get(env, context, "post.post_body")});
+          inline(env, morph3, context, "textarea", [], {"class": "form-control", "value": get(env, context, "post.post_body")});
           return fragment;
         }
       };
@@ -2528,11 +2577,21 @@ App.AddpostView = Ember.View.extend( {
 
 App.AddpostController = Ember.Controller.extend( {
 
+    needs: ['index'],
+
+    moveFromPageIfLoggedOut: function(){
+        if ( !this.get( 'loggedIn' ) ) {
+            this.transitionToRoute('portfolio');
+        }
+    }.observes('loggedIn').on('init'),
+
+    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
     actions: {
 
         createNewPost: function () {
             this.get( 'model' ).save().then( function () {
-                this.transitionTo( 'blog' );
+                this.transitionToRoute( 'blog' );
             }.bind( this ) );
         },
 

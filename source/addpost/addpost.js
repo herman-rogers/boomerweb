@@ -20,11 +20,21 @@ App.AddpostView = Ember.View.extend( {
 
 App.AddpostController = Ember.Controller.extend( {
 
+    needs: ['index'],
+
+    moveFromPageIfLoggedOut: function(){
+        if ( !this.get( 'loggedIn' ) ) {
+            this.transitionToRoute('portfolio');
+        }
+    }.observes('loggedIn').on('init'),
+
+    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
     actions: {
 
         createNewPost: function () {
             this.get( 'model' ).save().then( function () {
-                this.transitionTo( 'blog' );
+                this.transitionToRoute( 'blog' );
             }.bind( this ) );
         },
 

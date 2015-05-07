@@ -6,10 +6,10 @@
                 <small>Tech Talk</small>
                 {{#if loggedIn}}
                 {{#link-to 'addpost'class="btn btn-primary" }}
-                    <span class="glyphicon glyphicon-plus"></span>
-                        Add Post{{/link-to}}
+                <span class="glyphicon glyphicon-plus"></span>
+                Add Post{{/link-to}}
                 <a class="btn btn-primary" {{action 'editState'}}>
-                    Edit Post
+                    Edit Posts
                 </a>
                 {{/if}}
                 {{#if isEditing}}
@@ -25,16 +25,28 @@
         <div class="col-lg-8">
             {{#each post in model}}
             {{#if isEditing}}
-            <h1>{{input type='text' value=post.title}}</h1>
+            <h1>
+                <small>Title</small>
+            </h1>
+            <h1>{{input class="form-control" type='text' value=post.title}}</h1>
             <p class="lead">
-                by {{input type='text' value=post.author}}
+                <h1>
+                    <small>Author</small>
+                </h1>
+                {{input class="form-control" type='text' value=post.author}}
             </p>
             <hr>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <b>{{date-format post.created_at}}</b></p>
             <hr>
+            <h1>
+                <small>Image</small>
+            </h1>
             <img class="img-responsive" {{bind-attr src=post.image}} alt="">
             <hr>
-            <p class="lead">{{textarea value=post.post_body}}</p>
+            <h1>
+                <small>Post Body</small>
+            </h1>
+            <p class="lead">{{textarea class="form-control" value=post.post_body}}</p>
             <hr>
             {{else}}
             <h1>{{post.title}}</h1>
