@@ -106,6 +106,20 @@
         </div>
         <!-- BLOG SIDE BAR -->
         <div class="col-md-offset-9">
+            {{#if loggedIn}}
+            <!-- POST TO TWITTER -->
+            <h2>Post to twitter</h2>
+            <div>
+                <p class="lead">{{textarea class="form-control" value=twitterPost.text rows="5"}}</p>
+                <small>Characters: {{twitterPostLength}}</small>
+                <a class="btn btn-primary pull-right" {{action 'postToTwitter'}}>
+                    Tweet
+                    &nbsp;
+                    <span class="glyphicon glyphicon-send"></span>
+                </a>
+            </div>
+            <hr />
+            {{/if}}
             <div class="chat-panel">
                 <h2>
                     <a href="https://twitter.com/boomer_web"><i class="fa fa-fw fa-twitter fa-lg"></i>twitter</a>
@@ -113,32 +127,37 @@
                 <div class="panel-body">
                     <ul class="chat">
                         {{#each tweet in controller.tweets}}
-                        <div class="message-item" id="m1">
-                            <div class="message-inner">
-                                <div class="message-head">
-                                    <div class="user-detail">
-                                        <div class="post-meta">
-                                            <div class="avatar pull-left">
-                                                <img {{bind-attr src=tweet.user.profile_image_url}} />
-                                            </div>
-                                            <div class="asker-meta">
-                                                <span class="qa-message-what"></span>
-                                                <span class="qa-message-when">
-                                                    <span class="qa-message-when-data pull-right">{{date-format tweet.created_at}}</span>
-                                                </span>
+                        {{#if tweet.text}}
+                        <li>
+                            <div class="message-item" id="m1">
+                                <div class="message-inner">
+                                    <div class="message-head">
+                                        <div class="user-detail">
+                                            <div class="post-meta">
+                                                <div class="avatar pull-left">
+                                                    <img {{bind-attr src=tweet.user.profile_image_url}} />
+                                                </div>
+                                                <div class="asker-meta">
+                                                    <span class="qa-message-what"></span>
+                                                    <span class="qa-message-when">
+                                                        <span class="qa-message-when-data pull-right">{{date-format tweet.created_at}}</span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="qa-message-content">
-                                    <p>{{tweet.text}}</p>
+                                    <div class="qa-message-content">
+                                        <p>{{tweet.text}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </li>
+                        {{/if}}
                         {{/each}}
                     </ul>
                 </div>
             </div>
+            <hr />
         </div>
     </div>
 </div>

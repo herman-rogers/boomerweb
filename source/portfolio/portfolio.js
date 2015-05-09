@@ -6,10 +6,13 @@
 } );
 
 App.PortfolioView = Ember.View.extend( {
-    templateName: 'portfolio'
+    templateName: 'portfolio',
+
+    DragDrop: DropletView.extend()
+
 } );
 
-App.PortfolioController = Ember.ArrayController.extend( {
+App.PortfolioController = Ember.ArrayController.extend( DropletController, {
     needs: ['index'],
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),

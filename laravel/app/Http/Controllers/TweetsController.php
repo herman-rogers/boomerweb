@@ -21,23 +21,16 @@
            * @return Response
            */
           public function index()
-          {
-              $tokens = array('oauth_token' => self::accessToken,
-                              'oauth_token_secret' => self::accessTokenSecret );
-              
-              $connection = new \Twitter(self::consumerKey, self::consumerSecret, 
-                  $tokens['oauth_token'], $tokens['oauth_token_secret']);
-              
-              $connection->host = 'https://api.twitter.com/1.1/';
-              
-              $statues = $connection->get("statuses/user_timeline", 
+          {   
+              $connection = $this->getAuthorizedTwitterURL();
+              $status = $connection->get("statuses/user_timeline", 
                   array("count" => 10, "exclude_replies" => true));
               
-              $query['tweets'] = $statues;
+              $query['tweets'] = $status;
               
               return Response::json($query, 200);
           }
-
+          
           /**
            * Store a newly created resource in storage.
            *
@@ -45,49 +38,25 @@
            */
           public function store(Request $request)
           {
-              //$post = $request->input('post');
-
-              //$response = [
-              //            'posts' => []
-              //];
+              $statusUpdate = $request->input('tweet');
+              $connection = $this->getAuthorizedTwitterURL();
               
-              //try {
-              //    $response['posts'][] = Posts::create(array(
-              //        'title' => $post['title'],
-              //        'image' => 'http://placehold.it/900x300',
-              //        'post_body' => $post['post_body'],
-              //        'author' => $post['author'],
-              //    ));
+              $status = $connection->post('statuses/update', array('status' => $statusUpdate['text']));
+              $query['tweets'] = $request->input('tweet');
               
-              //}
-              //catch ( \Exception $e) {
-              //    return Response::json($response, 400);
-              //}
-              //return Response::json($response, 200);
+              return Response::json($query, 200);
           }
-
-          /**
-           * Display the specified resource.
-           *
-           * @param  int  $id
-           * @return Response
-           */
-          public function show($id)
-          {
-              //
-          }
-
-          /**
-           * Remove the specified resource from storage.
-           *
-           * @param  int  $id
-           * @return Response
-           */
-          public function destroy($post)
-          {
-              //$post->delete();
-              //$response['posts'][] = $post;
-              //return Response::json($response, 200);
+          
+          private function getAuthorizedTwitterURL(){
+              $tokens = array('oauth_token' => self::accessToken,
+                    'oauth_token_secret' => self::accessTokenSecret );
+              
+              $connection = new \Twitter(self::consumerKey, self::consumerSecret, 
+                  $tokens['oauth_token'], $tokens['oauth_token_secret']);
+              
+              $connection->host = 'https://api.twitter.com/1.1/';
+              
+              return $connection;
           }
 
       }

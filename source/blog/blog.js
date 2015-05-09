@@ -4,8 +4,8 @@
         // Reset the post limit to pull in the 
         // specified amount
         var controller = this.controllerFor( 'blog' );
-        var postLimit = controller.get('postLimit');
-        controller.set('postIndex', postLimit);
+        var postLimit = controller.get( 'postLimit' );
+        controller.set( 'postIndex', postLimit );
     },
 
     model: function() {
@@ -22,19 +22,29 @@ App.BlogView = Ember.View.extend( {
 
 App.BlogController = Ember.ArrayController.extend( {
 
-    testPost: function(){
-        return this.store.find( 'post', 50 );
-    }.property(),
-
     needs: ['index'],
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
 
     currentState: 'SAVED',
 
+    // Twitter Functions
     tweets: function() {
         return this.store.find( 'tweet' );
     }.property(),
+
+    twitterPost: function() {
+        return this.store.createRecord( 'tweet' );
+    }.property(),
+
+    twitterPostLength: function() {
+        var post = this.get( 'twitterPost' )
+        var postLength = 0;
+        if ( post.get( 'text' ) ) {
+            postLength = post.get( 'text' ).length;
+        }
+        return ( 255 - postLength );
+    }.property( 'twitterPost.text' ),
 
     // Blog Loading Properties
     cachedPosts: function() {
@@ -129,8 +139,17 @@ App.BlogController = Ember.ArrayController.extend( {
 
         confirmDelete: function( post ) {
             post.destroyRecord();
-        }
+        },
 
+        postToTwitter: function() {
+            var tweet = this.get( 'twitterPost' );
+            var tagPost = tweet.get( 'text' ) + '#boomerweb';
+            tweet.set( 'text', tagPost);
+
+            tweet.save().then( function() {
+                //Reload the model properly
+            }.bind(this) );
+        }
     }
 
 } );

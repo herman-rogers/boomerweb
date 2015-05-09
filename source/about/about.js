@@ -19,6 +19,16 @@ App.AboutView = Ember.View.extend( {
 
 App.AboutController = Ember.Controller.extend( {
 
+    verificationNumber: null,
+
+    humanVerification: function() {
+        var verificationNumber = this.get( 'verificationNumber' );
+        if ( verificationNumber === '2' ) {
+            return true;
+        }
+        return false;
+    }.property( 'verificationNumber' ),
+
     actions: {
         sendContactRequest: function () {
             this.get( 'model' ).save().then( function () {

@@ -63,14 +63,15 @@
                       'message' => $contactform['message']
                   ));
                   
-              } catch ( \Exception $e) {
+              }
+              catch ( \Exception $e) {
                   return Response::json($response, 400);
               }
               $this->sendContactRequest($response['contactforms'][0]);
               return Response::json($response, 200);
           }
           
-          public function sendContactRequest($response){
+          public function sendContactRequest($response) {
               $sendEmailAddress = Config::get('mail.username');
               
               $data = [ 'name' => $response['name'],
@@ -79,21 +80,15 @@
                         'address' => $sendEmailAddress,
                              ];
               
-              Mail::queue('emails.contact', $data, function($message) use ($data){
+              Mail::queue([], [], function($message) use ($data){
                   $message->to($data['address'])
                       ->subject('BoomerWeb Contact Inquiry');
+                                  $message->to($data['address'])
+                      ->setBody("\rName: " . $data['name'] .
+                              "\r\rE-mail: " . $data['email'] .
+                              "\r\r\rMessage: " . $data['message']);
               });
               
           }
 
-          /**
-           * Display the specified resource.
-           *
-           * @param  int  $id
-           * @return Response
-           */
-          //public function show($id)
-          //{
-          //    //
-          //}
       }

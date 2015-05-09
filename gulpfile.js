@@ -38,6 +38,7 @@ gulp.task( 'libraries', function () {
         .pipe( addsrc.append( 'bower_components/jquery-cookie/jquery.cookie.js' ) )
         .pipe( addsrc.append( 'bower_components/moment/moment.js' ) )
         .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
+        .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.js' ) )
         .pipe( concat( 'libraries.js' ) )
         .pipe( gulp.dest('app/dist/js') )
 } );
