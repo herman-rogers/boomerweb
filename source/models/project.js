@@ -1,11 +1,14 @@
-﻿App.Project = DS.Model.extend( {
+﻿
+App.Project = DS.Model.extend( {
 
-    type: attr( 'string' ),
-    name: attr( 'string' ),
-    subheading: attr( 'string' ),
+    type: attr(),
+    name: attr(),
+    subheading: attr(),
     image: attr(),
-    description: attr('string'),
+    description: attr(),
     project_link: attr(),
-    code_link: attr()
+    code_link: attr(),
+
+    enableDelete: false,
 
 } );

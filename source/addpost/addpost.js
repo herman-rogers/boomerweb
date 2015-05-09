@@ -1,14 +1,26 @@
 ﻿App.AddpostRoute = Ember.Route.extend( {
 
+    // Authenticate user before loading route
+    beforeModel: function ( controller ) {
+        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
+        if ( !loggedIn ) {
+            return Ember.RSVP.reject('Unauthorized Access');
+        }
+    },
+
     model: function () {
         return this.store.createRecord( 'post' );
     },
 
     actions: {
-        saveAndAddAnother: function () {
+        refreshRoute: function () {
             this.refresh();
-            window.scrollTo( 0, 0 );
         },
+
+        willTransition: function() {
+            controller = this.controllerFor( 'addpost' );
+            controller.get( 'content' ).rollback();
+        }
     }
 
 } );
@@ -22,25 +34,30 @@ App.AddpostController = Ember.Controller.extend( {
 
     needs: ['index'],
 
-    moveFromPageIfLoggedOut: function(){
+    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
+    moveFromPageIfLoggedOut: function () {
         if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute('portfolio');
+            this.transitionToRoute('blog');
         }
     }.observes('loggedIn').on('init'),
 
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
     actions: {
 
-        createNewPost: function () {
+        cancel: function() {
+            this.transitionToRoute('blog');
+        },
+
+        createNew: function () {
             this.get( 'model' ).save().then( function () {
                 this.transitionToRoute( 'blog' );
             }.bind( this ) );
         },
 
-        createNewPostAndContinue: function() {
+        createNewAndContinue: function() {
             this.get( 'model' ).save().then( function () {
-                this.send( 'saveAndAddAnother' );
+                this.send( 'refreshRoute' );
+                window.scrollTo( 0, 0 );
             }.bind( this ) );
         },
     }

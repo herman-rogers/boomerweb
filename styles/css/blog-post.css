@@ -4,10 +4,26 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+.ember-application {
+    padding: 0;
 }
 
-footer {
-    margin: 50px 0;
+.ember-view {
+    padding-top: 30px;
+}
+
+footer .footer-above {
+    margin-top: 50px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    bottom: 0;
+}
+
+footer .footer-below {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    bottom: 0;
+    background-color: #222;
+    bottom: 0;
 }

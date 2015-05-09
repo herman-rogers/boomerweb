@@ -11,12 +11,14 @@
 |
 */
 use App\Posts;
+use App\Projects;
 
 Route::model('posts', 'App\Posts');
+Route::model('projects', 'App\Projects');
 
 Route::post('login', 'AuthController@authenticate');
-
 Route::post('logout', 'AuthController@logout');
+
 
 Route::get('/{data?}', function(){
     
@@ -27,6 +29,7 @@ Route::get('/{data?}', function(){
 //Main routes for the API
 Route::group(array('prefix' => 'api'), function(){
     
+    Route::resource( 'tweets', 'TweetsController' );
     Route::resource( 'users', 'UserController' );
     Route::resource( 'posts', 'PostsController' );
     Route::resource( 'projects', 'ProjectController' );

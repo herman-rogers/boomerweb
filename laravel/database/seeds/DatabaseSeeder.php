@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use \App\User;
 use \App\Posts;
 use \App\ContactForms;
-use \App\Project;
+use \App\Projects;
 
 class DatabaseSeeder extends Seeder {
 
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder {
         Eloquent::unguard();
         DB::table( 'projects' )->delete();
         
-        Project::create(array(
+        Projects::create(array(
             'type' => 'personal',
             'name' => 'Test Project',
             'subheading' => 'Version 1.0',
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder {
             'project_link' => 'http://www.boomerscript.cc'
         ));
         
-        Project::create(array(
+        Projects::create(array(
             'type' => 'personal',
             'name' => 'Test Project number Two',
             'subheading' => 'Version Beta 1.0',

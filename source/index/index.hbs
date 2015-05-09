@@ -1,125 +1,104 @@
-﻿<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">BoomerWeb</a>
+﻿<div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">BoomerWeb</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>{{#link-to 'portfolio'}}Portfolio{{/link-to}}</li>
+                    <li>{{#link-to 'blog'}}DevBlog{{/link-to}}</li>
+                    <li>{{#link-to 'about'}}About{{/link-to}}</li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        {{#if loggedIn}}
-            <button class="btn btn-primary pull-right header-button" {{action 'logout'}}>
-                Log out
-            </button>
-        {{else}}
-        <button class="btn btn-primary pull-right header-button" data-toggle="modal"  data-target="#myModal" {{action 'showModalLogin'}}>
-            Log in
-        </button>
-        {{/if}}
-            <ul class="nav navbar-nav">
-                <li>{{#link-to 'portfolio'}}Portfolio{{/link-to}}</li>
-                <li>{{#link-to 'blog'}}DevBlog{{/link-to}}</li>
-                <li>{{#link-to 'about'}}About{{/link-to}}</li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+    </nav>
+</div>
 {{notification-component notificationMessages=currentNotifications}}
 
 {{#if modalLogin}}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Enter Your Details</h4>
-            </div>
-
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <div class="input-group">
-                            {{input type="text" class="form-control" id="uLogin" placeholder="Login" value=email}}
-                            <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            {{input type="password" class="form-control" id="uPassword" placeholder="Password" value=password}}
-                            <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
-                        </div>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Remember me
-                        </label>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button class="form-control btn btn-primary" type="submit" {{action 'login'}}>Submit</button>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
-                        <span class="sr-only">progress</span>
-                    </div>
+        <div class="card card-container">
+            <h1>Login</h1>
+            <form class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                {{input type="email" class="form-control" id="inputEmail" placeholder="Email Address" value=email}}
+                {{input type="password" class="form-control" id="inputPassword" placeholder="Password" value=password}}
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
                 </div>
-            </div> 
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" {{action 'login'}}>
+                    Log In
+                    &nbsp;
+                    <span class="glyphicon glyphicon-log-in"></span>
+                </button>
+            </form>
         </div>
-    </div>
 </div>
 {{/if}}
 
 {{outlet}}
-
-<div class="container">
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>Llanbadarn Road<br>Aberystwyth, Wales, UK SY23 1EJ</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="https://twitter.com/boomer_web"
-                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-twitter fa-lg"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://uk.linkedin.com/pub/herman-rogers/32/13a/765"
-                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-linkedin fa-lg"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/herman-rogers"
-                                   class="btn btn-social btn-outline"><i class="fa fa-fw fa-github fa-lg"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About BoomerWeb</h3>
-                        <p>BoomerWeb showcases the pursuit of learning everything about coding.</p>
-                    </div>
+<!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
+                    <p>Llanbadarn Road<br>Aberystwyth, Wales, UK SY23 1EJ</p>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>Around the Web</h3>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://twitter.com/boomer_web"><i class="fa fa-fw fa-twitter fa-2x"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://uk.linkedin.com/pub/herman-rogers/32/13a/765"><i class="fa fa-fw fa-linkedin fa-2x"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/herman-rogers"><i class="fa fa-fw fa-github fa-2x"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>About BoomerWeb</h3>
+                    <p>BoomerWeb showcases the pursuit of learning everything about coding.</p>
                 </div>
             </div>
         </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; BoomerWeb 2012-2015
-                    </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Copyright &copy; BoomerWeb 2012-2015
+                </div>
+                <div class="footer-col col-md-4 pull-right">
+                    {{#if loggedIn}}
+                    <button class="btn btn-primary header-button pull-right" {{action 'logout'}}>
+                        Log Out
+                        &nbsp;
+                        <span class="glyphicon glyphicon-log-out"></span>
+                    </button>
+                    {{else}}
+                    <button class="btn btn-primary header-button pull-right" data-toggle="modal" data-target="#myModal" {{action 'showModalLogin'}}>
+                        Log In
+                        &nbsp;
+                        <span class="glyphicon glyphicon-log-in"></span>
+                    </button>
+                    {{/if}}
                 </div>
             </div>
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
+<!--</div>-->

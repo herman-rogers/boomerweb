@@ -1,0 +1,59 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add New Project
+                <small>Something new</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <h1>
+                <small>Project Name</small>
+            </h1>
+            {{input class="form-control" placeholder='Project Name' type='text' value=model.name}}
+            <h1>
+                <small>Version</small>
+            </h1>
+            {{input class="form-control" placeholder='Version' type='text' value=model.subheading}}
+            <h1>
+                <small>Image</small>
+            </h1>
+            <img class="img-responsive" {{bind-attr src=model.image}} alt="" />
+            <hr>
+            <h1>
+                <small>Project Description</small>
+            </h1>
+            <p class="lead">
+                {{textarea class="form-control" placeholder='Post Body' value=model.description rows='10'}}
+            </p>
+            <h1>
+                <small>Project Link</small>
+            </h1>
+            {{input class="form-control" value=model.project_link}}
+            <h1>
+                <small>Project Code</small>
+            </h1>
+            <p class="lead">
+                {{input class="form-control" value=model.code_link}}
+            </p>
+            <a class="btn btn-warning" {{action 'cancel'}}>
+                Cancel
+                &nbsp;
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <a class="btn btn-primary" {{action 'createNew'}}>
+                Save Post
+                &nbsp;
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <a class="btn btn-primary" {{action 'createNewAndContinue'}}>
+                Save and Create Another
+                &nbsp;
+                <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+        </div>
+    </div>
+    <hr>
+</div>

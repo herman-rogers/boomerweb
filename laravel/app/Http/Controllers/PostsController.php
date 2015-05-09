@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Posts;
 use App\Http\Requests;
+use App\Posts;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
@@ -50,17 +50,18 @@ class PostsController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $contactform = $request->input('post');
+        $post = $request->input('post');
+
         $response = [
                     'posts' => []
         ];
         
         try {
             $response['posts'][] = Posts::create(array(
-                'title' => $contactform['title'],
+                'title' => $post['title'],
                 'image' => 'http://placehold.it/900x300',
-                'post_body' => $contactform['post_body'],
-                'author' => $contactform['author'],
+                'post_body' => $post['post_body'],
+                'author' => $post['author'],
             ));
             
         }
@@ -101,9 +102,11 @@ class PostsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($post)
 	{
-		//
+        $post->delete();
+        $response['posts'][] = $post;
+        return Response::json($response, 200);
 	}
 
 }

@@ -5,25 +5,40 @@
                 DevBlog
                 <small>Tech Talk</small>
                 {{#if loggedIn}}
-                {{#link-to 'addpost'class="btn btn-primary" }}
-                <span class="glyphicon glyphicon-plus"></span>
-                Add Post{{/link-to}}
-                <a class="btn btn-primary" {{action 'editState'}}>
-                    Edit Posts
-                </a>
-                {{/if}}
+
+                <!-- EDIT AND ADD POSTS BUTTONS -->
                 {{#if isEditing}}
-                <a class="btn btn-primary" {{action 'savePostEdits'}}>
-                    Save Edits
+                <a class="btn btn-warning" {{action 'cancelState'}}>
+                    Cancel
+                    &nbsp;
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+                <a class="btn btn-primary" {{action 'saveEdits'}}>
+                    Save
+                    &nbsp;
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
+                {{else}}
+                <a class="btn btn-primary" {{action 'editState'}}>
+                    Edit Posts
+                    &nbsp;
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                {{#link-to 'addpost'class="btn btn-primary" }}
+                Add Post
+                &nbsp;
+                <span class="glyphicon glyphicon-plus"></span>
+                {{/link-to}}
+                {{/if}}
                 {{/if}}
             </h1>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-8">
-            {{#each post in model}}
+            {{#each post in controller.loadPosts}}
+
+            <!-- EDIT MAIN FORM -->
             {{#if isEditing}}
             <h1>
                 <small>Title</small>
@@ -46,8 +61,29 @@
             <h1>
                 <small>Post Body</small>
             </h1>
-            <p class="lead">{{textarea class="form-control" value=post.post_body}}</p>
-            <hr>
+            <p class="lead">{{textarea class="form-control" value=post.post_body rows="15"}}</p>
+
+            <!-- DELETE BUTTONS -->
+            {{#if post.enableDelete}}
+            <a class="btn btn-warning" {{action 'cancelDelete' post}}>
+                Cancel
+                &nbsp;
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <a class="btn btn-danger" {{action 'confirmDelete' post}}>
+                Confirm
+                &nbsp;
+                <span class="glyphicon glyphicon-check"></span>
+            </a>
+            {{else}}
+            <a class="btn btn-danger" {{action 'deleteModel' post}}>
+                Delete Post
+                &nbsp;
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+            {{/if}}
+
+            <!-- DISPLAY POSTS NORMALLY -->
             {{else}}
             <h1>{{post.title}}</h1>
             <p class="lead">
@@ -62,25 +98,47 @@
             <hr>
             {{/if}}
             {{/each}}
-
+            <a class="form-control btn btn-primary" {{action 'loadMorePosts'}}>
+                Load More
+                &nbsp;
+                <span class="glyphicon glyphicon-download fa-lg"></span>
+            </a>
         </div>
+        <!-- BLOG SIDE BAR -->
         <div class="col-md-offset-9">
-            <div class="well">
-                <h4>Blog Search</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
+            <div class="chat-panel">
+                <h2>
+                    <a href="https://twitter.com/boomer_web"><i class="fa fa-fw fa-twitter fa-lg"></i>twitter</a>
+                </h2>
+                <div class="panel-body">
+                    <ul class="chat">
+                        {{#each tweet in controller.tweets}}
+                        <div class="message-item" id="m1">
+                            <div class="message-inner">
+                                <div class="message-head">
+                                    <div class="user-detail">
+                                        <div class="post-meta">
+                                            <div class="avatar pull-left">
+                                                <img {{bind-attr src=tweet.user.profile_image_url}} />
+                                            </div>
+                                            <div class="asker-meta">
+                                                <span class="qa-message-what"></span>
+                                                <span class="qa-message-when">
+                                                    <span class="qa-message-when-data pull-right">{{date-format tweet.created_at}}</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="qa-message-content">
+                                    <p>{{tweet.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </ul>
                 </div>
-            </div>
-            <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
         </div>
     </div>
-    <hr>
 </div>

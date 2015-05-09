@@ -7,7 +7,7 @@ var addsrc = require( 'gulp-add-src' );
 
 // Compiled Ember Handlebars Dependencies
 var htmlbars = require( 'gulp-htmlbars' );
-var tap = require('gulp-tap');
+var tap = require( 'gulp-tap' );
 
 gulp.task( 'watch', function () {
     gulp.watch( 'styles/**/*.css', ['styles'] );
@@ -27,6 +27,19 @@ gulp.task( 'scripts', ['templates'], function () {
     .pipe( addsrc.prepend( 'app/dist/js/templates.js' ) )
     .pipe( concat( 'appbuild.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
+} );
+
+gulp.task( 'libraries', function () {
+    return gulp.src( 'bower_components/jquery/dist/jquery.js' )
+        .pipe( addsrc.append( 'bower_components/ember/ember-template-compiler.js' ) )
+        .pipe( addsrc.append( 'bower_components/ember/ember.debug.js' ) )
+        .pipe( addsrc.append( 'bower_components/ember-data/ember-data.js' ) )
+        .pipe( addsrc.append( 'bower_components/bootstrap/bootstrap.min.js' ) )
+        .pipe( addsrc.append( 'bower_components/jquery-cookie/jquery.cookie.js' ) )
+        .pipe( addsrc.append( 'bower_components/moment/moment.js' ) )
+        .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
+        .pipe( concat( 'libraries.js' ) )
+        .pipe( gulp.dest('app/dist/js') )
 } );
 
 var getTemplateNameFromPath = function ( path ) {
@@ -58,7 +71,7 @@ gulp.task( 'templates', function () {
         .pipe( tap( function ( file ) {
             var templateName = getTemplateNameFromPath( file.path.toString() );
             var currentFile = file.contents.toString();
-            currentFile = currentFile.replace("export default", 
+            currentFile = currentFile.replace( "export default",
                 "Ember.TEMPLATES['" + templateName + "'] = " );
             file.contents = new Buffer( currentFile );
         } ) )
@@ -66,4 +79,4 @@ gulp.task( 'templates', function () {
         .pipe( gulp.dest( 'app/dist/js/' ) );
 } );
 
-gulp.task( 'default', ['scripts', 'styles'] );
+gulp.task( 'default', ['libraries', 'scripts', 'styles'] );

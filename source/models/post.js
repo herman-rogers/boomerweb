@@ -5,6 +5,8 @@ App.Post = DS.Model.extend( {
     image: attr( 'string' ),
     post_body: attr( 'string' ),
     author: attr('string'),
-    created_at: attr( )
+    created_at: attr(),
+
+    enableDelete: false,
 
 } );

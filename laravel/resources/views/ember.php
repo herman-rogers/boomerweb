@@ -10,12 +10,8 @@
     <title>BoomerWeb</title>
   </head>
   <body>
-      <script src='../bower_components/jquery/dist/jquery.js'></script>
-      <script src='../bower_components/ember/ember-template-compiler.js'></script>
-      <script src='../bower_components/ember/ember.debug.js'></script>
-      <script src='../bower_components/ember-data/ember-data.js'></script>
-      <script src='../bower_components/bootstrap/bootstrap.min.js'></script>
-      <script src="../bower_components/jquery-cookie/jquery.cookie.js"></script>
+      <!-- ADD NEW LIBRARIES TO THE GULP.JS FILE -->
+      <script src='../app/dist/js/libraries.js'></script>
       <script src='../app/dist/js/appbuild.js'></script>
   </body>
 </html>

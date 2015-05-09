@@ -9,6 +9,10 @@
             }
         },
 
+        error: function ( error, transition ) {
+            this.transitionTo( '/notfound' );
+        }
+
     }
 } );
 
@@ -27,7 +31,7 @@ App.IndexController = Ember.Controller.extend( {
     modalLogin: false,
 
     loggedIn: function () {
-        return App.Session.get( 'authToken' )
+        return App.Session.get( 'authToken' );
     }.property( 'App.Session.authToken' ),
 
     // Notification functions
