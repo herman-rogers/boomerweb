@@ -115,7 +115,14 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createTextNode("                        ");
         dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","pull-left");
+        var el2 = dom.createTextNode("\n                        ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n                         ");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -143,7 +150,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph0 = dom.createMorphAt(dom.childAt(fragment, [1]),1,1);
         var morph1 = dom.createMorphAt(fragment,3,3,contextualElement);
         dom.insertBoundary(fragment, null);
         inline(env, morph0, context, "post-length", [get(env, context, "model.message")], {});

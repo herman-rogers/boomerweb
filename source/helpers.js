@@ -19,5 +19,5 @@ Ember.Handlebars.helper( 'post-length', function(postText) {
         color = '#a94442'; // light red
     }
     return new Ember.Handlebars.SafeString( "<font color =" + color + ">"
-        + "<small>Characters: </small>" + currentLength + '</font>' );
+        + "Characters: " + currentLength + '</font>' );
 } );

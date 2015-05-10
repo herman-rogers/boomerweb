@@ -115,7 +115,14 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createTextNode("                        ");
         dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","pull-left");
+        var el2 = dom.createTextNode("\n                        ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n                         ");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -143,7 +150,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph0 = dom.createMorphAt(dom.childAt(fragment, [1]),1,1);
         var morph1 = dom.createMorphAt(fragment,3,3,contextualElement);
         dom.insertBoundary(fragment, null);
         inline(env, morph0, context, "post-length", [get(env, context, "model.message")], {});
@@ -4189,7 +4196,7 @@ Ember.Handlebars.helper( 'post-length', function(postText) {
         color = '#a94442'; // light red
     }
     return new Ember.Handlebars.SafeString( "<font color =" + color + ">"
-        + "<small>Characters: </small>" + currentLength + '</font>' );
+        + "Characters: " + currentLength + '</font>' );
 } );
 App.Router.map( function () {
 
@@ -4338,6 +4345,81 @@ App.AddpostController = Ember.Controller.extend( {
                 this.send( 'pushNotifications', 'Post Saved', false );
             }.bind( this ), function( response ) {
                 this.send( 'pushNotifications', 'Failed To Save Post', true );
+            }.bind( this ) );
+        },
+    }
+} );
+App.AddprojectRoute = Ember.Route.extend( {
+
+    // Authenticate user before loading route
+    beforeModel: function( controller ) {
+        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
+        if ( !loggedIn ) {
+            return Ember.RSVP.reject( 'Unauthorized Access' );
+        }
+    },
+
+    model: function() {
+        return this.store.createRecord( 'project' );
+    },
+
+    actions: {
+
+        refreshModel: function() {
+            this.refresh();
+        },
+
+        willTransition: function() {
+            controller = this.controllerFor( 'addproject' );
+            controller.get( 'content' ).rollback();
+        }
+    }
+
+} );
+
+App.AddprojectView = Ember.View.extend( {
+    templateName: 'addproject'
+
+} );
+
+App.AddprojectController = Ember.Controller.extend( {
+
+    needs: ['index'],
+
+    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
+    moveFromPageIfLoggedOut: function() {
+        if ( !this.get( 'loggedIn' ) ) {
+            this.transitionToRoute( 'portfolio' );
+        }
+    }.observes( 'loggedIn' ).on( 'init' ),
+
+    actions: {
+
+        cancel: function() {
+            this.transitionToRoute( 'portfolio' );
+        },
+
+        createNew: function() {
+            this.set( 'model.type', 'personal' );
+
+            this.get( 'model' ).save().then( function() {
+                this.transitionToRoute( 'portfolio' );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
+            }.bind( this ) );
+        },
+
+        createNewAndContinue: function() {
+            this.set( 'model.type', 'personal' );
+
+            this.get( 'model' ).save().then( function() {
+                this.send( 'refreshModel' );
+                window.scrollTo( 0, 0 );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
             }.bind( this ) );
         },
     }
@@ -4500,81 +4582,6 @@ App.BlogController = Ember.ArrayController.extend( {
         }
     }
 
-} );
-App.AddprojectRoute = Ember.Route.extend( {
-
-    // Authenticate user before loading route
-    beforeModel: function( controller ) {
-        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
-        if ( !loggedIn ) {
-            return Ember.RSVP.reject( 'Unauthorized Access' );
-        }
-    },
-
-    model: function() {
-        return this.store.createRecord( 'project' );
-    },
-
-    actions: {
-
-        refreshModel: function() {
-            this.refresh();
-        },
-
-        willTransition: function() {
-            controller = this.controllerFor( 'addproject' );
-            controller.get( 'content' ).rollback();
-        }
-    }
-
-} );
-
-App.AddprojectView = Ember.View.extend( {
-    templateName: 'addproject'
-
-} );
-
-App.AddprojectController = Ember.Controller.extend( {
-
-    needs: ['index'],
-
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
-    moveFromPageIfLoggedOut: function() {
-        if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute( 'portfolio' );
-        }
-    }.observes( 'loggedIn' ).on( 'init' ),
-
-    actions: {
-
-        cancel: function() {
-            this.transitionToRoute( 'portfolio' );
-        },
-
-        createNew: function() {
-            this.set( 'model.type', 'personal' );
-
-            this.get( 'model' ).save().then( function() {
-                this.transitionToRoute( 'portfolio' );
-                this.send( 'pushNotifications', 'Project Saved', false );
-            }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Project', true );
-            }.bind( this ) );
-        },
-
-        createNewAndContinue: function() {
-            this.set( 'model.type', 'personal' );
-
-            this.get( 'model' ).save().then( function() {
-                this.send( 'refreshModel' );
-                window.scrollTo( 0, 0 );
-                this.send( 'pushNotifications', 'Project Saved', false );
-            }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Project', true );
-            }.bind( this ) );
-        },
-    }
 } );
 App.IndexRoute = Ember.Route.extend( {
 
