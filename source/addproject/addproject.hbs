@@ -20,7 +20,19 @@
             <h1>
                 <small>Image</small>
             </h1>
-            <img class="img-responsive" {{bind-attr src=model.image}} alt="" />
+            {{#if model.image}}
+            <img class="img-responsive" {{bind-attr src=model.image}} alt="">
+            {{else}}
+            <h1>
+                <small>No Image Selected</small>
+            </h1>
+            {{/if}}
+            <hr>
+            {{#each image in controller.images}}
+            <a class="btn" {{action 'selectImage' image model}}>
+                <img class="thumbnail profile-img-card pull-left" src={{image.image_url}} alt="">
+            </a>
+            {{/each}}
             <hr>
             <h1>
                 <small>Project Description</small>

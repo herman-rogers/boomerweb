@@ -10,6 +10,7 @@
         this.resource( 'about' );
         this.resource( 'portfolio' );
         this.resource( 'blog' );
+        this.resource( 'photomanager' );
 
         //Login Routes
         this.resource( 'addproject' );
@@ -20,6 +21,7 @@
         this.resource( 'posts', { path: "/posts/:post_id" } );
         this.resource( 'projects', { path: "/projects/:project_id" } );
         this.resource( 'contactforms' );
+        this.resource( 'images' );
 
         //External API Resource Routes
         this.resource( 'tweets' );

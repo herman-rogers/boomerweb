@@ -42,7 +42,15 @@ App.AddpostController = Ember.Controller.extend( {
         }
     }.observes( 'loggedIn' ).on( 'init' ),
 
+    images: function() {
+        return this.store.find( 'image' );
+    }.property(),
+
     actions: {
+
+        selectImage: function( image, project ) {
+            project.set( 'image', image.get( 'image_url' ) );
+        },
 
         cancel: function() {
             this.transitionToRoute( 'blog' );

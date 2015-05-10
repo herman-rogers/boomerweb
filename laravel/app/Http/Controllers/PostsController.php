@@ -59,7 +59,7 @@ class PostsController extends Controller {
         try {
             $response['posts'][] = Posts::create(array(
                 'title' => $post['title'],
-                'image' => 'http://placehold.it/900x300',
+                'image' => $post['image'],
                 'post_body' => $post['post_body'],
                 'author' => $post['author'],
             ));

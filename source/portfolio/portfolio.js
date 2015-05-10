@@ -1,18 +1,16 @@
 ﻿App.PortfolioRoute = Ember.Route.extend( {
-    model: function () {
+    model: function() {
         return this.store.find( 'project' );
-
     }
 } );
 
 App.PortfolioView = Ember.View.extend( {
-    templateName: 'portfolio',
 
-    DragDrop: DropletView.extend()
+    templateName: 'portfolio',
 
 } );
 
-App.PortfolioController = Ember.ArrayController.extend( DropletController, {
+App.PortfolioController = Ember.ArrayController.extend( {
     needs: ['index'],
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
@@ -21,11 +19,11 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
 
     isEditing: false,
 
-    formState: function () {
+    formState: function() {
         if ( !this.get( 'loggedIn' ) ) {
             this.set( 'currentState', 'SAVED' );
         }
-        switch ( this.get('currentState') ) {
+        switch ( this.get( 'currentState' ) ) {
             case 'EDITING':
                 this.set( 'isEditing', true );
                 break;
@@ -36,31 +34,39 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
         }
     }.observes( 'currentState', 'loggedIn' ),
 
+    images: function(){
+        return this.store.find( 'image' );
+    }.property(),
+
     actions: {
 
-        editState: function () {
+        selectImage: function( image, project ) {
+            project.set( 'image', image.get( 'image_url' ) );
+        },
+
+        editState: function() {
             this.set( 'currentState', 'EDITING' );
         },
 
-        savedState: function () {
+        savedState: function() {
             this.set( 'currentState', 'SAVED' );
         },
 
-        cancelState: function () {
-            this.get( 'model' ).forEach( function ( model ) {
+        cancelState: function() {
+            this.get( 'model' ).forEach( function( model ) {
                 model.rollback();
             } );
             this.set( 'currentState', 'CANCELLED' );
         },
 
-        saveEdits: function () {
+        saveEdits: function() {
             var models = this.get( 'model' );
             var saveModels = [];
 
-            models.forEach( function ( project ) {
+            models.forEach( function( project ) {
                 saveModels.push( project.save() );
             } );
-            Ember.RSVP.all( saveModels ).then( function () {
+            Ember.RSVP.all( saveModels ).then( function() {
                 this.transitionToRoute( 'portfolio' );
                 this.send( 'pushNotifications', 'Projects Saved', false );
             }.bind( this ), function() {
@@ -69,21 +75,21 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
             this.set( 'currentState', 'SAVED' );
         },
 
-        deleteModel: function ( project ) {
+        deleteModel: function( project ) {
             project.set( 'enableDelete', true );
         },
 
-        cancelDelete: function ( project ) {
+        cancelDelete: function( project ) {
             project.set( 'enableDelete', false );
         },
 
-        confirmDelete: function ( project ) {
+        confirmDelete: function( project ) {
             project.destroyRecord().then( function() {
                 this.send( 'pushNotifications', 'Post Deleted', false );
             }.bind( this ), function() {
                 this.send( 'pushNotifications', 'Failed To Delete Post', true );
             }.bind( this ) );
-        }
+        },
 
     }
 

@@ -8,28 +8,33 @@
 
                 <!-- EDIT AND ADD PROJECTS BUTTONS -->
                 {{#if isEditing}}
-                <a class="btn btn-warning" {{action 'cancelState'}}>
+                <button class="btn btn-warning" {{action 'cancelState'}}>
                     Cancel
                     &nbsp;
                     <span class="glyphicon glyphicon-remove"></span>
-                </a>
-                <a class="btn btn-primary" {{action 'saveEdits'}}>
+                </button>
+                <button class="btn btn-primary" {{action 'saveEdits'}}>
                     Save
                     &nbsp;
                     <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
+                </button>
                 {{else}}
-                <a class="btn btn-primary" {{action 'editState'}}>
+                {{#link-to 'addproject' class="btn btn-primary" }}
+                    Add Project
+                    &nbsp;
+                    <span class="glyphicon glyphicon-plus"></span>
+                {{/link-to}}
+                <button class="btn btn-primary" {{action 'editState'}}>
                     Edit Projects
                     &nbsp;
                     <span class="glyphicon glyphicon-edit"></span>
-                </a>
-                {{#link-to 'addproject'class="btn btn-primary" }}
-                Add Project
-                &nbsp;
-                <span class="glyphicon glyphicon-plus"></span>
-                {{/link-to}}
+                </button>
                 {{/if}}
+                {{#link-to 'photomanager' class="btn btn-primary"}}
+                    Photo Manager
+                    &nbsp;
+                    <span class="glyphicon glyphicon-camera fa-lg"></span>
+                {{/link-to}}
                 {{/if}}
             </h1>
         </div>
@@ -40,9 +45,13 @@
     {{#if isEditing}}
     <div class="row">
         <div class="col-md-7">
-            <a href="#">
-                <img class="img-responsive" {{bind-attr src=project.image}} alt="">
+            <img class="img-responsive" {{bind-attr src=project.image}} alt="">
+            <hr />
+            {{#each image in controller.images}}
+            <a class="btn" {{action 'selectImage' image project}}>
+                <img class="thumbnail profile-img-card pull-left" src={{image.image_url}} alt="">
             </a>
+            {{/each}}
         </div>
         <div class="col-md-5">
             <h2>
@@ -59,9 +68,7 @@
             </h2>
             <p class="lead">{{textarea class="form-control" value=project.description rows="10"}}</p>
             {{#if project.project_link}}
-            <h2>
-                <small>Project Link</small>
-            </h2>
+            <h2><small>Project Link</small></h2>
             <p class="lead">{{input class="form-control" value=project.project_link}}</p>
             {{/if}}
             {{#if project.code_link}}

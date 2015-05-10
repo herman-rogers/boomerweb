@@ -2,7 +2,6 @@
 
       use App\Http\Controllers\Controller;
       use App\Http\Requests;
-      use App\Posts;
 
       use Illuminate\Support\Facades\Response;
       use Illuminate\Http\Request;

@@ -37,6 +37,12 @@ App.BlogController = Ember.ArrayController.extend( {
         return this.store.createRecord( 'tweet' );
     }.property(),
 
+    destroyAndCreateNewTweet: function() {
+        var tweet = this.get( 'twitterPost' );
+        tweet.rollback();
+        this.set( 'twitterPost', this.store.createRecord( 'tweet' ) );
+    },
+
     // Blog Loading Properties
     cachedPosts: function() {
         return this.get( 'model' );
@@ -86,7 +92,15 @@ App.BlogController = Ember.ArrayController.extend( {
         }
     }.observes( 'currentState', 'loggedIn' ),
 
+    images: function(){
+        return this.store.find( 'image' );
+    }.property(),
+
     actions: {
+
+        selectImage: function( image, project ) {
+            project.set( 'image', image.get( 'image_url' ) );
+        },
 
         loadMorePosts: function() {
             var postIndex = this.get( 'postIndex' );
@@ -152,8 +166,14 @@ App.BlogController = Ember.ArrayController.extend( {
 
             tweet.save().then( function() {
                 //Reload the model properly
+                this.send( 'pushNotifications', 'Tweet Posted', false );
+                this.destroyAndCreateNewTweet();
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Send Tweet', true );
+                this.destroyAndCreateNewTweet();
             }.bind( this ) );
         }
+
     }
 
 } );

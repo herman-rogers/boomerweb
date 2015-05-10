@@ -67,7 +67,7 @@ class ProjectController extends Controller {
                 'type' => $project['type'],
                 'name' => $project['name'],
                 'subheading' => $project['subheading'],
-                'image' => 'http://placehold.it/900x300',
+                'image' => $project['image'],
                 'description' => $project['description'],
                 'project_link' => $project['project_link'],
                 'code_link' => $project['code_link'],

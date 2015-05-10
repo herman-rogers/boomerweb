@@ -29,7 +29,11 @@ Route::get('/{data?}', function(){
 //Main routes for the API
 Route::group(array('prefix' => 'api'), function(){
     
+    //Non-model resources
     Route::resource( 'tweets', 'TweetsController' );
+    Route::resource( 'images', 'ImagesController' );
+    Route::delete( 'images', 'ImagesController@destroy' );
+    //Model resources
     Route::resource( 'users', 'UserController' );
     Route::resource( 'posts', 'PostsController' );
     Route::resource( 'projects', 'ProjectController' );

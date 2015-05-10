@@ -8,28 +8,33 @@
 
                 <!-- EDIT AND ADD POSTS BUTTONS -->
                 {{#if isEditing}}
-                <a class="btn btn-warning" {{action 'cancelState'}}>
+                <button class="btn btn-warning" {{action 'cancelState'}}>
                     Cancel
                     &nbsp;
                     <span class="glyphicon glyphicon-remove"></span>
-                </a>
-                <a class="btn btn-primary" {{action 'saveEdits'}}>
+                </button>
+                <button class="btn btn-primary" {{action 'saveEdits'}}>
                     Save
                     &nbsp;
                     <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
+                </button>
                 {{else}}
-                <a class="btn btn-primary" {{action 'editState'}}>
-                    Edit Posts
-                    &nbsp;
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
                 {{#link-to 'addpost'class="btn btn-primary" }}
                 Add Post
                 &nbsp;
                 <span class="glyphicon glyphicon-plus"></span>
                 {{/link-to}}
+                <button class="btn btn-primary" {{action 'editState'}}>
+                    Edit Posts
+                    &nbsp;
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
                 {{/if}}
+                {{#link-to 'photomanager' class="btn btn-primary"}}
+                Photo Manager
+                &nbsp;
+                <span class="glyphicon glyphicon-camera fa-lg"></span>
+                {{/link-to}}
                 {{/if}}
             </h1>
         </div>
@@ -57,7 +62,12 @@
                 <small>Image</small>
             </h1>
             <img class="img-responsive" {{bind-attr src=post.image}} alt="">
-            <hr>
+            <hr />
+            {{#each image in controller.images}}
+            <a class="btn" {{action 'selectImage' image post}}>
+                <img class="thumbnail profile-img-card pull-left" src={{image.image_url}} alt="">
+            </a>
+            {{/each}}
             <h1>
                 <small>Post Body</small>
             </h1>
