@@ -62,6 +62,9 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
             } );
             Ember.RSVP.all( saveModels ).then( function () {
                 this.transitionToRoute( 'portfolio' );
+                this.send( 'pushNotifications', 'Projects Saved', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Save Projects', true );
             }.bind( this ) );
             this.set( 'currentState', 'SAVED' );
         },
@@ -75,7 +78,11 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
         },
 
         confirmDelete: function ( project ) {
-            project.destroyRecord();
+            project.destroyRecord().then( function() {
+                this.send( 'pushNotifications', 'Post Deleted', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Delete Post', true );
+            }.bind( this ) );
         }
 
     }

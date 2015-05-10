@@ -1,19 +1,19 @@
 ﻿App.AddpostRoute = Ember.Route.extend( {
 
     // Authenticate user before loading route
-    beforeModel: function ( controller ) {
+    beforeModel: function( controller ) {
         var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
         if ( !loggedIn ) {
-            return Ember.RSVP.reject('Unauthorized Access');
+            return Ember.RSVP.reject( 'Unauthorized Access' );
         }
     },
 
-    model: function () {
+    model: function() {
         return this.store.createRecord( 'post' );
     },
 
     actions: {
-        refreshRoute: function () {
+        refreshRoute: function() {
             this.refresh();
         },
 
@@ -36,28 +36,34 @@ App.AddpostController = Ember.Controller.extend( {
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
 
-    moveFromPageIfLoggedOut: function () {
+    moveFromPageIfLoggedOut: function() {
         if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute('blog');
+            this.transitionToRoute( 'blog' );
         }
-    }.observes('loggedIn').on('init'),
+    }.observes( 'loggedIn' ).on( 'init' ),
 
     actions: {
 
         cancel: function() {
-            this.transitionToRoute('blog');
+            this.transitionToRoute( 'blog' );
         },
 
-        createNew: function () {
-            this.get( 'model' ).save().then( function () {
+        createNew: function() {
+            this.get( 'model' ).save().then( function() {
                 this.transitionToRoute( 'blog' );
+                this.send( 'pushNotifications', 'Post Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Post', true );
             }.bind( this ) );
         },
 
         createNewAndContinue: function() {
-            this.get( 'model' ).save().then( function () {
+            this.get( 'model' ).save().then( function() {
                 this.send( 'refreshRoute' );
                 window.scrollTo( 0, 0 );
+                this.send( 'pushNotifications', 'Post Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Post', true );
             }.bind( this ) );
         },
     }

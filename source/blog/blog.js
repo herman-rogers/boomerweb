@@ -37,15 +37,6 @@ App.BlogController = Ember.ArrayController.extend( {
         return this.store.createRecord( 'tweet' );
     }.property(),
 
-    twitterPostLength: function() {
-        var post = this.get( 'twitterPost' )
-        var postLength = 0;
-        if ( post.get( 'text' ) ) {
-            postLength = post.get( 'text' ).length;
-        }
-        return ( 255 - postLength );
-    }.property( 'twitterPost.text' ),
-
     // Blog Loading Properties
     cachedPosts: function() {
         return this.get( 'model' );
@@ -68,6 +59,12 @@ App.BlogController = Ember.ArrayController.extend( {
         return viewablePosts;
 
     }.property( 'model.[]', 'postIndex' ),
+
+    allPostsLoaded: function() {
+        var postIndex = this.get( 'postIndex' );
+        var cache = this.get( 'model' ).content.length;
+        return postIndex > cache;
+    }.property( 'postIndex'),
 
     // Blog Editing Properties
     isEditing: false,
@@ -125,6 +122,9 @@ App.BlogController = Ember.ArrayController.extend( {
             } );
             Ember.RSVP.all( saveModels ).then( function() {
                 this.transitionToRoute( 'blog' );
+                this.send( 'pushNotifications', 'Posts Saved', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Save Posts', true );
             }.bind( this ) );
             this.set( 'currentState', 'SAVED' );
         },
@@ -138,17 +138,21 @@ App.BlogController = Ember.ArrayController.extend( {
         },
 
         confirmDelete: function( post ) {
-            post.destroyRecord();
+            post.destroyRecord().then( function() {
+                this.send( 'pushNotifications', 'Post Deleted', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Delete Post', true );
+            }.bind( this ) );
         },
 
         postToTwitter: function() {
             var tweet = this.get( 'twitterPost' );
             var tagPost = tweet.get( 'text' ) + '#boomerweb';
-            tweet.set( 'text', tagPost);
+            tweet.set( 'text', tagPost );
 
             tweet.save().then( function() {
                 //Reload the model properly
-            }.bind(this) );
+            }.bind( this ) );
         }
     }
 

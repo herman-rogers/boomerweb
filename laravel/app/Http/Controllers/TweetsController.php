@@ -24,7 +24,7 @@
           {   
               $connection = $this->getAuthorizedTwitterURL();
               $status = $connection->get("statuses/user_timeline", 
-                  array("count" => 10, "exclude_replies" => true));
+                  array("count" => 25, "exclude_replies" => true));
               
               $query['tweets'] = $status;
               

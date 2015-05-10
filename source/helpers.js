@@ -5,5 +5,19 @@ Ember.Handlebars.helper( 'date-format', function ( data ) {
         return '00:00:00';
     }
     var date = moment( new Date( data ) );
-    return moment(date).format( 'MMMM Do YYYY [at] h:mm a' );
+    return moment(date).format( 'MMM Do YYYY [at] h:mm a' );
+} );
+
+Ember.Handlebars.helper( 'post-length', function(postText) {
+    var postLength = 0;
+    var color = '#337ab7'; //light blue
+    if ( postText ) {
+        postLength = postText.length;
+    }
+    var currentLength = 255 - postLength;
+    if ( currentLength < 0 ) {
+        color = '#a94442'; // light red
+    }
+    return new Ember.Handlebars.SafeString( "<font color =" + color + ">"
+        + "<small>Characters: </small>" + currentLength + '</font>' );
 } );

@@ -95,14 +95,15 @@
             <img class="img-responsive" {{bind-attr src=post.image}} alt="">
             <hr>
             <p class="lead">{{post.post_body}}</p>
-            <hr>
             {{/if}}
+            <hr>
             {{/each}}
-            <a class="form-control btn btn-primary" {{action 'loadMorePosts'}}>
+            <!-- LOAD MORE BUTTON -->
+            <button class="form-control btn btn-primary" disabled={{allPostsLoaded}} {{action 'loadMorePosts'}}>
                 Load More
                 &nbsp;
                 <span class="glyphicon glyphicon-download fa-lg"></span>
-            </a>
+            </button>
         </div>
         <!-- BLOG SIDE BAR -->
         <div class="col-md-offset-9">
@@ -111,7 +112,7 @@
             <h2>Post to twitter</h2>
             <div>
                 <p class="lead">{{textarea class="form-control" value=twitterPost.text rows="5"}}</p>
-                <small>Characters: {{twitterPostLength}}</small>
+                {{post-length twitterPost.text}}
                 <a class="btn btn-primary pull-right" {{action 'postToTwitter'}}>
                     Tweet
                     &nbsp;
@@ -140,7 +141,10 @@
                                                 <div class="asker-meta">
                                                     <span class="qa-message-what"></span>
                                                     <span class="qa-message-when">
-                                                        <span class="qa-message-when-data pull-right">{{date-format tweet.created_at}}</span>
+                                                        <span class="qa-message-when-data pull-right">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                            {{date-format tweet.created_at}}
+                                                        </span>
                                                     </span>
                                                 </div>
                                             </div>

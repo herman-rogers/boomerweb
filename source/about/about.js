@@ -21,6 +21,8 @@ App.AboutController = Ember.Controller.extend( {
 
     verificationNumber: null,
 
+    sendingMessage: false,
+
     humanVerification: function() {
         var verificationNumber = this.get( 'verificationNumber' );
         if ( verificationNumber === '2' ) {
@@ -30,9 +32,16 @@ App.AboutController = Ember.Controller.extend( {
     }.property( 'verificationNumber' ),
 
     actions: {
-        sendContactRequest: function () {
+
+        sendContactRequest: function() {
+            this.set( 'sendingMessage', true );
             this.get( 'model' ).save().then( function () {
+                this.send( 'pushNotifications', 'Message Sent', false );
+                this.set( 'sendingMessage', false );
                 this.send( 'refreshModel' );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Send Message', true );
+                this.set( 'sendingMessage', false );
             }.bind( this ) );
         },
 

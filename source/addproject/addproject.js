@@ -1,25 +1,25 @@
 ﻿App.AddprojectRoute = Ember.Route.extend( {
 
     // Authenticate user before loading route
-    beforeModel: function ( controller ) {
+    beforeModel: function( controller ) {
         var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
         if ( !loggedIn ) {
             return Ember.RSVP.reject( 'Unauthorized Access' );
         }
     },
 
-    model: function () {
+    model: function() {
         return this.store.createRecord( 'project' );
     },
 
     actions: {
 
-        refreshModel: function () {
+        refreshModel: function() {
             this.refresh();
         },
 
         willTransition: function() {
-            controller = this.controllerFor( 'addpost' );
+            controller = this.controllerFor( 'addproject' );
             controller.get( 'content' ).rollback();
         }
     }
@@ -37,7 +37,7 @@ App.AddprojectController = Ember.Controller.extend( {
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
 
-    moveFromPageIfLoggedOut: function () {
+    moveFromPageIfLoggedOut: function() {
         if ( !this.get( 'loggedIn' ) ) {
             this.transitionToRoute( 'portfolio' );
         }
@@ -45,24 +45,30 @@ App.AddprojectController = Ember.Controller.extend( {
 
     actions: {
 
-        cancel: function () {
+        cancel: function() {
             this.transitionToRoute( 'portfolio' );
         },
 
-        createNew: function () {
+        createNew: function() {
             this.set( 'model.type', 'personal' );
 
-            this.get( 'model' ).save().then( function () {
+            this.get( 'model' ).save().then( function() {
                 this.transitionToRoute( 'portfolio' );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
             }.bind( this ) );
         },
 
-        createNewAndContinue: function () {
+        createNewAndContinue: function() {
             this.set( 'model.type', 'personal' );
 
-            this.get( 'model' ).save().then( function () {
+            this.get( 'model' ).save().then( function() {
                 this.send( 'refreshModel' );
                 window.scrollTo( 0, 0 );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
             }.bind( this ) );
         },
     }

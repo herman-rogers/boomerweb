@@ -2,14 +2,19 @@
 
     actions: {
 
-        willTransition: function ( transition ) {
+        pushNotifications: function( message, error ) {
+            var controller = this.controllerFor( 'index' );
+            controller.pushNotification( message, error );
+        },
+
+        willTransition: function( transition ) {
             var currentTransition = transition.targetName;
             if ( currentTransition == 'index.index' ) {
                 this.transitionTo( 'portfolio' );
             }
         },
 
-        error: function ( error, transition ) {
+        error: function( error, transition ) {
             this.transitionTo( '/notfound' );
         }
 
@@ -19,7 +24,7 @@
 App.IndexView = Ember.View.extend( {
     templateName: 'index',
 
-    toggleModal: function () {
+    toggleModal: function() {
         this.$( '.modal' ).modal( 'hide' );
     }.observes( 'controller.modalLogin' ),
 
@@ -30,7 +35,7 @@ App.IndexController = Ember.Controller.extend( {
     // Login functions
     modalLogin: false,
 
-    loggedIn: function () {
+    loggedIn: function() {
         return App.Session.get( 'authToken' );
     }.property( 'App.Session.authToken' ),
 
@@ -43,17 +48,19 @@ App.IndexController = Ember.Controller.extend( {
 
     currentNotifications: [],
 
-    notificationsPending: function () {
+    notificationsPending: function() {
         notifications = this.get( 'currentNotifications' );
         return notifications.length > 0;
     }.property( 'currentNotifications.[]' ),
 
-    pushNotification: function ( title, message, error ) {
+    //Don't Call Directly, Use Route.Send to activate
+    pushNotification: function( message, error ) {
         var currentNotifications = this.get( 'currentNotifications' );
         var notification = new this.notification;
-
+        var test = error ? 'Failure' : 'Success';
+        
         notification.setProperties( {
-            title: title,
+            title: test,
             message: message,
             error: error,
         } );
@@ -64,15 +71,15 @@ App.IndexController = Ember.Controller.extend( {
     actions: {
 
         // Login Actions
-        showModalLogin: function () {
+        showModalLogin: function() {
             this.set( 'modalLogin', true );
         },
 
-        hideModalLogin: function () {
+        hideModalLogin: function() {
             this.set( 'modalLogin', false );
         },
 
-        login: function () {
+        login: function() {
             var self = this;
             var data = this.getProperties( 'email', 'password' );
             if ( !Ember.isEmpty( data.email ) &&
@@ -83,7 +90,7 @@ App.IndexController = Ember.Controller.extend( {
                         password: data.password
                     }
                 };
-                $.post( appPath + 'login', postData ).done( function ( response ) {
+                $.post( appPath + 'login', postData ).done( function( response ) {
                     var sessionData = ( response.session || {} );
                     App.Session.setProperties( {
                         authToken: sessionData.auth_token,
@@ -95,25 +102,25 @@ App.IndexController = Ember.Controller.extend( {
                         App.Session.set( 'attemptedTransition', null );
                     }
                     self.send( 'hideModalLogin' );
-                    self.pushNotification( 'Login Successful',
+                    self.send( 'pushNotifications',
                         'You Have Successfully Logged In', false );
                 } );
             }
         },
 
-        logout: function () {
+        logout: function() {
             var self = this;
             $.ajax( {
                 url: appPath + 'logout',
                 type: 'POST'
-            } ).always( function ( response ) {
+            } ).always( function( response ) {
                 App.Session.setProperties( {
                     authToken: '',
                     authAccountId: ''
                 } );
             } );
-            self.pushNotification( 'Logout Successful',
-                 'You Have Been Logged Out', false )
+            self.send( 'pushNotifications',
+                'You Have Been Logged Out', false );
         }
     }
 

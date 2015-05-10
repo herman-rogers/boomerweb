@@ -1,5 +1,110 @@
 Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
   var child0 = (function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.3",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("                        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1,"class","btn btn-primary pull-right");
+          dom.setAttribute(el1,"type","submit");
+          var el2 = dom.createTextNode("\n                            Send Message\n                             \n                            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("i");
+          dom.setAttribute(el2,"class","fa fa-refresh fa-spin fa-lg");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, get = hooks.get, attribute = hooks.attribute;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element1 = dom.childAt(fragment, [1]);
+          var attrMorph0 = dom.createAttrMorph(element1, 'disabled');
+          attribute(env, attrMorph0, element1, "disabled", get(env, context, "sendingMessage"));
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.3",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("                        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1,"class","btn btn-primary pull-right");
+          dom.setAttribute(el1,"type","submit");
+          var el2 = dom.createTextNode("\n                            Send Message\n                             \n                            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("span");
+          dom.setAttribute(el2,"class","glyphicon glyphicon-send");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, element = hooks.element;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element0 = dom.childAt(fragment, [1]);
+          element(env, element0, context, "action", ["sendContactRequest"], {});
+          return fragment;
+        }
+      };
+    }());
     return {
       isHTMLBars: true,
       revision: "Ember@1.11.3",
@@ -10,24 +115,17 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createTextNode("                        ");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("button");
-        dom.setAttribute(el1,"class","btn btn-primary pull-right");
-        dom.setAttribute(el1,"type","submit");
-        var el2 = dom.createTextNode("\n                            Submit\n                             \n                            ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("span");
-        dom.setAttribute(el2,"class","glyphicon glyphicon-send");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n                        ");
-        dom.appendChild(el1, el2);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, element = hooks.element;
+        var hooks = env.hooks, get = hooks.get, inline = hooks.inline, block = hooks.block;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -45,8 +143,11 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
         } else {
           fragment = this.build(dom);
         }
-        var element0 = dom.childAt(fragment, [1]);
-        element(env, element0, context, "action", ["sendContactRequest"], {});
+        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph1 = dom.createMorphAt(fragment,3,3,contextualElement);
+        dom.insertBoundary(fragment, null);
+        inline(env, morph0, context, "post-length", [get(env, context, "model.message")], {});
+        block(env, morph1, context, "if", [get(env, context, "sendingMessage")], {}, child0, child1);
         return fragment;
       }
     };
@@ -285,7 +386,7 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
       dom.appendChild(el2, el3);
       var el3 = dom.createElement("div");
       dom.setAttribute(el3,"class","col-sm-8 contact-form");
-      var el4 = dom.createTextNode("\n            ");
+      var el4 = dom.createTextNode("\n\n            ");
       dom.appendChild(el3, el4);
       var el4 = dom.createElement("form");
       dom.setAttribute(el4,"id","contact");
@@ -381,15 +482,15 @@ Ember.TEMPLATES['about'] =  Ember.HTMLBars.template((function() {
       } else {
         fragment = this.build(dom);
       }
-      var element1 = dom.childAt(fragment, [0, 7, 3, 1]);
-      var element2 = dom.childAt(element1, [1]);
-      var morph0 = dom.createMorphAt(dom.childAt(element2, [1]),1,1);
-      var morph1 = dom.createMorphAt(dom.childAt(element2, [3]),1,1);
-      var morph2 = dom.createMorphAt(element1,3,3);
-      var morph3 = dom.createMorphAt(dom.childAt(element1, [7, 1]),1,1);
-      inline(env, morph0, context, "input", [], {"class": "form-control", "id": "name", "name": "name", "placeholder": "Name", "type": "text", "value": get(env, context, "model.name")});
-      inline(env, morph1, context, "input", [], {"class": "form-control", "id": "email", "name": "email", "placeholder": "Email", "value": get(env, context, "model.email")});
-      inline(env, morph2, context, "textarea", [], {"class": "form-control", "id": "message", "name": "message", "placeholder": "Message", "value": get(env, context, "model.message"), "rows": "5"});
+      var element2 = dom.childAt(fragment, [0, 7, 3, 1]);
+      var element3 = dom.childAt(element2, [1]);
+      var morph0 = dom.createMorphAt(dom.childAt(element3, [1]),1,1);
+      var morph1 = dom.createMorphAt(dom.childAt(element3, [3]),1,1);
+      var morph2 = dom.createMorphAt(element2,3,3);
+      var morph3 = dom.createMorphAt(dom.childAt(element2, [7, 1]),1,1);
+      inline(env, morph0, context, "input", [], {"class": "form-control", "id": "name", "name": "name", "placeholder": "Name", "type": "text", "value": get(env, context, "model.name"), "disabled": get(env, context, "sendingMessage")});
+      inline(env, morph1, context, "input", [], {"class": "form-control", "id": "email", "name": "email", "placeholder": "Email", "value": get(env, context, "model.email"), "disabled": get(env, context, "sendingMessage")});
+      inline(env, morph2, context, "textarea", [], {"class": "form-control", "id": "message", "name": "message", "placeholder": "Message", "value": get(env, context, "model.message"), "rows": "5", "disabled": get(env, context, "sendingMessage")});
       block(env, morph3, context, "if", [get(env, context, "humanVerification")], {}, child0, child1);
       return fragment;
     }
@@ -1420,10 +1521,6 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n            ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("hr");
-          dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
@@ -1478,6 +1575,12 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("            ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("hr");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       render: function render(context, env, contextualElement) {
@@ -1501,7 +1604,6 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           fragment = this.build(dom);
         }
         var morph0 = dom.createMorphAt(fragment,3,3,contextualElement);
-        dom.insertBoundary(fragment, null);
         block(env, morph0, context, "if", [get(env, context, "isEditing")], {}, child0, child1);
         return fragment;
       }
@@ -1538,11 +1640,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n                ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("small");
-        var el3 = dom.createTextNode("Characters: ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
+        var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n                ");
         dom.appendChild(el1, el2);
@@ -1569,7 +1667,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, get = hooks.get, inline = hooks.inline, content = hooks.content, element = hooks.element;
+        var hooks = env.hooks, get = hooks.get, inline = hooks.inline, element = hooks.element;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -1590,9 +1688,9 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         var element3 = dom.childAt(fragment, [5]);
         var element4 = dom.childAt(element3, [5]);
         var morph0 = dom.createMorphAt(dom.childAt(element3, [1]),0,0);
-        var morph1 = dom.createMorphAt(dom.childAt(element3, [3]),1,1);
+        var morph1 = dom.createMorphAt(element3,3,3);
         inline(env, morph0, context, "textarea", [], {"class": "form-control", "value": get(env, context, "twitterPost.text"), "rows": "5"});
-        content(env, morph1, context, "twitterPostLength");
+        inline(env, morph1, context, "post-length", [get(env, context, "twitterPost.text")], {});
         element(env, element4, context, "action", ["postToTwitter"], {});
         return fragment;
       }
@@ -1660,7 +1758,16 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           dom.appendChild(el8, el9);
           var el9 = dom.createElement("span");
           dom.setAttribute(el9,"class","qa-message-when-data pull-right");
+          var el10 = dom.createTextNode("\n                                                            ");
+          dom.appendChild(el9, el10);
+          var el10 = dom.createElement("span");
+          dom.setAttribute(el10,"class","glyphicon glyphicon-time");
+          dom.appendChild(el9, el10);
+          var el10 = dom.createTextNode("\n                                                            ");
+          dom.appendChild(el9, el10);
           var el10 = dom.createComment("");
+          dom.appendChild(el9, el10);
+          var el10 = dom.createTextNode("\n                                                        ");
           dom.appendChild(el9, el10);
           dom.appendChild(el8, el9);
           var el9 = dom.createTextNode("\n                                                    ");
@@ -1727,7 +1834,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var element0 = dom.childAt(fragment, [1, 1, 1]);
           var element1 = dom.childAt(element0, [1, 1, 1]);
           var element2 = dom.childAt(element1, [1, 1]);
-          var morph0 = dom.createMorphAt(dom.childAt(element1, [3, 3, 1]),0,0);
+          var morph0 = dom.createMorphAt(dom.childAt(element1, [3, 3, 1]),3,3);
           var morph1 = dom.createMorphAt(dom.childAt(element0, [3, 1]),0,0);
           element(env, element2, context, "bind-attr", [], {"src": get(env, context, "tweet.user.profile_image_url")});
           inline(env, morph0, context, "date-format", [get(env, context, "tweet.created_at")], {});
@@ -1831,7 +1938,11 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
       dom.appendChild(el3, el4);
       var el4 = dom.createTextNode("            ");
       dom.appendChild(el3, el4);
-      var el4 = dom.createElement("a");
+      var el4 = dom.createComment(" LOAD MORE BUTTON ");
+      dom.appendChild(el3, el4);
+      var el4 = dom.createTextNode("\n            ");
+      dom.appendChild(el3, el4);
+      var el4 = dom.createElement("button");
       dom.setAttribute(el4,"class","form-control btn btn-primary");
       var el5 = dom.createTextNode("\n                Load More\n                 \n                ");
       dom.appendChild(el4, el5);
@@ -1914,7 +2025,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
     },
     render: function render(context, env, contextualElement) {
       var dom = env.dom;
-      var hooks = env.hooks, get = hooks.get, block = hooks.block, element = hooks.element;
+      var hooks = env.hooks, get = hooks.get, block = hooks.block, attribute = hooks.attribute, element = hooks.element;
       dom.detectNamespace(contextualElement);
       var fragment;
       if (env.useFragmentCache && dom.canClone) {
@@ -1935,17 +2046,289 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
       var element13 = dom.childAt(fragment, [0]);
       var element14 = dom.childAt(element13, [3]);
       var element15 = dom.childAt(element14, [1]);
-      var element16 = dom.childAt(element15, [3]);
+      var element16 = dom.childAt(element15, [5]);
       var element17 = dom.childAt(element14, [5]);
       var morph0 = dom.createMorphAt(dom.childAt(element13, [1, 1, 1]),3,3);
       var morph1 = dom.createMorphAt(element15,1,1);
+      var attrMorph0 = dom.createAttrMorph(element16, 'disabled');
       var morph2 = dom.createMorphAt(element17,1,1);
       var morph3 = dom.createMorphAt(dom.childAt(element17, [3, 3, 1]),1,1);
       block(env, morph0, context, "if", [get(env, context, "loggedIn")], {}, child0, null);
       block(env, morph1, context, "each", [get(env, context, "controller.loadPosts")], {"keyword": "post"}, child1, null);
+      attribute(env, attrMorph0, element16, "disabled", get(env, context, "allPostsLoaded"));
       element(env, element16, context, "action", ["loadMorePosts"], {});
       block(env, morph2, context, "if", [get(env, context, "loggedIn")], {}, child2, null);
       block(env, morph3, context, "each", [get(env, context, "controller.tweets")], {"keyword": "tweet"}, child3, null);
+      return fragment;
+    }
+  };
+}()));
+Ember.TEMPLATES['components/notification-component'] =  Ember.HTMLBars.template((function() {
+  var child0 = (function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.3",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","alert alert-danger");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("button");
+          dom.setAttribute(el2,"type","button");
+          dom.setAttribute(el2,"class","close");
+          dom.setAttribute(el2,"data-dismiss","alert");
+          dom.setAttribute(el2,"aria-hidden","true");
+          var el3 = dom.createTextNode("\n                    ×\n                ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("span");
+          dom.setAttribute(el2,"class","glyphicon glyphicon-hand-right");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("strong");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("hr");
+          dom.setAttribute(el2,"class","message-inner-separator");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("p");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element1 = dom.childAt(fragment, [1]);
+          var morph0 = dom.createMorphAt(dom.childAt(element1, [5]),0,0);
+          var morph1 = dom.createMorphAt(dom.childAt(element1, [9]),0,0);
+          content(env, morph0, context, "notification.title");
+          content(env, morph1, context, "notification.message");
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.3",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","alert alert-success");
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("button");
+          dom.setAttribute(el2,"type","button");
+          dom.setAttribute(el2,"class","close");
+          dom.setAttribute(el2,"data-dismiss","alert");
+          dom.setAttribute(el2,"aria-hidden","true");
+          var el3 = dom.createTextNode("\n                    ×\n                ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("span");
+          dom.setAttribute(el2,"class","glyphicon glyphicon-ok");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("strong");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("hr");
+          dom.setAttribute(el2,"class","message-inner-separator");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("p");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element0 = dom.childAt(fragment, [1]);
+          var morph0 = dom.createMorphAt(dom.childAt(element0, [5]),0,0);
+          var morph1 = dom.createMorphAt(dom.childAt(element0, [9]),0,0);
+          content(env, morph0, context, "notification.title");
+          content(env, morph1, context, "notification.message");
+          return fragment;
+        }
+      };
+    }());
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.11.3",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        var hooks = env.hooks, get = hooks.get, block = hooks.block;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
+        dom.insertBoundary(fragment, null);
+        dom.insertBoundary(fragment, 0);
+        block(env, morph0, context, "if", [get(env, context, "notification.error")], {}, child0, child1);
+        return fragment;
+      }
+    };
+  }());
+  return {
+    isHTMLBars: true,
+    revision: "Ember@1.11.3",
+    blockParams: 0,
+    cachedFragment: null,
+    hasRendered: false,
+    build: function build(dom) {
+      var el0 = dom.createDocumentFragment();
+      var el1 = dom.createComment(" Extra Notification Classes if Needed ");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createTextNode("\n");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createComment("<div class=\"alert alert-info\">");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createTextNode("\n");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createComment("<div class=\"alert alert-warning\">");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createTextNode("\n\n");
+      dom.appendChild(el0, el1);
+      var el1 = dom.createElement("div");
+      dom.setAttribute(el1,"class","container");
+      var el2 = dom.createTextNode("\n    ");
+      dom.appendChild(el1, el2);
+      var el2 = dom.createElement("div");
+      dom.setAttribute(el2,"class","row");
+      var el3 = dom.createTextNode("\n");
+      dom.appendChild(el2, el3);
+      var el3 = dom.createComment("");
+      dom.appendChild(el2, el3);
+      var el3 = dom.createTextNode("    ");
+      dom.appendChild(el2, el3);
+      dom.appendChild(el1, el2);
+      var el2 = dom.createTextNode("\n");
+      dom.appendChild(el1, el2);
+      dom.appendChild(el0, el1);
+      var el1 = dom.createTextNode("\n");
+      dom.appendChild(el0, el1);
+      return el0;
+    },
+    render: function render(context, env, contextualElement) {
+      var dom = env.dom;
+      var hooks = env.hooks, get = hooks.get, block = hooks.block;
+      dom.detectNamespace(contextualElement);
+      var fragment;
+      if (env.useFragmentCache && dom.canClone) {
+        if (this.cachedFragment === null) {
+          fragment = this.build(dom);
+          if (this.hasRendered) {
+            this.cachedFragment = fragment;
+          } else {
+            this.hasRendered = true;
+          }
+        }
+        if (this.cachedFragment) {
+          fragment = dom.cloneNode(this.cachedFragment, true);
+        }
+      } else {
+        fragment = this.build(dom);
+      }
+      var morph0 = dom.createMorphAt(dom.childAt(fragment, [6, 1]),1,1);
+      block(env, morph0, context, "each", [get(env, context, "notificationMessages")], {"keyword": "notification"}, child0, null);
       return fragment;
     }
   };
@@ -2621,276 +3004,6 @@ Ember.TEMPLATES['index'] =  Ember.HTMLBars.template((function() {
       block(env, morph4, context, "if", [get(env, context, "modalLogin")], {}, child3, null);
       content(env, morph5, context, "outlet");
       block(env, morph6, context, "if", [get(env, context, "loggedIn")], {}, child4, child5);
-      return fragment;
-    }
-  };
-}()));
-Ember.TEMPLATES['components/notification-component'] =  Ember.HTMLBars.template((function() {
-  var child0 = (function() {
-    var child0 = (function() {
-      return {
-        isHTMLBars: true,
-        revision: "Ember@1.11.3",
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("            ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1,"class","alert alert-danger");
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("button");
-          dom.setAttribute(el2,"type","button");
-          dom.setAttribute(el2,"class","close");
-          dom.setAttribute(el2,"data-dismiss","alert");
-          dom.setAttribute(el2,"aria-hidden","true");
-          var el3 = dom.createTextNode("\n                    ×\n                ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("span");
-          dom.setAttribute(el2,"class","glyphicon glyphicon-hand-right");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode(" ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("strong");
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("hr");
-          dom.setAttribute(el2,"class","message-inner-separator");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("p");
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n            ");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          var hooks = env.hooks, content = hooks.content;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          var element1 = dom.childAt(fragment, [1]);
-          var morph0 = dom.createMorphAt(dom.childAt(element1, [5]),0,0);
-          var morph1 = dom.createMorphAt(dom.childAt(element1, [9]),0,0);
-          content(env, morph0, context, "notification.title");
-          content(env, morph1, context, "notification.message");
-          return fragment;
-        }
-      };
-    }());
-    var child1 = (function() {
-      return {
-        isHTMLBars: true,
-        revision: "Ember@1.11.3",
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("            ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1,"class","alert alert-success");
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("button");
-          dom.setAttribute(el2,"type","button");
-          dom.setAttribute(el2,"class","close");
-          dom.setAttribute(el2,"data-dismiss","alert");
-          dom.setAttribute(el2,"aria-hidden","true");
-          var el3 = dom.createTextNode("\n                    ×\n                ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("span");
-          dom.setAttribute(el2,"class","glyphicon glyphicon-ok");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode(" ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("strong");
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("hr");
-          dom.setAttribute(el2,"class","message-inner-separator");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("p");
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n            ");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          var hooks = env.hooks, content = hooks.content;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          var element0 = dom.childAt(fragment, [1]);
-          var morph0 = dom.createMorphAt(dom.childAt(element0, [5]),0,0);
-          var morph1 = dom.createMorphAt(dom.childAt(element0, [9]),0,0);
-          content(env, morph0, context, "notification.title");
-          content(env, morph1, context, "notification.message");
-          return fragment;
-        }
-      };
-    }());
-    return {
-      isHTMLBars: true,
-      revision: "Ember@1.11.3",
-      blockParams: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      build: function build(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      render: function render(context, env, contextualElement) {
-        var dom = env.dom;
-        var hooks = env.hooks, get = hooks.get, block = hooks.block;
-        dom.detectNamespace(contextualElement);
-        var fragment;
-        if (env.useFragmentCache && dom.canClone) {
-          if (this.cachedFragment === null) {
-            fragment = this.build(dom);
-            if (this.hasRendered) {
-              this.cachedFragment = fragment;
-            } else {
-              this.hasRendered = true;
-            }
-          }
-          if (this.cachedFragment) {
-            fragment = dom.cloneNode(this.cachedFragment, true);
-          }
-        } else {
-          fragment = this.build(dom);
-        }
-        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
-        dom.insertBoundary(fragment, null);
-        dom.insertBoundary(fragment, 0);
-        block(env, morph0, context, "if", [get(env, context, "notification.error")], {}, child0, child1);
-        return fragment;
-      }
-    };
-  }());
-  return {
-    isHTMLBars: true,
-    revision: "Ember@1.11.3",
-    blockParams: 0,
-    cachedFragment: null,
-    hasRendered: false,
-    build: function build(dom) {
-      var el0 = dom.createDocumentFragment();
-      var el1 = dom.createComment(" Extra Notification Classes if Needed ");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createTextNode("\n");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createComment("<div class=\"alert alert-info\">");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createTextNode("\n");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createComment("<div class=\"alert alert-warning\">");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createTextNode("\n\n");
-      dom.appendChild(el0, el1);
-      var el1 = dom.createElement("div");
-      dom.setAttribute(el1,"class","container");
-      var el2 = dom.createTextNode("\n    ");
-      dom.appendChild(el1, el2);
-      var el2 = dom.createElement("div");
-      dom.setAttribute(el2,"class","row");
-      var el3 = dom.createTextNode("\n");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createComment("");
-      dom.appendChild(el2, el3);
-      var el3 = dom.createTextNode("    ");
-      dom.appendChild(el2, el3);
-      dom.appendChild(el1, el2);
-      var el2 = dom.createTextNode("\n");
-      dom.appendChild(el1, el2);
-      dom.appendChild(el0, el1);
-      var el1 = dom.createTextNode("\n");
-      dom.appendChild(el0, el1);
-      return el0;
-    },
-    render: function render(context, env, contextualElement) {
-      var dom = env.dom;
-      var hooks = env.hooks, get = hooks.get, block = hooks.block;
-      dom.detectNamespace(contextualElement);
-      var fragment;
-      if (env.useFragmentCache && dom.canClone) {
-        if (this.cachedFragment === null) {
-          fragment = this.build(dom);
-          if (this.hasRendered) {
-            this.cachedFragment = fragment;
-          } else {
-            this.hasRendered = true;
-          }
-        }
-        if (this.cachedFragment) {
-          fragment = dom.cloneNode(this.cachedFragment, true);
-        }
-      } else {
-        fragment = this.build(dom);
-      }
-      var morph0 = dom.createMorphAt(dom.childAt(fragment, [6, 1]),1,1);
-      block(env, morph0, context, "each", [get(env, context, "notificationMessages")], {"keyword": "notification"}, child0, null);
       return fragment;
     }
   };
@@ -4062,7 +4175,21 @@ Ember.Handlebars.helper( 'date-format', function ( data ) {
         return '00:00:00';
     }
     var date = moment( new Date( data ) );
-    return moment(date).format( 'MMMM Do YYYY [at] h:mm a' );
+    return moment(date).format( 'MMM Do YYYY [at] h:mm a' );
+} );
+
+Ember.Handlebars.helper( 'post-length', function(postText) {
+    var postLength = 0;
+    var color = '#337ab7'; //light blue
+    if ( postText ) {
+        postLength = postText.length;
+    }
+    var currentLength = 255 - postLength;
+    if ( currentLength < 0 ) {
+        color = '#a94442'; // light red
+    }
+    return new Ember.Handlebars.SafeString( "<font color =" + color + ">"
+        + "<small>Characters: </small>" + currentLength + '</font>' );
 } );
 App.Router.map( function () {
 
@@ -4118,6 +4245,8 @@ App.AboutController = Ember.Controller.extend( {
 
     verificationNumber: null,
 
+    sendingMessage: false,
+
     humanVerification: function() {
         var verificationNumber = this.get( 'verificationNumber' );
         if ( verificationNumber === '2' ) {
@@ -4127,9 +4256,16 @@ App.AboutController = Ember.Controller.extend( {
     }.property( 'verificationNumber' ),
 
     actions: {
-        sendContactRequest: function () {
+
+        sendContactRequest: function() {
+            this.set( 'sendingMessage', true );
             this.get( 'model' ).save().then( function () {
+                this.send( 'pushNotifications', 'Message Sent', false );
+                this.set( 'sendingMessage', false );
                 this.send( 'refreshModel' );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Send Message', true );
+                this.set( 'sendingMessage', false );
             }.bind( this ) );
         },
 
@@ -4139,19 +4275,19 @@ App.AboutController = Ember.Controller.extend( {
 App.AddpostRoute = Ember.Route.extend( {
 
     // Authenticate user before loading route
-    beforeModel: function ( controller ) {
+    beforeModel: function( controller ) {
         var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
         if ( !loggedIn ) {
-            return Ember.RSVP.reject('Unauthorized Access');
+            return Ember.RSVP.reject( 'Unauthorized Access' );
         }
     },
 
-    model: function () {
+    model: function() {
         return this.store.createRecord( 'post' );
     },
 
     actions: {
-        refreshRoute: function () {
+        refreshRoute: function() {
             this.refresh();
         },
 
@@ -4174,97 +4310,34 @@ App.AddpostController = Ember.Controller.extend( {
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
 
-    moveFromPageIfLoggedOut: function () {
+    moveFromPageIfLoggedOut: function() {
         if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute('blog');
-        }
-    }.observes('loggedIn').on('init'),
-
-    actions: {
-
-        cancel: function() {
-            this.transitionToRoute('blog');
-        },
-
-        createNew: function () {
-            this.get( 'model' ).save().then( function () {
-                this.transitionToRoute( 'blog' );
-            }.bind( this ) );
-        },
-
-        createNewAndContinue: function() {
-            this.get( 'model' ).save().then( function () {
-                this.send( 'refreshRoute' );
-                window.scrollTo( 0, 0 );
-            }.bind( this ) );
-        },
-    }
-} );
-App.AddprojectRoute = Ember.Route.extend( {
-
-    // Authenticate user before loading route
-    beforeModel: function ( controller ) {
-        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
-        if ( !loggedIn ) {
-            return Ember.RSVP.reject( 'Unauthorized Access' );
-        }
-    },
-
-    model: function () {
-        return this.store.createRecord( 'project' );
-    },
-
-    actions: {
-
-        refreshModel: function () {
-            this.refresh();
-        },
-
-        willTransition: function() {
-            controller = this.controllerFor( 'addpost' );
-            controller.get( 'content' ).rollback();
-        }
-    }
-
-} );
-
-App.AddprojectView = Ember.View.extend( {
-    templateName: 'addproject'
-
-} );
-
-App.AddprojectController = Ember.Controller.extend( {
-
-    needs: ['index'],
-
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
-    moveFromPageIfLoggedOut: function () {
-        if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute( 'portfolio' );
+            this.transitionToRoute( 'blog' );
         }
     }.observes( 'loggedIn' ).on( 'init' ),
 
     actions: {
 
-        cancel: function () {
-            this.transitionToRoute( 'portfolio' );
+        cancel: function() {
+            this.transitionToRoute( 'blog' );
         },
 
-        createNew: function () {
-            this.set( 'model.type', 'personal' );
-
-            this.get( 'model' ).save().then( function () {
-                this.transitionToRoute( 'portfolio' );
+        createNew: function() {
+            this.get( 'model' ).save().then( function() {
+                this.transitionToRoute( 'blog' );
+                this.send( 'pushNotifications', 'Post Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Post', true );
             }.bind( this ) );
         },
 
-        createNewAndContinue: function () {
-            this.set( 'model.type', 'personal' );
-
-            this.get( 'model' ).save().then( function () {
-                this.send( 'refreshModel' );
+        createNewAndContinue: function() {
+            this.get( 'model' ).save().then( function() {
+                this.send( 'refreshRoute' );
                 window.scrollTo( 0, 0 );
+                this.send( 'pushNotifications', 'Post Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Post', true );
             }.bind( this ) );
         },
     }
@@ -4308,15 +4381,6 @@ App.BlogController = Ember.ArrayController.extend( {
         return this.store.createRecord( 'tweet' );
     }.property(),
 
-    twitterPostLength: function() {
-        var post = this.get( 'twitterPost' )
-        var postLength = 0;
-        if ( post.get( 'text' ) ) {
-            postLength = post.get( 'text' ).length;
-        }
-        return ( 255 - postLength );
-    }.property( 'twitterPost.text' ),
-
     // Blog Loading Properties
     cachedPosts: function() {
         return this.get( 'model' );
@@ -4339,6 +4403,12 @@ App.BlogController = Ember.ArrayController.extend( {
         return viewablePosts;
 
     }.property( 'model.[]', 'postIndex' ),
+
+    allPostsLoaded: function() {
+        var postIndex = this.get( 'postIndex' );
+        var cache = this.get( 'model' ).content.length;
+        return postIndex > cache;
+    }.property( 'postIndex'),
 
     // Blog Editing Properties
     isEditing: false,
@@ -4396,6 +4466,9 @@ App.BlogController = Ember.ArrayController.extend( {
             } );
             Ember.RSVP.all( saveModels ).then( function() {
                 this.transitionToRoute( 'blog' );
+                this.send( 'pushNotifications', 'Posts Saved', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Save Posts', true );
             }.bind( this ) );
             this.set( 'currentState', 'SAVED' );
         },
@@ -4409,33 +4482,117 @@ App.BlogController = Ember.ArrayController.extend( {
         },
 
         confirmDelete: function( post ) {
-            post.destroyRecord();
+            post.destroyRecord().then( function() {
+                this.send( 'pushNotifications', 'Post Deleted', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Delete Post', true );
+            }.bind( this ) );
         },
 
         postToTwitter: function() {
             var tweet = this.get( 'twitterPost' );
             var tagPost = tweet.get( 'text' ) + '#boomerweb';
-            tweet.set( 'text', tagPost);
+            tweet.set( 'text', tagPost );
 
             tweet.save().then( function() {
                 //Reload the model properly
-            }.bind(this) );
+            }.bind( this ) );
         }
     }
 
+} );
+App.AddprojectRoute = Ember.Route.extend( {
+
+    // Authenticate user before loading route
+    beforeModel: function( controller ) {
+        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
+        if ( !loggedIn ) {
+            return Ember.RSVP.reject( 'Unauthorized Access' );
+        }
+    },
+
+    model: function() {
+        return this.store.createRecord( 'project' );
+    },
+
+    actions: {
+
+        refreshModel: function() {
+            this.refresh();
+        },
+
+        willTransition: function() {
+            controller = this.controllerFor( 'addproject' );
+            controller.get( 'content' ).rollback();
+        }
+    }
+
+} );
+
+App.AddprojectView = Ember.View.extend( {
+    templateName: 'addproject'
+
+} );
+
+App.AddprojectController = Ember.Controller.extend( {
+
+    needs: ['index'],
+
+    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
+    moveFromPageIfLoggedOut: function() {
+        if ( !this.get( 'loggedIn' ) ) {
+            this.transitionToRoute( 'portfolio' );
+        }
+    }.observes( 'loggedIn' ).on( 'init' ),
+
+    actions: {
+
+        cancel: function() {
+            this.transitionToRoute( 'portfolio' );
+        },
+
+        createNew: function() {
+            this.set( 'model.type', 'personal' );
+
+            this.get( 'model' ).save().then( function() {
+                this.transitionToRoute( 'portfolio' );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
+            }.bind( this ) );
+        },
+
+        createNewAndContinue: function() {
+            this.set( 'model.type', 'personal' );
+
+            this.get( 'model' ).save().then( function() {
+                this.send( 'refreshModel' );
+                window.scrollTo( 0, 0 );
+                this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                this.send( 'pushNotifications', 'Failed To Save Project', true );
+            }.bind( this ) );
+        },
+    }
 } );
 App.IndexRoute = Ember.Route.extend( {
 
     actions: {
 
-        willTransition: function ( transition ) {
+        pushNotifications: function( message, error ) {
+            var controller = this.controllerFor( 'index' );
+            controller.pushNotification( message, error );
+        },
+
+        willTransition: function( transition ) {
             var currentTransition = transition.targetName;
             if ( currentTransition == 'index.index' ) {
                 this.transitionTo( 'portfolio' );
             }
         },
 
-        error: function ( error, transition ) {
+        error: function( error, transition ) {
             this.transitionTo( '/notfound' );
         }
 
@@ -4445,7 +4602,7 @@ App.IndexRoute = Ember.Route.extend( {
 App.IndexView = Ember.View.extend( {
     templateName: 'index',
 
-    toggleModal: function () {
+    toggleModal: function() {
         this.$( '.modal' ).modal( 'hide' );
     }.observes( 'controller.modalLogin' ),
 
@@ -4456,7 +4613,7 @@ App.IndexController = Ember.Controller.extend( {
     // Login functions
     modalLogin: false,
 
-    loggedIn: function () {
+    loggedIn: function() {
         return App.Session.get( 'authToken' );
     }.property( 'App.Session.authToken' ),
 
@@ -4469,17 +4626,19 @@ App.IndexController = Ember.Controller.extend( {
 
     currentNotifications: [],
 
-    notificationsPending: function () {
+    notificationsPending: function() {
         notifications = this.get( 'currentNotifications' );
         return notifications.length > 0;
     }.property( 'currentNotifications.[]' ),
 
-    pushNotification: function ( title, message, error ) {
+    //Don't Call Directly, Use Route.Send to activate
+    pushNotification: function( message, error ) {
         var currentNotifications = this.get( 'currentNotifications' );
         var notification = new this.notification;
-
+        var test = error ? 'Failure' : 'Success';
+        
         notification.setProperties( {
-            title: title,
+            title: test,
             message: message,
             error: error,
         } );
@@ -4490,15 +4649,15 @@ App.IndexController = Ember.Controller.extend( {
     actions: {
 
         // Login Actions
-        showModalLogin: function () {
+        showModalLogin: function() {
             this.set( 'modalLogin', true );
         },
 
-        hideModalLogin: function () {
+        hideModalLogin: function() {
             this.set( 'modalLogin', false );
         },
 
-        login: function () {
+        login: function() {
             var self = this;
             var data = this.getProperties( 'email', 'password' );
             if ( !Ember.isEmpty( data.email ) &&
@@ -4509,7 +4668,7 @@ App.IndexController = Ember.Controller.extend( {
                         password: data.password
                     }
                 };
-                $.post( appPath + 'login', postData ).done( function ( response ) {
+                $.post( appPath + 'login', postData ).done( function( response ) {
                     var sessionData = ( response.session || {} );
                     App.Session.setProperties( {
                         authToken: sessionData.auth_token,
@@ -4521,25 +4680,25 @@ App.IndexController = Ember.Controller.extend( {
                         App.Session.set( 'attemptedTransition', null );
                     }
                     self.send( 'hideModalLogin' );
-                    self.pushNotification( 'Login Successful',
+                    self.send( 'pushNotifications',
                         'You Have Successfully Logged In', false );
                 } );
             }
         },
 
-        logout: function () {
+        logout: function() {
             var self = this;
             $.ajax( {
                 url: appPath + 'logout',
                 type: 'POST'
-            } ).always( function ( response ) {
+            } ).always( function( response ) {
                 App.Session.setProperties( {
                     authToken: '',
                     authAccountId: ''
                 } );
             } );
-            self.pushNotification( 'Logout Successful',
-                 'You Have Been Logged Out', false )
+            self.send( 'pushNotifications',
+                'You Have Been Logged Out', false );
         }
     }
 
@@ -4664,6 +4823,9 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
             } );
             Ember.RSVP.all( saveModels ).then( function () {
                 this.transitionToRoute( 'portfolio' );
+                this.send( 'pushNotifications', 'Projects Saved', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Save Projects', true );
             }.bind( this ) );
             this.set( 'currentState', 'SAVED' );
         },
@@ -4677,7 +4839,11 @@ App.PortfolioController = Ember.ArrayController.extend( DropletController, {
         },
 
         confirmDelete: function ( project ) {
-            project.destroyRecord();
+            project.destroyRecord().then( function() {
+                this.send( 'pushNotifications', 'Post Deleted', false );
+            }.bind( this ), function() {
+                this.send( 'pushNotifications', 'Failed To Delete Post', true );
+            }.bind( this ) );
         }
 
     }

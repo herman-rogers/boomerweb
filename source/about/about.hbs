@@ -51,25 +51,35 @@
         </div>
 
         <div class="col-sm-8 contact-form">
+
             <form id="contact" method="post" class="form" role="form">
                 <div class="row">
                     <div class="col-xs-6 col-md-6 form-group">
-                        {{input class="form-control" id="name" name="name" placeholder="Name" type="text" value=model.name }}
+                        {{input class="form-control" id="name" name="name" placeholder="Name" type="text" value=model.name disabled=sendingMessage}}
                     </div>
                     <div class="col-xs-6 col-md-6 form-group">
-                        {{input class="form-control" id="email" name="email" placeholder="Email" value=model.email }}
+                        {{input class="form-control" id="email" name="email" placeholder="Email" value=model.email disabled=sendingMessage}}
                     </div>
                 </div>
-                {{textarea class="form-control" id="message" name="message" placeholder="Message" value=model.message rows="5"}}
+                {{textarea class="form-control" id="message" name="message" placeholder="Message" value=model.message rows="5" disabled=sendingMessage}}
                 <br />
                 <div class="row">
                     <div class="col-xs-12 col-md-12 form-group">
                         {{#if humanVerification}}
+                        {{post-length model.message}}
+                        {{#if sendingMessage}}
+                        <button class="btn btn-primary pull-right" type="submit" disabled={{sendingMessage}}>
+                            Send Message
+                            &nbsp;
+                            <i class="fa fa-refresh fa-spin fa-lg"></i>
+                        </button>
+                        {{else}}
                         <button class="btn btn-primary pull-right" type="submit" {{action 'sendContactRequest'}}>
-                            Submit
+                            Send Message
                             &nbsp;
                             <span class="glyphicon glyphicon-send"></span>
                         </button>
+                        {{/if}}
                         {{else}}
                         <p>What is 5 - 3?</p>
                         {{input class="form-control" id="verification" name="email" placeholder="Are You Human?" value=verificationNumber }}
