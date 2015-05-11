@@ -25,11 +25,23 @@ App.AboutController = Ember.Controller.extend( {
 
     humanVerification: function() {
         var verificationNumber = this.get( 'verificationNumber' );
-        if ( verificationNumber === '2' ) {
+        if ( verificationNumber === '8' ) {
             return true;
         }
         return false;
     }.property( 'verificationNumber' ),
+
+    formValidation: function( response ) {
+        var jsonResponse = response.responseJSON.error;
+        var errors = Ember.keys( jsonResponse ).map( function( key ) {
+            var jsonResponseValue = jsonResponse[key];
+            if ( Array.isArray( jsonResponseValue ) ) {
+                jsonResponseValue = jsonResponseValue.join( '' );
+            }
+            return { field: key, value: jsonResponseValue };
+        }.bind( this ) );
+        return errors;
+    },
 
     actions: {
 
@@ -40,7 +52,8 @@ App.AboutController = Ember.Controller.extend( {
                 this.set( 'sendingMessage', false );
                 this.send( 'refreshModel' );
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Send Message', true );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
                 this.set( 'sendingMessage', false );
             }.bind( this ) );
         },

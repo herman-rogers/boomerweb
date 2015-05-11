@@ -5,25 +5,29 @@
 <div class="container">
     <div class="row">
         {{#each notification in notificationMessages}}
-            {{#if notification.error}}
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×
-                </button>
-                <span class="glyphicon glyphicon-hand-right"></span> <strong>{{notification.title}}</strong>
-                <hr class="message-inner-separator">
-                <p>{{notification.message}}</p>
-            </div>
-            {{else}}
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×
-                </button>
-                <span class="glyphicon glyphicon-ok"></span> <strong>{{notification.title}}</strong>
-                <hr class="message-inner-separator">
-                <p>{{notification.message}}</p>
-            </div>
-            {{/if}}
+        {{#if notification.error}}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-hand-right"></span> <strong>{{notification.title}}</strong>
+            <hr class="message-inner-separator">
+            {{#each message in notification.message}}
+            <p>
+                <b>{{message.field}}</b>{{#if message.value}}: {{message.value}}{{/if}}
+            </p>
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-ok"></span> <strong>{{notification.title}}</strong>
+            <hr class="message-inner-separator">
+            <p>{{notification.message}}</p>
+        </div>
+        {{/if}}
         {{/each}}
     </div>
 </div>

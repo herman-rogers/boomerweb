@@ -46,6 +46,18 @@ App.AddpostController = Ember.Controller.extend( {
         return this.store.find( 'image' );
     }.property(),
 
+    formValidation: function(response) {
+        var jsonResponse = response.responseJSON.error;
+        var errors = Ember.keys( jsonResponse ).map( function( key ) {
+            var jsonResponseValue = jsonResponse[key];
+            if ( Array.isArray( jsonResponseValue ) ) {
+                jsonResponseValue = jsonResponseValue.join( '' );
+            }
+            return { field: key, value: jsonResponseValue };
+        }.bind( this ) );
+        return errors;
+    },
+
     actions: {
 
         selectImage: function( image, project ) {
@@ -61,7 +73,8 @@ App.AddpostController = Ember.Controller.extend( {
                 this.transitionToRoute( 'blog' );
                 this.send( 'pushNotifications', 'Post Saved', false );
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Post', true );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
             }.bind( this ) );
         },
 
@@ -71,8 +84,11 @@ App.AddpostController = Ember.Controller.extend( {
                 window.scrollTo( 0, 0 );
                 this.send( 'pushNotifications', 'Post Saved', false );
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Post', true );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
             }.bind( this ) );
         },
+
     }
+
 } );

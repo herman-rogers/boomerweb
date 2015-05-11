@@ -8,6 +8,7 @@ App.Project = DS.Model.extend( {
     description: attr(),
     project_link: attr(),
     code_link: attr(),
+    updated_at: attr(),
 
     enableDelete: false,
 

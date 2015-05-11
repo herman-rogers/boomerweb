@@ -4,14 +4,16 @@
             <h1 class="page-header">
                 DevBlog
                 <small>Tech Talk</small>
+            </h1>
+            <div class="col-md-5">
                 {{#if loggedIn}}
 
                 <!-- EDIT AND ADD POSTS BUTTONS -->
                 {{#if isEditing}}
-                <button class="btn btn-warning" {{action 'cancelState'}}>
+                <button class="btn btn-warning pull-right" {{action 'cancelState'}}>
                     Cancel
                     &nbsp;
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-remove pull-right"></span>
                 </button>
                 <button class="btn btn-primary" {{action 'saveEdits'}}>
                     Save
@@ -22,23 +24,25 @@
                 {{#link-to 'addpost'class="btn btn-primary" }}
                 Add Post
                 &nbsp;
-                <span class="glyphicon glyphicon-plus"></span>
+                <span class="glyphicon glyphicon-plus pull-right"></span>
                 {{/link-to}}
                 <button class="btn btn-primary" {{action 'editState'}}>
                     Edit Posts
                     &nbsp;
-                    <span class="glyphicon glyphicon-edit"></span>
+                    <span class="glyphicon glyphicon-edit pull-right"></span>
                 </button>
                 {{/if}}
                 {{#link-to 'photomanager' class="btn btn-primary"}}
                 Photo Manager
                 &nbsp;
-                <span class="glyphicon glyphicon-camera fa-lg"></span>
+                <span class="glyphicon glyphicon-camera fa-lg pull-right"></span>
                 {{/link-to}}
                 {{/if}}
-            </h1>
+
+            </div>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-lg-8">
             {{#each post in controller.loadPosts}}

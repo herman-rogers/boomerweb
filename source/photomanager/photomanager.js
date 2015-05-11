@@ -1,5 +1,13 @@
 ﻿App.PhotomanagerRoute = Ember.Route.extend( {
 
+    // Authenticate user before loading route
+    beforeModel: function( controller ) {
+        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
+        if ( !loggedIn ) {
+            return Ember.RSVP.reject( 'Unauthorized Access' );
+        }
+    },
+
     model: function() {
         return this.store.find( 'image' );
     },
@@ -26,6 +34,12 @@ App.PhotomanagerController = Ember.ArrayController.extend( DropletController, {
     needs: ['index'],
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
+    moveFromPageIfLoggedOut: function() {
+        if ( !this.get( 'loggedIn' ) ) {
+            this.transitionToRoute( 'blog' );
+        }
+    }.observes( 'loggedIn' ).on( 'init' ),
 
     mimeTypes: ['image/bmp'],
 

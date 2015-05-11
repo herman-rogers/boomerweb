@@ -2,7 +2,9 @@
 
       use App\Http\Controllers\Controller;
       use App\Http\Requests;
-
+      use App\Services\Validation\TwitterValidator;
+      use App\Services\Validation\Exceptions\ValidationException;
+      
       use Illuminate\Support\Facades\Response;
       use Illuminate\Http\Request;
 
@@ -13,6 +15,11 @@
           const consumerSecret = 'ft8GkCUl8qYvzGP9zMqQ9IUjIvYAuoOJWCWRHM9rBXB8mQIFeu';
           const accessToken = '38107167-rL3s09W9gXDLMFqAahupdygVslXO5mZSQrEt2wuFl';
           const accessTokenSecret = 'C87FT468SDwjDt6vt1aL3RS6p37BNzqQ2LQGoOfucoXEI';
+          protected $_validation;
+          
+          public function __construct(TwitterValidator $validator) {
+              $this->_validation = $validator;
+          }
           
           /**
            * Display a listing of the resource.
@@ -38,6 +45,15 @@
           public function store(Request $request)
           {
               $statusUpdate = $request->input('tweet');
+              
+              try{
+                  $validateData = $this->_validation->validate($statusUpdate);
+              }
+              catch ( ValidationException $e ) {
+                  $errors['error'] = $e->get_errors();
+                  return Response::json($errors, 422);
+              }
+              
               $connection = $this->getAuthorizedTwitterURL();
               
               $status = $connection->post('statuses/update', array('status' => $statusUpdate['text']));

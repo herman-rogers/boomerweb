@@ -4,6 +4,8 @@
             <h1 class="page-header">
                 Portfolio
                 <small>Software and Games</small>
+            </h1>
+            <div class="col-md-5">
                 {{#if loggedIn}}
 
                 <!-- EDIT AND ADD PROJECTS BUTTONS -->
@@ -20,9 +22,9 @@
                 </button>
                 {{else}}
                 {{#link-to 'addproject' class="btn btn-primary" }}
-                    Add Project
-                    &nbsp;
-                    <span class="glyphicon glyphicon-plus"></span>
+                Add Project
+                &nbsp;
+                <span class="glyphicon glyphicon-plus"></span>
                 {{/link-to}}
                 <button class="btn btn-primary" {{action 'editState'}}>
                     Edit Projects
@@ -31,16 +33,17 @@
                 </button>
                 {{/if}}
                 {{#link-to 'photomanager' class="btn btn-primary"}}
-                    Photo Manager
-                    &nbsp;
-                    <span class="glyphicon glyphicon-camera fa-lg"></span>
+                Photo Manager
+                &nbsp;
+                <span class="glyphicon glyphicon-camera fa-lg"></span>
                 {{/link-to}}
                 {{/if}}
-            </h1>
+            </div>
         </div>
     </div>
-    {{#each project in model}}
 
+    {{#each project in model}}
+    <hr />
     <!-- EDIT MAIN FORM -->
     {{#if isEditing}}
     <div class="row">
@@ -98,20 +101,20 @@
             {{/if}}
         </div>
     </div>
-    <hr>
 
     <!-- DISPLAY PROJECTS NORMALLY -->
     {{else}}
     <div class="row">
         <div class="col-md-7">
-            {{!view.DragDrop}}
             <a href="#">
                 <img class="img-responsive" {{bind-attr src=project.image}} alt="">
             </a>
+            <p><span class="glyphicon glyphicon-time"></span> Updated on <b>{{date-format project.updated_at}}</b></p>
         </div>
         <div class="col-md-5">
             <h3>{{project.name}}</h3>
             <h4>{{project.subheading}}</h4>
+            <h5></h5>
             <p>{{project.description}}</p>
             {{#if project.code_link}}
             <a class="btn btn-primary" href={{project.code_link}}>
@@ -129,34 +132,6 @@
             {{/if}}
         </div>
     </div>
-    <hr>
     {{/if}}
     {{/each}}
-    <!--<div class="row text-center">
-        <div class="col-lg-12">
-            <ul class="pagination">
-                <li>
-                    <a href="#">&laquo;</a>
-                </li>
-                <li class="active">
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">&raquo;</a>
-                </li>
-            </ul>
-        </div>
-    </div>-->
 </div>

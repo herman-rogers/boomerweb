@@ -47,7 +47,30 @@ App.AddprojectController = Ember.Controller.extend( {
         return this.store.find( 'image' );
     }.property(),
 
+    tags: [],
+
+    formValidation: function( response ) {
+        var jsonResponse = response.responseJSON.error;
+        var errors = Ember.keys( jsonResponse ).map( function( key ) {
+            var jsonResponseValue = jsonResponse[key];
+            if ( Array.isArray( jsonResponseValue ) ) {
+                jsonResponseValue = jsonResponseValue.join( '' );
+            }
+            return { field: key, value: jsonResponseValue };
+        }.bind( this ) );
+        return errors;
+    },
+
     actions: {
+
+        addTag: function( tagName ) {
+            console.log('TOGGLE TAG');
+            if ( this.get( 'tags' ).contains( tagName ) ) {
+                this.get( 'tags' ).removeObject( tagName );
+                return;
+            }
+            this.get( 'tags' ).pushObject( tagName );
+        },
 
         selectImage: function( image, project ) {
             project.set( 'image', image.get( 'image_url' ) );
@@ -64,8 +87,9 @@ App.AddprojectController = Ember.Controller.extend( {
                 this.transitionToRoute( 'portfolio' );
                 this.send( 'pushNotifications', 'Project Saved', false );
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Project', true );
-            }.bind( this ) );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
+            }.bind(this) );
         },
 
         createNewAndContinue: function() {
@@ -76,8 +100,10 @@ App.AddprojectController = Ember.Controller.extend( {
                 window.scrollTo( 0, 0 );
                 this.send( 'pushNotifications', 'Project Saved', false );
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Save Project', true );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
             }.bind( this ) );
-        },
+        }
     }
+
 } );

@@ -2,13 +2,21 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use \App\Projects;
+use App\Projects;
+use App\Services\Validation\ProjectValidator;
+use App\Services\Validation\Exceptions\ValidationException;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller {
 
+    protected $_validation;
+    
+    public function __construct(ProjectValidator $validator) {
+        $this->_validation = $validator;
+    }
+    
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -35,6 +43,7 @@ class ProjectController extends Controller {
                     'description' => $project->description,
                     'project_link' => $project->project_link,
                     'code_link' => $project->code_link,
+                    'updated_at' => $project->updated_at,
 			    ];
 			}
 			
@@ -54,26 +63,25 @@ class ProjectController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $project = $request->input('project');
-
-            $response = [
-                'projects' => []    
-            ];
-
-		try {
-            $statusCode = 200;
-            
-            $response['projects'][] = Projects::create(array(
-                'type' => $project['type'],
-                'name' => $project['name'],
-                'subheading' => $project['subheading'],
-                'image' => $project['image'],
-                'description' => $project['description'],
-                'project_link' => $project['project_link'],
-                'code_link' => $project['code_link'],
-            ));
-            
+        $input = $request->input('project');
+        
+        try{
+            $validateData = $this->_validation->validate($input);
         }
+        catch ( ValidationException $e ) {
+            $errors['error'] = $e->get_errors();
+            return Response::json($errors, 422);
+        }
+        
+        $createProject = new Projects;
+        $response = [
+            'projects' => []    
+        ];
+        try{
+            $statusCode = 200;
+            $response['projects'] = $createProject->fill($input);
+            $createProject->save();
+        } 
         catch (\Exception $e) {
             $statusCode = 400;
         }

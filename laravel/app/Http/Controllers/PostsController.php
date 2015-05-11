@@ -3,11 +3,19 @@
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Posts;
+use App\Services\Validation\PostValidator;
+use App\Services\Validation\Exceptions\ValidationException;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller {
+    
+    protected $_validation;
+    
+    public function __construct(PostValidator $validator) {
+        $this->_validation = $validator;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -50,25 +58,30 @@ class PostsController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $post = $request->input('post');
-
-        $response = [
-                    'posts' => []
-        ];
+        $input = $request->input('post');
         
-        try {
-            $response['posts'][] = Posts::create(array(
-                'title' => $post['title'],
-                'image' => $post['image'],
-                'post_body' => $post['post_body'],
-                'author' => $post['author'],
-            ));
-            
+        try{
+            $validateData = $this->_validation->validate($input);
+        } catch ( ValidationException $e ) {
+            $errors['error'] = $e->get_errors();
+            return Response::json($errors, 422);
         }
-        catch ( \Exception $e) {
-            return Response::json($response, 400);
+        
+        $createPost = new Posts;
+        $response = [
+            'posts' => []    
+        ];
+        try{
+            $statusCode = 200;
+            $response['posts'] = $createPost->fill($input);
+            $createPost->save();
+        } 
+        catch (\Exception $e) {
+            $statusCode = 400;
         }
-        return Response::json($response, 200);
+        finally {
+            return Response::json($response, $statusCode);
+        }
 	}
 
 	/**

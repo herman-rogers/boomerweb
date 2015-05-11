@@ -96,6 +96,18 @@ App.BlogController = Ember.ArrayController.extend( {
         return this.store.find( 'image' );
     }.property(),
 
+    formValidation: function( response ) {
+        var jsonResponse = response.responseJSON.error;
+        var errors = Ember.keys( jsonResponse ).map( function( key ) {
+            var jsonResponseValue = jsonResponse[key];
+            if ( Array.isArray( jsonResponseValue ) ) {
+                jsonResponseValue = jsonResponseValue.join( '' );
+            }
+            return { field: key, value: jsonResponseValue };
+        }.bind( this ) );
+        return errors;
+    },
+
     actions: {
 
         selectImage: function( image, project ) {
@@ -161,15 +173,18 @@ App.BlogController = Ember.ArrayController.extend( {
 
         postToTwitter: function() {
             var tweet = this.get( 'twitterPost' );
-            var tagPost = tweet.get( 'text' ) + '#boomerweb';
-            tweet.set( 'text', tagPost );
+            if ( tweet.get( 'text' ) ) {
+                var tagPost = tweet.get( 'text' ) + ' #boomerweb';
+                tweet.set( 'text', tagPost );
+            }
 
             tweet.save().then( function() {
                 //Reload the model properly
                 this.send( 'pushNotifications', 'Tweet Posted', false );
                 this.destroyAndCreateNewTweet();
             }.bind( this ), function( response ) {
-                this.send( 'pushNotifications', 'Failed To Send Tweet', true );
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
                 this.destroyAndCreateNewTweet();
             }.bind( this ) );
         }
