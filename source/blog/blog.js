@@ -28,10 +28,16 @@ App.BlogController = Ember.ArrayController.extend( {
 
     currentState: 'SAVED',
 
+    loadingTweets: true,
+
     // Twitter Functions
     tweets: function() {
         return this.store.find( 'tweet' );
-    }.property(),
+    }.property( ),
+
+    toggleTweetsLoaded: function() {
+        this.set( 'loadingTweets', false );
+    }.observes('tweets.[]'),
 
     twitterPost: function() {
         return this.store.createRecord( 'tweet' );

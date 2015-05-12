@@ -1528,11 +1528,11 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el1 = dom.createTextNode("                ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("button");
-          dom.setAttribute(el1,"class","btn btn-warning pull-right");
+          dom.setAttribute(el1,"class","btn btn-warning");
           var el2 = dom.createTextNode("\n                    Cancel\n                     \n                    ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("span");
-          dom.setAttribute(el2,"class","glyphicon glyphicon-remove pull-right");
+          dom.setAttribute(el2,"class","glyphicon glyphicon-remove");
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n                ");
           dom.appendChild(el1, el2);
@@ -1594,7 +1594,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
             var el1 = dom.createTextNode("                Add Post\n                 \n                ");
             dom.appendChild(el0, el1);
             var el1 = dom.createElement("span");
-            dom.setAttribute(el1,"class","glyphicon glyphicon-plus pull-right");
+            dom.setAttribute(el1,"class","glyphicon glyphicon-plus");
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
@@ -1640,7 +1640,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el2 = dom.createTextNode("\n                    Edit Posts\n                     \n                    ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("span");
-          dom.setAttribute(el2,"class","glyphicon glyphicon-edit pull-right");
+          dom.setAttribute(el2,"class","glyphicon glyphicon-edit");
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n                ");
           dom.appendChild(el1, el2);
@@ -1690,7 +1690,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
           var el1 = dom.createTextNode("                Photo Manager\n                 \n                ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("span");
-          dom.setAttribute(el1,"class","glyphicon glyphicon-camera fa-lg pull-right");
+          dom.setAttribute(el1,"class","glyphicon glyphicon-camera fa-lg");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
@@ -2310,7 +2310,7 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
         var el2 = dom.createTextNode("\n            ");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n            ");
+        var el1 = dom.createTextNode("\n\n            ");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("hr");
         dom.appendChild(el0, el1);
@@ -2350,6 +2350,47 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
     };
   }());
   var child3 = (function() {
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.11.3",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("                    ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("i");
+        dom.setAttribute(el1,"class","fa fa-refresh fa-spin fa-lg");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        return fragment;
+      }
+    };
+  }());
+  var child4 = (function() {
     var child0 = (function() {
       return {
         isHTMLBars: true,
@@ -2648,7 +2689,11 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
       var el7 = dom.createTextNode("twitter");
       dom.appendChild(el6, el7);
       dom.appendChild(el5, el6);
-      var el6 = dom.createTextNode("\n                ");
+      var el6 = dom.createTextNode("\n");
+      dom.appendChild(el5, el6);
+      var el6 = dom.createComment("");
+      dom.appendChild(el5, el6);
+      var el6 = dom.createTextNode("                ");
       dom.appendChild(el5, el6);
       dom.appendChild(el4, el5);
       var el5 = dom.createTextNode("\n                ");
@@ -2712,17 +2757,20 @@ Ember.TEMPLATES['blog'] =  Ember.HTMLBars.template((function() {
       var element17 = dom.childAt(element16, [1]);
       var element18 = dom.childAt(element17, [5]);
       var element19 = dom.childAt(element16, [5]);
+      var element20 = dom.childAt(element19, [3]);
       var morph0 = dom.createMorphAt(dom.childAt(element15, [1, 1, 3]),1,1);
       var morph1 = dom.createMorphAt(element17,1,1);
       var attrMorph0 = dom.createAttrMorph(element18, 'disabled');
       var morph2 = dom.createMorphAt(element19,1,1);
-      var morph3 = dom.createMorphAt(dom.childAt(element19, [3, 3, 1]),1,1);
+      var morph3 = dom.createMorphAt(dom.childAt(element20, [1]),3,3);
+      var morph4 = dom.createMorphAt(dom.childAt(element20, [3, 1]),1,1);
       block(env, morph0, context, "if", [get(env, context, "loggedIn")], {}, child0, null);
       block(env, morph1, context, "each", [get(env, context, "controller.loadPosts")], {"keyword": "post"}, child1, null);
       attribute(env, attrMorph0, element18, "disabled", get(env, context, "allPostsLoaded"));
       element(env, element18, context, "action", ["loadMorePosts"], {});
       block(env, morph2, context, "if", [get(env, context, "loggedIn")], {}, child2, null);
-      block(env, morph3, context, "each", [get(env, context, "controller.tweets")], {"keyword": "tweet"}, child3, null);
+      block(env, morph3, context, "if", [get(env, context, "loadingTweets")], {}, child3, null);
+      block(env, morph4, context, "each", [get(env, context, "controller.tweets")], {"keyword": "tweet"}, child4, null);
       return fragment;
     }
   };
