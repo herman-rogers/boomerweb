@@ -2,6 +2,10 @@
 
     actions: {
 
+        beforeModel: function() {
+            this.transitionTo('portfolio');
+        },
+
         pushNotifications: function( message, error ) {
             var controller = this.controllerFor( 'index' );
             controller.pushNotification( message, error );
@@ -48,11 +52,6 @@ App.IndexController = Ember.Controller.extend( {
 
     currentNotifications: [],
 
-    notificationsPending: function() {
-        notifications = this.get( 'currentNotifications' );
-        return notifications.length > 0;
-    }.property( 'currentNotifications.[]' ),
-
     //Don't Call Directly, Use Route.Send to activate
     pushNotification: function( message, error ) {
         var currentNotifications = this.get( 'currentNotifications' );
@@ -64,7 +63,6 @@ App.IndexController = Ember.Controller.extend( {
             message: message,
             error: error,
         } );
-
         currentNotifications.pushObject( notification );
     },
 

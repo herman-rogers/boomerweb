@@ -1,13 +1,13 @@
 ﻿App.AboutRoute = Ember.Route.extend( {
 
-    model: function () {
+    model: function() {
         return this.store.createRecord( 'contactform' );
     },
 
     actions: {
-        refreshModel: function () {
+        refreshModel: function() {
             this.refresh();
-            window.scrollTo(0,0);
+            window.scrollTo( 0, 0 );
         }
     }
 
@@ -47,7 +47,7 @@ App.AboutController = Ember.Controller.extend( {
 
         sendContactRequest: function() {
             this.set( 'sendingMessage', true );
-            this.get( 'model' ).save().then( function () {
+            this.get( 'model' ).save().then( function() {
                 this.send( 'pushNotifications', 'Message Sent', false );
                 this.set( 'sendingMessage', false );
                 this.send( 'refreshModel' );

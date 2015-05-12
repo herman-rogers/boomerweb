@@ -37,6 +37,8 @@ App.AddprojectController = Ember.Controller.extend( {
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
 
+    twitterPost: null,
+
     moveFromPageIfLoggedOut: function() {
         if ( !this.get( 'loggedIn' ) ) {
             this.transitionToRoute( 'portfolio' );
@@ -64,7 +66,6 @@ App.AddprojectController = Ember.Controller.extend( {
     actions: {
 
         addTag: function( tagName ) {
-            console.log('TOGGLE TAG');
             if ( this.get( 'tags' ).contains( tagName ) ) {
                 this.get( 'tags' ).removeObject( tagName );
                 return;
@@ -85,6 +86,7 @@ App.AddprojectController = Ember.Controller.extend( {
 
             this.get( 'model' ).save().then( function() {
                 this.transitionToRoute( 'portfolio' );
+                this.send( 'postToTwitter' );
                 this.send( 'pushNotifications', 'Project Saved', false );
             }.bind( this ), function( response ) {
                 var errors = this.formValidation( response );
@@ -98,7 +100,25 @@ App.AddprojectController = Ember.Controller.extend( {
             this.get( 'model' ).save().then( function() {
                 this.send( 'refreshModel' );
                 window.scrollTo( 0, 0 );
+                this.send( 'postToTwitter' );
                 this.send( 'pushNotifications', 'Project Saved', false );
+            }.bind( this ), function( response ) {
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
+            }.bind( this ) );
+        },
+
+        postToTwitter: function() {
+            var text = this.get( 'twitterPost' );
+            if ( !text ) {
+                return;
+            }
+            var tagPost = text + ' #boomerweb';
+            var tweet = this.store.createRecord( 'tweet' );
+            tweet.set( 'text', tagPost );
+
+            tweet.save().then( function() {
+                this.send( 'pushNotifications', 'Tweet Posted', false );
             }.bind( this ), function( response ) {
                 var errors = this.formValidation( response );
                 this.send( 'pushNotifications', errors, true );

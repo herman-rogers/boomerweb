@@ -29,7 +29,7 @@ App.PhotomanagerView = Ember.View.extend( {
 
 } );
 
-App.PhotomanagerController = Ember.ArrayController.extend( DropletController, {
+App.PhotomanagerController = Ember.Controller.extend( DropletController, {
 
     needs: ['index'],
 
@@ -49,9 +49,15 @@ App.PhotomanagerController = Ember.ArrayController.extend( DropletController, {
 
     selectedImage: null,
 
+    loadingImages: true,
+
     dropletOptions: {
         fileSizeHeader: true,
     },
+
+    imagesLoaded: function() {
+        this.set( 'loadingImages', false );
+    }.observes('model'),
 
     didUploadFiles: function didUploadFiles( response ) {
         this.send( 'refreshImages' );

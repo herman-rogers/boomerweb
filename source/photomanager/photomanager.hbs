@@ -12,12 +12,15 @@
             <h2>
                 <small>Photo Editor</small>
             </h2>
-            {{#if model}}
             <a class="btn" {{action 'selectImage' image project}}>
             </a>
             <div class="container">
                 <div class="row">
                     <div class='list-group gallery'>
+                        {{#if loadingImages}}
+                        <i class="fa fa-refresh fa-spin fa-2x"></i>
+                        {{else}}
+                        {{#if model}}
                         {{#each image in model}}
                         <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
                             <button class="thumbnail fancybox" {{action "selectImage" image}}>
@@ -29,6 +32,14 @@
                             </button>
                         </div>
                         {{/each}}
+                        {{else}}
+                        <hr />
+                        <h2>
+                            <small>No Photos to Edit</small>
+                        </h2>
+                        <hr />
+                        {{/if}}
+                        {{/if}}
                     </div>
                 </div>
                 {{#if selectedImage}}
@@ -39,13 +50,6 @@
                 </button>
                 {{/if}}
             </div>
-            {{else}}
-            <hr />
-            <h2>
-                <small>No Photos to Edit</small>
-            </h2>
-            <hr />
-            {{/if}}
         </div>
     </div>
     <div class="row">
@@ -85,10 +89,13 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            {{#view view.DragDrop class="btn pull-left"}}
+            {{#view view.DragDrop}}
             {{view view.SingleInput}}
             {{/view}}
+        </div>
+        <div class="col-lg-8">
             {{#if controller.validFiles}}
+            <hr />
             <button class="btn btn-primary" {{action "uploadAllFiles"}}>
                 Upload All Files
                 &nbsp;
@@ -97,5 +104,4 @@
             {{/if}}
         </div>
     </div>
-    <hr />
 </div>

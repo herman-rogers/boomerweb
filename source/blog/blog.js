@@ -183,7 +183,6 @@ App.BlogController = Ember.ArrayController.extend( {
                 var tagPost = tweet.get( 'text' ) + ' #boomerweb';
                 tweet.set( 'text', tagPost );
             }
-
             tweet.save().then( function() {
                 //Reload the model properly
                 this.send( 'pushNotifications', 'Tweet Posted', false );

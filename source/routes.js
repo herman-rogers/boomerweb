@@ -1,15 +1,15 @@
-﻿App.Router.map( function () {
+﻿App.Router.map( function() {
 
     //Authentification Routes
     this.resource( 'login' );
     this.resource( 'logout' );
 
-
-    this.resource( 'index', { path: '/' }, function () {
+    this.resource( 'index', { path: '/' }, function() {
         //Page Display Routes
         this.resource( 'about' );
         this.resource( 'portfolio' );
         this.resource( 'blog' );
+        this.resource( 'gameplayer' );
         this.resource( 'photomanager' );
 
         //Login Routes
