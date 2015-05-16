@@ -11,5 +11,5 @@ App.Project = DS.Model.extend( {
     updated_at: attr(),
 
     enableDelete: false,
-
+    typeFilter: true
 } );

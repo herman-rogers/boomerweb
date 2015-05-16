@@ -11,9 +11,20 @@ App.PortfolioView = Ember.View.extend( {
 } );
 
 App.PortfolioController = Ember.ArrayController.extend( {
+
     needs: ['index'],
 
     loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
+
+    sortProperties: ['updated_at'],
+
+    projectTypes: ['games', 'tools', 'software'],
+
+    sortAscending: false,
+
+    selectedType: null,
+
+    noTypesFound: false,
 
     currentState: 'SAVED',
 
@@ -34,7 +45,7 @@ App.PortfolioController = Ember.ArrayController.extend( {
         }
     }.observes( 'currentState', 'loggedIn' ),
 
-    images: function(){
+    images: function() {
         return this.store.find( 'image' );
     }.property(),
 
@@ -89,6 +100,35 @@ App.PortfolioController = Ember.ArrayController.extend( {
             }.bind( this ), function() {
                 this.send( 'pushNotifications', 'Failed To Delete Post', true );
             }.bind( this ) );
+        },
+
+        resetFilter: function() {
+            this.get( 'content' ).forEach( function( project ) {
+                project.set( 'typeFilter', true );
+            } );
+            this.set( 'selectedType', null );
+            this.set( 'noTypesFound', false );
+        },
+
+        editProjectType: function( project, type ) {
+            project.set( 'type', type );
+        },
+
+        sortProjectByType: function( type ) {
+            var projects = this.get( 'content' );
+            var typesFound = true;
+
+            projects.forEach( function( project ) {
+                var typeArray = project.get( 'type' ).split( "," );
+                if ( typeArray.indexOf( type ) > -1 ) {
+                    project.set( 'typeFilter', true );
+                    typesFound = false;
+                } else {
+                    project.set( 'typeFilter', false );
+                }
+            } );
+            this.set( 'noTypesFound', typesFound );
+            this.set( 'selectedType', type )
         },
 
     }

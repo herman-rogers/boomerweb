@@ -58,62 +58,25 @@
             <p>
                 {{input class="form-control" placeholder='Tweet' type='text' value=twitterPost}}
             </p>
-            <div class="row">
-                <div class="form-group">
-                    <div class="searchable-container">
-                        <div class="items col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                            <div class="info-block block-info clearfix">
-                                <div class="square-box pull-left">
-                                    <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
-                                </div>
-                                <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                    <label class="btn btn-default">
-                                        <div class="bizcontent">
-                                            <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                            <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                                            <h5>Tools</h5>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                            <div class="info-block block-info clearfix">
-                                <div class="square-box pull-left">
-                                    <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
-                                </div>
-                                <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                    <label class="btn btn-default">
-                                        <div class="bizcontent">
-                                            {{!input type="checkbox" name="var_id[]" autocomplete="off" action 'addTag'}}
-                                            <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                                            <h5>Games</h5>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                            <div class="info-block block-info clearfix">
-                                <div class="square-box pull-left">
-                                    <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
-                                </div>
-                                <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                    <label class="btn btn-default">
-                                        <div class="bizcontent">
-                                            <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                            <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                                            <h5>Software</h5>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h1>
+                <small>Add Type</small>
+            </h1>
+            <div class="dropdown">
+                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                    {{#if model.type}}
+                    {{model.type}}
+                    {{else}}
+                    No Type
+                    {{/if}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                    {{#each type in projectTypes}}
+                    <li><a href="#" {{action 'selectType' type}}>{{type}}</a></li>
+                    {{/each}}
+                </ul>
             </div>
             <hr />
-
             <a class="btn btn-warning" {{action 'cancel'}}>
                 Cancel
                 &nbsp;

@@ -4,10 +4,28 @@
             <h1 class="page-header">
                 Portfolio
                 <small>Software and Games</small>
+                <!-- Single button -->
+                <div class="dropdown pull-right">
+                    <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                        {{#if selectedType}}
+                        {{selectedType}}
+                        {{else}}
+                        Filter By
+                        {{/if}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                        {{#each type in projectTypes}}
+                        <li><a href="#" {{action 'sortProjectByType' type}}>{{type}}</a></li>
+                        {{/each}}
+                    </ul>
+                    <a class="btn btn-primary" {{action 'resetFilter'}}>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
             </h1>
-            <div class="col-md-5">
-                {{#if loggedIn}}
-
+            {{#if loggedIn}}
+            <div class="col-md-7">
                 <!-- EDIT AND ADD PROJECTS BUTTONS -->
                 {{#if isEditing}}
                 <button class="btn btn-warning" {{action 'cancelState'}}>
@@ -37,13 +55,13 @@
                 &nbsp;
                 <span class="glyphicon glyphicon-camera fa-lg"></span>
                 {{/link-to}}
-                {{/if}}
+            <hr />
             </div>
+            {{/if}}
         </div>
     </div>
 
-    {{#each project in model}}
-    <hr />
+    {{#each project in controller}}
     <!-- EDIT MAIN FORM -->
     {{#if isEditing}}
     <div class="row">
@@ -70,16 +88,30 @@
                 <small>Project Description</small>
             </h2>
             <p class="lead">{{textarea class="form-control" value=project.description rows="10"}}</p>
-            {{#if project.project_link}}
-            <h2><small>Project Link</small></h2>
-            <p class="lead">{{input class="form-control" value=project.project_link}}</p>
-            {{/if}}
-            {{#if project.code_link}}
             <h2>
-                <small>Project Code</small>
+                <small>Main Project Link</small>
+            </h2>
+            <p class="lead">
+                {{input class="form-control" value=project.project_link}}
+            </p>
+            <h2>
+                <small>Project Type</small>
+            </h2>
+            <div class="dropdown">
+                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                    {{project.type}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                    {{#each type in projectTypes}}
+                    <li><a href="#" {{action 'editProjectType' project type}}>{{type}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <h2>
+                <small>Project Code Link</small>
             </h2>
             <p class="lead">{{input class="form-control" value=project.code_link}}</p>
-            {{/if}}
             <!-- DELETE BUTTONS -->
             {{#if project.enableDelete}}
             <a class="btn btn-warning" {{action 'cancelDelete' project}}>
@@ -101,21 +133,27 @@
             {{/if}}
         </div>
     </div>
-
     <!-- DISPLAY PROJECTS NORMALLY -->
     {{else}}
+    {{#if project.typeFilter}}
     <div class="row">
         <div class="col-md-7">
+            <p><span class="glyphicon glyphicon-time"></span> Updated on <b>{{date-format project.updated_at}}</b></p>
             <a href="#">
                 <img class="img-responsive" {{bind-attr src=project.image}} alt="">
             </a>
-            <p><span class="glyphicon glyphicon-time"></span> Updated on <b>{{date-format project.updated_at}}</b></p>
         </div>
         <div class="col-md-5">
-            <h3>{{project.name}}</h3>
-            <h4>{{project.subheading}}</h4>
+            <h3>
+                {{project.name}}  <small>
+                    <span class="glyphicon glyphicon-tag"></span> {{project.type}}
+                </small>
+            </h3>
+            <h4>Version {{project.subheading}}</h4>
+            <br />
             <h5></h5>
             <p>{{project.description}}</p>
+            <hr />
             {{#if project.code_link}}
             <a class="btn btn-primary" href={{project.code_link}}>
                 View Code
@@ -132,6 +170,18 @@
             {{/if}}
         </div>
     </div>
+    <hr />
+    {{/if}}
     {{/if}}
     {{/each}}
+    {{#if noTypesFound}}
+    <hr />
+    <div class="row">
+        <div class="col-md-7">
+            <h3>No Project Types Found</h3>
+            <br />
+        </div>
+    </div>
+    <hr />
+    {{/if}}
 </div>

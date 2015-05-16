@@ -39,6 +39,8 @@ App.AddprojectController = Ember.Controller.extend( {
 
     twitterPost: null,
 
+    projectTypes: ['games', 'tools', 'software'],
+
     moveFromPageIfLoggedOut: function() {
         if ( !this.get( 'loggedIn' ) ) {
             this.transitionToRoute( 'portfolio' );
@@ -48,8 +50,6 @@ App.AddprojectController = Ember.Controller.extend( {
     images: function() {
         return this.store.find( 'image' );
     }.property(),
-
-    tags: [],
 
     formValidation: function( response ) {
         var jsonResponse = response.responseJSON.error;
@@ -65,16 +65,12 @@ App.AddprojectController = Ember.Controller.extend( {
 
     actions: {
 
-        addTag: function( tagName ) {
-            if ( this.get( 'tags' ).contains( tagName ) ) {
-                this.get( 'tags' ).removeObject( tagName );
-                return;
-            }
-            this.get( 'tags' ).pushObject( tagName );
-        },
-
         selectImage: function( image, project ) {
             project.set( 'image', image.get( 'image_url' ) );
+        },
+
+        selectType: function( type ) {
+            this.set( 'model.type', type );
         },
 
         cancel: function() {
@@ -82,8 +78,6 @@ App.AddprojectController = Ember.Controller.extend( {
         },
 
         createNew: function() {
-            this.set( 'model.type', 'personal' );
-
             this.get( 'model' ).save().then( function() {
                 this.transitionToRoute( 'portfolio' );
                 this.send( 'postToTwitter' );
@@ -95,8 +89,6 @@ App.AddprojectController = Ember.Controller.extend( {
         },
 
         createNewAndContinue: function() {
-            this.set( 'model.type', 'personal' );
-
             this.get( 'model' ).save().then( function() {
                 this.send( 'refreshModel' );
                 window.scrollTo( 0, 0 );

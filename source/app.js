@@ -7,7 +7,8 @@ var appPath = window.location.origin + window.location.pathname;
 hljs.initHighlightingOnLoad();
 
 App = Ember.Application.create( {
-    LOG_TRANSITIONS: true
+    LOG_TRANSITIONS: true,
+    rootElement: '#application'
 } );
 
 // Datastore configuration

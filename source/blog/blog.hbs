@@ -37,12 +37,12 @@
                 &nbsp;
                 <span class="glyphicon glyphicon-camera fa-lg"></span>
                 {{/link-to}}
+                <hr>
                 {{/if}}
 
             </div>
         </div>
     </div>
-    <hr>
     <div class="row">
         <div class="col-lg-8">
             {{#each post in controller.loadPosts}}
@@ -75,7 +75,7 @@
             <h1>
                 <small>Post Body</small>
             </h1>
-            <p class="lead">{{textarea class="form-control" value=post.post_body rows="15"}}</p>
+            <p>{{textarea class="form-control" value=post.post_body rows="15"}}</p>
 
             <!-- DELETE BUTTONS -->
             {{#if post.enableDelete}}
@@ -108,7 +108,7 @@
             <hr>
             <img class="img-responsive" {{bind-attr src=post.image}} alt="">
             <hr>
-            <p class="lead">{{post.post_body}}</p>
+            <p>{{post.post_body}}</p>
             {{/if}}
             <hr>
             {{/each}}

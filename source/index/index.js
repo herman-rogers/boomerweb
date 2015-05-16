@@ -18,9 +18,9 @@
             }
         },
 
-        error: function( error, transition ) {
-            this.transitionTo( '/notfound' );
-        }
+        //error: function( error, transition ) {
+        //    this.transitionTo( '/notfound' );
+        //}
 
     }
 } );
