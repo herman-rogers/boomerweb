@@ -1,11 +1,15 @@
-﻿// Main gulp tasks that compiles the App Javascript
-// And the Ember Handle bar templates
-
+﻿/**
+ * Main gulp tasks that compiles the App Javascript
+ * And the Ember Handle bar templates
+ * 
+ */
 var gulp = require( 'gulp' );
 var concat = require( 'gulp-concat' );
 var addsrc = require( 'gulp-add-src' );
 
-// Compiled Ember Handlebars Dependencies
+/**
+ * Compiled Ember Handlebars Dependencies
+ */
 var htmlbars = require( 'gulp-htmlbars' );
 var tap = require( 'gulp-tap' );
 
@@ -14,17 +18,24 @@ gulp.task( 'watch', function() {
     gulp.watch( 'source/**/*.{js,hbs}', ['scripts'] );
 } );
 
-// CSS Build Tasks
+/**
+ * CSS Build Tasks
+ */ 
 gulp.task( 'styles', function() {
     return gulp.src( 'styles/**/*.css' )
     .pipe( concat( 'appstyles.css' ) )
     .pipe( gulp.dest( 'app/dist/styles' ) );
 } );
 
-// JS Build Tasks
+/*
+ * JS Build Tasks
+ * Initilization: Templates | App | Mixins |
+ *                Components | Main Source
+ */ 
 gulp.task( 'scripts', ['templates'], function() {
     return gulp.src( 'source/appinit/**/*.js' )
     .pipe( addsrc.append( 'source/mixins/**/*.js' ) )
+    .pipe( addsrc.append( 'source/components/**/*.js' ) )
     .pipe( addsrc.append( 'source/appmain/**/*.js' ) )
     .pipe( addsrc.prepend( 'app/dist/js/templates.js' ) )
     .pipe( concat( 'appbuild.js' ) )
@@ -40,7 +51,10 @@ gulp.task( 'libraries', function() {
         .pipe( addsrc.append( 'bower_components/jquery-cookie/jquery.cookie.js' ) )
         .pipe( addsrc.append( 'bower_components/moment/moment.js' ) )
         .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
-        .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.js' ) )
+        .pipe( addsrc.append( 'bower_components/easyform/easyform.js' ) )
+        .pipe( addsrc.append( 'bower_components/jqueryte/jquery-te-1.4.0.min.js' ) )
+        .pipe( addsrc.append( 'bower_components/trumbowyg-2.0.0-beta/dist/trumbowyg.js' ) )
+        .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.min.js' ) )
         .pipe( concat( 'libraries.js' ) )
         .pipe( gulp.dest( 'app/dist/js' ) )
 } );
@@ -60,6 +74,9 @@ var getTemplateNameFromPath = function( path ) {
     var finalTemplateName = filenameWithoutExtension;
     if ( folderNameInWhichFileResides === "components" ) {
         finalTemplateName = "components/" + finalTemplateName;
+    }
+    else if ( folderNameInWhichFileResides === "easyForm" ) {
+        finalTemplateName = "easyForm/" + finalTemplateName;
     }
 
     return finalTemplateName;

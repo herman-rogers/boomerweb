@@ -82316,776 +82316,1829 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
 
 }));
 !function(e){"undefined"!=typeof exports?e(exports):(window.hljs=e({}),"function"==typeof define&&define.amd&&define([],function(){return window.hljs}))}(function(e){function n(e){return e.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(e){return e.nodeName.toLowerCase()}function r(e,n){var t=e&&e.exec(n);return t&&0==t.index}function a(e){var n=(e.className+" "+(e.parentNode?e.parentNode.className:"")).split(/\s+/);return n=n.map(function(e){return e.replace(/^lang(uage)?-/,"")}),n.filter(function(e){return N(e)||/no(-?)highlight|plain|text/.test(e)})[0]}function i(e,n){var t,r={};for(t in e)r[t]=e[t];if(n)for(t in n)r[t]=n[t];return r}function o(e){var n=[];return function r(e,a){for(var i=e.firstChild;i;i=i.nextSibling)3==i.nodeType?a+=i.nodeValue.length:1==i.nodeType&&(n.push({event:"start",offset:a,node:i}),a=r(i,a),t(i).match(/br|hr|img|input/)||n.push({event:"stop",offset:a,node:i}));return a}(e,0),n}function u(e,r,a){function i(){return e.length&&r.length?e[0].offset!=r[0].offset?e[0].offset<r[0].offset?e:r:"start"==r[0].event?e:r:e.length?e:r}function o(e){function r(e){return" "+e.nodeName+'="'+n(e.value)+'"'}l+="<"+t(e)+Array.prototype.map.call(e.attributes,r).join("")+">"}function u(e){l+="</"+t(e)+">"}function c(e){("start"==e.event?o:u)(e.node)}for(var s=0,l="",f=[];e.length||r.length;){var g=i();if(l+=n(a.substr(s,g[0].offset-s)),s=g[0].offset,g==e){f.reverse().forEach(u);do c(g.splice(0,1)[0]),g=i();while(g==e&&g.length&&g[0].offset==s);f.reverse().forEach(o)}else"start"==g[0].event?f.push(g[0].node):f.pop(),c(g.splice(0,1)[0])}return l+n(a.substr(s))}function c(e){function n(e){return e&&e.source||e}function t(t,r){return new RegExp(n(t),"m"+(e.cI?"i":"")+(r?"g":""))}function r(a,o){if(!a.compiled){if(a.compiled=!0,a.k=a.k||a.bK,a.k){var u={},c=function(n,t){e.cI&&(t=t.toLowerCase()),t.split(" ").forEach(function(e){var t=e.split("|");u[t[0]]=[n,t[1]?Number(t[1]):1]})};"string"==typeof a.k?c("keyword",a.k):Object.keys(a.k).forEach(function(e){c(e,a.k[e])}),a.k=u}a.lR=t(a.l||/\b\w+\b/,!0),o&&(a.bK&&(a.b="\\b("+a.bK.split(" ").join("|")+")\\b"),a.b||(a.b=/\B|\b/),a.bR=t(a.b),a.e||a.eW||(a.e=/\B|\b/),a.e&&(a.eR=t(a.e)),a.tE=n(a.e)||"",a.eW&&o.tE&&(a.tE+=(a.e?"|":"")+o.tE)),a.i&&(a.iR=t(a.i)),void 0===a.r&&(a.r=1),a.c||(a.c=[]);var s=[];a.c.forEach(function(e){e.v?e.v.forEach(function(n){s.push(i(e,n))}):s.push("self"==e?a:e)}),a.c=s,a.c.forEach(function(e){r(e,a)}),a.starts&&r(a.starts,o);var l=a.c.map(function(e){return e.bK?"\\.?("+e.b+")\\.?":e.b}).concat([a.tE,a.i]).map(n).filter(Boolean);a.t=l.length?t(l.join("|"),!0):{exec:function(){return null}}}}r(e)}function s(e,t,a,i){function o(e,n){for(var t=0;t<n.c.length;t++)if(r(n.c[t].bR,e))return n.c[t]}function u(e,n){if(r(e.eR,n)){for(;e.endsParent&&e.parent;)e=e.parent;return e}return e.eW?u(e.parent,n):void 0}function f(e,n){return!a&&r(n.iR,e)}function g(e,n){var t=E.cI?n[0].toLowerCase():n[0];return e.k.hasOwnProperty(t)&&e.k[t]}function p(e,n,t,r){var a=r?"":x.classPrefix,i='<span class="'+a,o=t?"":"</span>";return i+=e+'">',i+n+o}function d(){if(!L.k)return n(y);var e="",t=0;L.lR.lastIndex=0;for(var r=L.lR.exec(y);r;){e+=n(y.substr(t,r.index-t));var a=g(L,r);a?(B+=a[1],e+=p(a[0],n(r[0]))):e+=n(r[0]),t=L.lR.lastIndex,r=L.lR.exec(y)}return e+n(y.substr(t))}function h(){if(L.sL&&!w[L.sL])return n(y);var e=L.sL?s(L.sL,y,!0,M[L.sL]):l(y);return L.r>0&&(B+=e.r),"continuous"==L.subLanguageMode&&(M[L.sL]=e.top),p(e.language,e.value,!1,!0)}function b(){return void 0!==L.sL?h():d()}function v(e,t){var r=e.cN?p(e.cN,"",!0):"";e.rB?(k+=r,y=""):e.eB?(k+=n(t)+r,y=""):(k+=r,y=t),L=Object.create(e,{parent:{value:L}})}function m(e,t){if(y+=e,void 0===t)return k+=b(),0;var r=o(t,L);if(r)return k+=b(),v(r,t),r.rB?0:t.length;var a=u(L,t);if(a){var i=L;i.rE||i.eE||(y+=t),k+=b();do L.cN&&(k+="</span>"),B+=L.r,L=L.parent;while(L!=a.parent);return i.eE&&(k+=n(t)),y="",a.starts&&v(a.starts,""),i.rE?0:t.length}if(f(t,L))throw new Error('Illegal lexeme "'+t+'" for mode "'+(L.cN||"<unnamed>")+'"');return y+=t,t.length||1}var E=N(e);if(!E)throw new Error('Unknown language: "'+e+'"');c(E);var R,L=i||E,M={},k="";for(R=L;R!=E;R=R.parent)R.cN&&(k=p(R.cN,"",!0)+k);var y="",B=0;try{for(var C,j,I=0;;){if(L.t.lastIndex=I,C=L.t.exec(t),!C)break;j=m(t.substr(I,C.index-I),C[0]),I=C.index+j}for(m(t.substr(I)),R=L;R.parent;R=R.parent)R.cN&&(k+="</span>");return{r:B,value:k,language:e,top:L}}catch(S){if(-1!=S.message.indexOf("Illegal"))return{r:0,value:n(t)};throw S}}function l(e,t){t=t||x.languages||Object.keys(w);var r={r:0,value:n(e)},a=r;return t.forEach(function(n){if(N(n)){var t=s(n,e,!1);t.language=n,t.r>a.r&&(a=t),t.r>r.r&&(a=r,r=t)}}),a.language&&(r.second_best=a),r}function f(e){return x.tabReplace&&(e=e.replace(/^((<[^>]+>|\t)+)/gm,function(e,n){return n.replace(/\t/g,x.tabReplace)})),x.useBR&&(e=e.replace(/\n/g,"<br>")),e}function g(e,n,t){var r=n?E[n]:t,a=[e.trim()];return e.match(/\bhljs\b/)||a.push("hljs"),-1===e.indexOf(r)&&a.push(r),a.join(" ").trim()}function p(e){var n=a(e);if(!/no(-?)highlight|plain|text/.test(n)){var t;x.useBR?(t=document.createElementNS("http://www.w3.org/1999/xhtml","div"),t.innerHTML=e.innerHTML.replace(/\n/g,"").replace(/<br[ \/]*>/g,"\n")):t=e;var r=t.textContent,i=n?s(n,r,!0):l(r),c=o(t);if(c.length){var p=document.createElementNS("http://www.w3.org/1999/xhtml","div");p.innerHTML=i.value,i.value=u(c,o(p),r)}i.value=f(i.value),e.innerHTML=i.value,e.className=g(e.className,n,i.language),e.result={language:i.language,re:i.r},i.second_best&&(e.second_best={language:i.second_best.language,re:i.second_best.r})}}function d(e){x=i(x,e)}function h(){if(!h.called){h.called=!0;var e=document.querySelectorAll("pre code");Array.prototype.forEach.call(e,p)}}function b(){addEventListener("DOMContentLoaded",h,!1),addEventListener("load",h,!1)}function v(n,t){var r=w[n]=t(e);r.aliases&&r.aliases.forEach(function(e){E[e]=n})}function m(){return Object.keys(w)}function N(e){return w[e]||w[E[e]]}var x={classPrefix:"hljs-",tabReplace:null,useBR:!1,languages:void 0},w={},E={};return e.highlight=s,e.highlightAuto=l,e.fixMarkup=f,e.highlightBlock=p,e.configure=d,e.initHighlighting=h,e.initHighlightingOnLoad=b,e.registerLanguage=v,e.listLanguages=m,e.getLanguage=N,e.inherit=i,e.IR="[a-zA-Z]\\w*",e.UIR="[a-zA-Z_]\\w*",e.NR="\\b\\d+(\\.\\d+)?",e.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",e.BNR="\\b(0b[01]+)",e.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~",e.BE={b:"\\\\[\\s\\S]",r:0},e.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[e.BE]},e.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[e.BE]},e.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/},e.C=function(n,t,r){var a=e.inherit({cN:"comment",b:n,e:t,c:[]},r||{});return a.c.push(e.PWM),a},e.CLCM=e.C("//","$"),e.CBCM=e.C("/\\*","\\*/"),e.HCM=e.C("#","$"),e.NM={cN:"number",b:e.NR,r:0},e.CNM={cN:"number",b:e.CNR,r:0},e.BNM={cN:"number",b:e.BNR,r:0},e.CSSNM={cN:"number",b:e.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0},e.RM={cN:"regexp",b:/\//,e:/\/[gimuy]*/,i:/\n/,c:[e.BE,{b:/\[/,e:/\]/,r:0,c:[e.BE]}]},e.TM={cN:"title",b:e.IR,r:0},e.UTM={cN:"title",b:e.UIR,r:0},e});hljs.registerLanguage("xml",function(t){var e="[A-Za-z0-9\\._:-]+",s={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"},c={eW:!0,i:/</,r:0,c:[s,{cN:"attribute",b:e,r:0},{b:"=",r:0,c:[{cN:"value",c:[s],v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:!0,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},t.C("<!--","-->",{r:10}),{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[c],starts:{e:"</style>",rE:!0,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[c],starts:{e:"</script>",rE:!0,sL:""}},s,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:/[^ \/><\n\t]+/,r:0},c]}]}});hljs.registerLanguage("java",function(e){var a=e.UIR+"(<"+e.UIR+">)?",t="false synchronized int abstract float private char boolean static null if const for true while long strictfp finally protected import native final void enum else break transient catch instanceof byte super volatile case assert short package default double public try this switch continue throws protected public private",c="(\\b(0b[01_]+)|\\b0[xX][a-fA-F0-9_]+|(\\b[\\d_]+(\\.[\\d_]*)?|\\.[\\d_]+)([eE][-+]?\\d+)?)[lLfF]?",r={cN:"number",b:c,r:0};return{aliases:["jsp"],k:t,i:/<\//,c:[{cN:"javadoc",b:"/\\*\\*",e:"\\*/",r:0,c:[{cN:"javadoctag",b:"(^|\\s)@[A-Za-z]+"}]},e.CLCM,e.CBCM,e.ASM,e.QSM,{cN:"class",bK:"class interface",e:/[{;=]/,eE:!0,k:"class interface",i:/[:"\[\]]/,c:[{bK:"extends implements"},e.UTM]},{bK:"new throw return",r:0},{cN:"function",b:"("+a+"\\s+)+"+e.UIR+"\\s*\\(",rB:!0,e:/[{;=]/,eE:!0,k:t,c:[{b:e.UIR+"\\s*\\(",rB:!0,r:0,c:[e.UTM]},{cN:"params",b:/\(/,e:/\)/,k:t,r:0,c:[e.ASM,e.QSM,e.CNM,e.CBCM]},e.CLCM,e.CBCM]},r,{cN:"annotation",b:"@[A-Za-z]+"}]}});hljs.registerLanguage("cpp",function(t){var i={keyword:"false int float while private char catch export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace unsigned long volatile static protected bool template mutable if public friend do goto auto void enum else break extern using true class asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue wchar_t inline delete alignof char16_t char32_t constexpr decltype noexcept nullptr static_assert thread_local restrict _Bool complex _Complex _Imaginary intmax_t uintmax_t int8_t uint8_t int16_t uint16_t int32_t uint32_t  int64_t uint64_t int_least8_t uint_least8_t int_least16_t uint_least16_t int_least32_t uint_least32_t int_least64_t uint_least64_t int_fast8_t uint_fast8_t int_fast16_t uint_fast16_t int_fast32_t uint_fast32_t int_fast64_t uint_fast64_t intptr_t uintptr_t atomic_bool atomic_char atomic_schar atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong atomic_ullong atomic_wchar_t atomic_char16_t atomic_char32_t atomic_intmax_t atomic_uintmax_t atomic_intptr_t atomic_uintptr_t atomic_size_t atomic_ptrdiff_t atomic_int_least8_t atomic_int_least16_t atomic_int_least32_t atomic_int_least64_t atomic_uint_least8_t atomic_uint_least16_t atomic_uint_least32_t atomic_uint_least64_t atomic_int_fast8_t atomic_int_fast16_t atomic_int_fast32_t atomic_int_fast64_t atomic_uint_fast8_t atomic_uint_fast16_t atomic_uint_fast32_t atomic_uint_fast64_t",built_in:"std string cin cout cerr clog stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf"};return{aliases:["c","cc","h","c++","h++","hpp"],k:i,i:"</",c:[t.CLCM,t.CBCM,t.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},t.CNM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line pragma",c:[{b:/\\\n/,r:0},{b:'include\\s*[<"]',e:'[>"]',k:"include",i:"\\n"},t.CLCM]},{b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:i,c:["self"]},{b:t.IR+"::",k:i},{bK:"new throw return else",r:0},{cN:"function",b:"("+t.IR+"\\s+)+"+t.IR+"\\s*\\(",rB:!0,e:/[{;=]/,eE:!0,k:i,c:[{b:t.IR+"\\s*\\(",rB:!0,c:[t.TM],r:0},{cN:"params",b:/\(/,e:/\)/,k:i,r:0,c:[t.CBCM]},t.CLCM,t.CBCM]}]}});hljs.registerLanguage("php",function(e){var c={cN:"variable",b:"\\$+[a-zA-Z_-ÿ][a-zA-Z0-9_-ÿ]*"},i={cN:"preprocessor",b:/<\?(php)?|\?>/},a={cN:"string",c:[e.BE,i],v:[{b:'b"',e:'"'},{b:"b'",e:"'"},e.inherit(e.ASM,{i:null}),e.inherit(e.QSM,{i:null})]},n={v:[e.BNM,e.CNM]};return{aliases:["php3","php4","php5","php6"],cI:!0,k:"and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally",c:[e.CLCM,e.HCM,e.C("/\\*","\\*/",{c:[{cN:"phpdoc",b:"\\s@[A-Za-z]+"},i]}),e.C("__halt_compiler.+?;",!1,{eW:!0,k:"__halt_compiler",l:e.UIR}),{cN:"string",b:"<<<['\"]?\\w+['\"]?$",e:"^\\w+;",c:[e.BE]},i,c,{b:/(::|->)+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/},{cN:"function",bK:"function",e:/[;{]/,eE:!0,i:"\\$|\\[|%",c:[e.UTM,{cN:"params",b:"\\(",e:"\\)",c:["self",c,e.CBCM,a,n]}]},{cN:"class",bK:"class interface",e:"{",eE:!0,i:/[:\(\$"]/,c:[{bK:"extends implements"},e.UTM]},{bK:"namespace",e:";",i:/[\.']/,c:[e.UTM]},{bK:"use",e:";",c:[e.UTM]},{b:"=>"},a,n]}});hljs.registerLanguage("json",function(e){var t={literal:"true false null"},i=[e.QSM,e.CNM],l={cN:"value",e:",",eW:!0,eE:!0,c:i,k:t},c={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:!0,eE:!0,c:[e.BE],i:"\\n",starts:l}],i:"\\S"},n={b:"\\[",e:"\\]",c:[e.inherit(l,{cN:null})],i:"\\S"};return i.splice(i.length,0,c,n),{c:i,k:t,i:"\\S"}});hljs.registerLanguage("cs",function(e){var r="abstract as base bool break byte case catch char checked const continue decimal dynamic default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long null when object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while async protected public private internal ascending descending from get group into join let orderby partial select set value var where yield",t=e.IR+"(<"+e.IR+">)?";return{aliases:["csharp"],k:r,i:/::/,c:[e.C("///","$",{rB:!0,c:[{cN:"xmlDocTag",v:[{b:"///",r:0},{b:"<!--|-->"},{b:"</?",e:">"}]}]}),e.CLCM,e.CBCM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},e.ASM,e.QSM,e.CNM,{bK:"class namespace interface",e:/[{;=]/,i:/[^\s:]/,c:[e.TM,e.CLCM,e.CBCM]},{bK:"new return throw await",r:0},{cN:"function",b:"("+t+"\\s+)+"+e.IR+"\\s*\\(",rB:!0,e:/[{;=]/,eE:!0,k:r,c:[{b:e.IR+"\\s*\\(",rB:!0,c:[e.TM],r:0},{cN:"params",b:/\(/,e:/\)/,k:r,r:0,c:[e.ASM,e.QSM,e.CNM,e.CBCM]},e.CLCM,e.CBCM]}]}});hljs.registerLanguage("python",function(e){var r={cN:"prompt",b:/^(>>>|\.\.\.) /},b={cN:"string",c:[e.BE],v:[{b:/(u|b)?r?'''/,e:/'''/,c:[r],r:10},{b:/(u|b)?r?"""/,e:/"""/,c:[r],r:10},{b:/(u|r|ur)'/,e:/'/,r:10},{b:/(u|r|ur)"/,e:/"/,r:10},{b:/(b|br)'/,e:/'/},{b:/(b|br)"/,e:/"/},e.ASM,e.QSM]},l={cN:"number",r:0,v:[{b:e.BNR+"[lLjJ]?"},{b:"\\b(0o[0-7]+)[lLjJ]?"},{b:e.CNR+"[lLjJ]?"}]},c={cN:"params",b:/\(/,e:/\)/,c:["self",r,l,b]};return{aliases:["py","gyp"],k:{keyword:"and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10 None True False",built_in:"Ellipsis NotImplemented"},i:/(<\/|->|\?)/,c:[r,l,b,e.HCM,{v:[{cN:"function",bK:"def",r:10},{cN:"class",bK:"class"}],e:/:/,i:/[${=;\n,]/,c:[e.UTM,c]},{cN:"decorator",b:/@/,e:/$/},{b:/\b(print|exec)\(/}]}});hljs.registerLanguage("coffeescript",function(e){var c={keyword:"in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super then unless until loop of by when and or is isnt not",literal:"true false null undefined yes no on off",reserved:"case default function var void with const let enum export import native __hasProp __extends __slice __bind __indexOf",built_in:"npm require console print module global window document"},n="[A-Za-z$_][0-9A-Za-z$_]*",t={cN:"subst",b:/#\{/,e:/}/,k:c},r=[e.BNM,e.inherit(e.CNM,{starts:{e:"(\\s*/)?",r:0}}),{cN:"string",v:[{b:/'''/,e:/'''/,c:[e.BE]},{b:/'/,e:/'/,c:[e.BE]},{b:/"""/,e:/"""/,c:[e.BE,t]},{b:/"/,e:/"/,c:[e.BE,t]}]},{cN:"regexp",v:[{b:"///",e:"///",c:[t,e.HCM]},{b:"//[gim]*",r:0},{b:/\/(?![ *])(\\\/|.)*?\/[gim]*(?=\W|$)/}]},{cN:"property",b:"@"+n},{b:"`",e:"`",eB:!0,eE:!0,sL:"javascript"}];t.c=r;var i=e.inherit(e.TM,{b:n}),s="(\\(.*\\))?\\s*\\B[-=]>",o={cN:"params",b:"\\([^\\(]",rB:!0,c:[{b:/\(/,e:/\)/,k:c,c:["self"].concat(r)}]};return{aliases:["coffee","cson","iced"],k:c,i:/\/\*/,c:r.concat([e.C("###","###"),e.HCM,{cN:"function",b:"^\\s*"+n+"\\s*=\\s*"+s,e:"[-=]>",rB:!0,c:[i,o]},{b:/[:\(,=]\s*/,r:0,c:[{cN:"function",b:s,e:"[-=]>",rB:!0,c:[o]}]},{cN:"class",bK:"class",e:"$",i:/[:="\[\]]/,c:[{bK:"extends",eW:!0,i:/[:="\[\]]/,c:[i]},i]},{cN:"attribute",b:n+":",e:":",rB:!0,rE:!0,r:0}])}});hljs.registerLanguage("bash",function(e){var t={cN:"variable",v:[{b:/\$[\w\d#@][\w\d_]*/},{b:/\$\{(.*?)}/}]},s={cN:"string",b:/"/,e:/"/,c:[e.BE,t,{cN:"variable",b:/\$\(/,e:/\)/,c:[e.BE]}]},a={cN:"string",b:/'/,e:/'/};return{aliases:["sh","zsh"],l:/-?[a-z\.]+/,k:{keyword:"if then else elif fi for while in do done case esac function",literal:"true false",built_in:"break cd continue eval exec exit export getopts hash pwd readonly return shift test times trap umask unset alias bind builtin caller command declare echo enable help let local logout mapfile printf read readarray source type typeset ulimit unalias set shopt autoload bg bindkey bye cap chdir clone comparguments compcall compctl compdescribe compfiles compgroups compquote comptags comptry compvalues dirs disable disown echotc echoti emulate fc fg float functions getcap getln history integer jobs kill limit log noglob popd print pushd pushln rehash sched setcap setopt stat suspend ttyctl unfunction unhash unlimit unsetopt vared wait whence where which zcompile zformat zftp zle zmodload zparseopts zprof zpty zregexparse zsocket zstyle ztcp",operator:"-ne -eq -lt -gt -f -d -e -s -l -a"},c:[{cN:"shebang",b:/^#![^\n]+sh\s*$/,r:10},{cN:"function",b:/\w[\w\d_]*\s*\(\s*\)\s*\{/,rB:!0,c:[e.inherit(e.TM,{b:/\w[\w\d_]*/})],r:0},e.HCM,e.NM,s,a,t]}});hljs.registerLanguage("http",function(t){return{aliases:["https"],i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:!0,e:"$",c:[{cN:"string",b:" ",e:" ",eB:!0,eE:!0}]},{cN:"attribute",b:"^\\w",e:": ",eE:!0,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:!0}}]}});hljs.registerLanguage("javascript",function(e){return{aliases:["js"],k:{keyword:"in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as await",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect Promise"},c:[{cN:"pi",r:10,v:[{b:/^\s*('|")use strict('|")/},{b:/^\s*('|")use asm('|")/}]},e.ASM,e.QSM,{cN:"string",b:"`",e:"`",c:[e.BE,{cN:"subst",b:"\\$\\{",e:"\\}"}]},e.CLCM,e.CBCM,{cN:"number",b:"\\b(0[xXbBoO][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",r:0},{b:"("+e.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[e.CLCM,e.CBCM,e.RM,{b:/</,e:/>\s*[);\]]/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:!0,c:[e.inherit(e.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[e.CLCM,e.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+e.IR,r:0},{bK:"import",e:"[;$]",k:"import from as",c:[e.ASM,e.QSM]},{cN:"class",bK:"class",e:/[{;=]/,eE:!0,i:/[:"\[\]]/,c:[{bK:"extends"},e.UTM]}]}});hljs.registerLanguage("sql",function(e){var t=e.C("--","$");return{cI:!0,i:/[<>]/,c:[{cN:"operator",bK:"begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate savepoint release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",e:/;/,eW:!0,k:{keyword:"abs absolute acos action add adddate addtime aes_decrypt aes_encrypt after aggregate all allocate alter analyze and any are as asc ascii asin assertion at atan atan2 atn2 authorization authors avg backup before begin benchmark between bin binlog bit_and bit_count bit_length bit_or bit_xor both by cache call cascade cascaded case cast catalog ceil ceiling chain change changed char_length character_length charindex charset check checksum checksum_agg choose close coalesce coercibility collate collation collationproperty column columns columns_updated commit compress concat concat_ws concurrent connect connection connection_id consistent constraint constraints continue contributors conv convert convert_tz corresponding cos cot count count_big crc32 create cross cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime data database databases datalength date_add date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts datetimeoffsetfromparts day dayname dayofmonth dayofweek dayofyear deallocate declare decode default deferrable deferred degrees delayed delete des_decrypt des_encrypt des_key_file desc describe descriptor diagnostics difference disconnect distinct distinctrow div do domain double drop dumpfile each else elt enclosed encode encrypt end end-exec engine engines eomonth errors escape escaped event eventdata events except exception exec execute exists exp explain export_set extended external extract fast fetch field fields find_in_set first first_value floor flush for force foreign format found found_rows from from_base64 from_days from_unixtime full function get get_format get_lock getdate getutcdate global go goto grant grants greatest group group_concat grouping grouping_id gtid_subset gtid_subtract handler having help hex high_priority hosts hour ident_current ident_incr ident_seed identified identity if ifnull ignore iif ilike immediate in index indicator inet6_aton inet6_ntoa inet_aton inet_ntoa infile initially inner innodb input insert install instr intersect into is is_free_lock is_ipv4 is_ipv4_compat is_ipv4_mapped is_not is_not_null is_used_lock isdate isnull isolation join key kill language last last_day last_insert_id last_value lcase lead leading least leaves left len lenght level like limit lines ln load load_file local localtime localtimestamp locate lock log log10 log2 logfile logs low_priority lower lpad ltrim make_set makedate maketime master master_pos_wait match matched max md5 medium merge microsecond mid min minute mod mode module month monthname mutex name_const names national natural nchar next no no_write_to_binlog not now nullif nvarchar oct octet_length of old_password on only open optimize option optionally or ord order outer outfile output pad parse partial partition password patindex percent_rank percentile_cont percentile_disc period_add period_diff pi plugin position pow power pragma precision prepare preserve primary prior privileges procedure procedure_analyze processlist profile profiles public publishingservername purge quarter query quick quote quotename radians rand read references regexp relative relaylog release release_lock rename repair repeat replace replicate reset restore restrict return returns reverse revoke right rlike rollback rollup round row row_count rows rpad rtrim savepoint schema scroll sec_to_time second section select serializable server session session_user set sha sha1 sha2 share show sign sin size slave sleep smalldatetimefromparts snapshot some soname soundex sounds_like space sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_no_cache sql_small_result sql_variant_property sqlstate sqrt square start starting status std stddev stddev_pop stddev_samp stdev stdevp stop str str_to_date straight_join strcmp string stuff subdate substr substring subtime subtring_index sum switchoffset sysdate sysdatetime sysdatetimeoffset system_user sysutcdatetime table tables tablespace tan temporary terminated tertiary_weights then time time_format time_to_sec timediff timefromparts timestamp timestampadd timestampdiff timezone_hour timezone_minute to to_base64 to_days to_seconds todatetimeoffset trailing transaction translation trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse ucase uncompress uncompressed_length unhex unicode uninstall union unique unix_timestamp unknown unlock update upgrade upped upper usage use user user_resources using utc_date utc_time utc_timestamp uuid uuid_short validate_password_strength value values var var_pop var_samp variables variance varp version view warnings week weekday weekofyear weight_string when whenever where with work write xml xor year yearweek zon",literal:"true false null",built_in:"array bigint binary bit blob boolean char character date dec decimal float int integer interval number numeric real serial smallint varchar varying int8 serial8 text"},c:[{cN:"string",b:"'",e:"'",c:[e.BE,{b:"''"}]},{cN:"string",b:'"',e:'"',c:[e.BE,{b:'""'}]},{cN:"string",b:"`",e:"`",c:[e.BE]},e.CNM,e.CBCM,t]},e.CBCM,t]}});hljs.registerLanguage("markdown",function(e){return{aliases:["md","mkdown","mkd"],c:[{cN:"header",v:[{b:"^#{1,6}",e:"$"},{b:"^.+?\\n[=-]{2,}$"}]},{b:"<",e:">",sL:"xml",r:0},{cN:"bullet",b:"^([*+-]|(\\d+\\.))\\s+"},{cN:"strong",b:"[*_]{2}.+?[*_]{2}"},{cN:"emphasis",v:[{b:"\\*.+?\\*"},{b:"_.+?_",r:0}]},{cN:"blockquote",b:"^>\\s+",e:"$"},{cN:"code",v:[{b:"`.+?`"},{b:"^( {4}|	)",e:"$",r:0}]},{cN:"horizontal_rule",b:"^[-\\*]{3,}",e:"$"},{b:"\\[.+?\\][\\(\\[].*?[\\)\\]]",rB:!0,c:[{cN:"link_label",b:"\\[",e:"\\]",eB:!0,rE:!0,r:0},{cN:"link_url",b:"\\]\\(",e:"\\)",eB:!0,eE:!0},{cN:"link_reference",b:"\\]\\[",e:"\\]",eB:!0,eE:!0}],r:10},{b:"^\\[.+\\]:",rB:!0,c:[{cN:"link_reference",b:"\\[",e:"\\]:",eB:!0,eE:!0,starts:{cN:"link_url",e:"$"}}]}]}});hljs.registerLanguage("perl",function(e){var t="getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when",r={cN:"subst",b:"[$@]\\{",e:"\\}",k:t},s={b:"->{",e:"}"},n={cN:"variable",v:[{b:/\$\d/},{b:/[\$%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)/},{b:/[\$%@][^\s\w{]/,r:0}]},i=e.C("^(__END__|__DATA__)","\\n$",{r:5}),o=[e.BE,r,n],a=[n,e.HCM,i,e.C("^\\=\\w","\\=cut",{eW:!0}),s,{cN:"string",c:o,v:[{b:"q[qwxr]?\\s*\\(",e:"\\)",r:5},{b:"q[qwxr]?\\s*\\[",e:"\\]",r:5},{b:"q[qwxr]?\\s*\\{",e:"\\}",r:5},{b:"q[qwxr]?\\s*\\|",e:"\\|",r:5},{b:"q[qwxr]?\\s*\\<",e:"\\>",r:5},{b:"qw\\s+q",e:"q",r:5},{b:"'",e:"'",c:[e.BE]},{b:'"',e:'"'},{b:"`",e:"`",c:[e.BE]},{b:"{\\w+}",c:[],r:0},{b:"-?\\w+\\s*\\=\\>",c:[],r:0}]},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{b:"(\\/\\/|"+e.RSR+"|\\b(split|return|print|reverse|grep)\\b)\\s*",k:"split return print reverse grep",r:0,c:[e.HCM,i,{cN:"regexp",b:"(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*",r:10},{cN:"regexp",b:"(m|qr)?/",e:"/[a-z]*",c:[e.BE],r:0}]},{cN:"sub",bK:"sub",e:"(\\s*\\(.*?\\))?[;{]",r:5},{cN:"operator",b:"-\\w\\b",r:0}];return r.c=a,s.c=a,{aliases:["pl"],k:t,c:a}});hljs.registerLanguage("swift",function(e){var i={keyword:"class deinit enum extension func import init let protocol static struct subscript typealias var break case continue default do else fallthrough if in for return switch where while as dynamicType is new super self Self Type __COLUMN__ __FILE__ __FUNCTION__ __LINE__ associativity didSet get infix inout left mutating none nonmutating operator override postfix precedence prefix right set unowned unowned safe unsafe weak willSet",literal:"true false nil",built_in:"abs advance alignof alignofValue assert bridgeFromObjectiveC bridgeFromObjectiveCUnconditional bridgeToObjectiveC bridgeToObjectiveCUnconditional c contains count countElements countLeadingZeros debugPrint debugPrintln distance dropFirst dropLast dump encodeBitsAsWords enumerate equal false filter find getBridgedObjectiveCType getVaList indices insertionSort isBridgedToObjectiveC isBridgedVerbatimToObjectiveC isUniquelyReferenced join lexicographicalCompare map max maxElement min minElement nil numericCast partition posix print println quickSort reduce reflect reinterpretCast reverse roundUpToAlignment sizeof sizeofValue sort split startsWith strideof strideofValue swap swift toString transcode true underestimateCount unsafeReflect withExtendedLifetime withObjectAtPlusZero withUnsafePointer withUnsafePointerToObject withUnsafePointers withVaList"},t={cN:"type",b:"\\b[A-Z][\\w']*",r:0},n=e.C("/\\*","\\*/",{c:["self"]}),r={cN:"subst",b:/\\\(/,e:"\\)",k:i,c:[]},s={cN:"number",b:"\\b([\\d_]+(\\.[\\deE_]+)?|0x[a-fA-F0-9_]+(\\.[a-fA-F0-9p_]+)?|0b[01_]+|0o[0-7_]+)\\b",r:0},o=e.inherit(e.QSM,{c:[r,e.BE]});return r.c=[s],{k:i,c:[o,e.CLCM,n,t,s,{cN:"func",bK:"func",e:"{",eE:!0,c:[e.inherit(e.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/,i:/\(/}),{cN:"generics",b:/</,e:/>/,i:/>/},{cN:"params",b:/\(/,e:/\)/,endsParent:!0,k:i,c:["self",s,o,e.CBCM,{b:":"}],i:/["']/}],i:/\[|%/},{cN:"class",bK:"struct protocol class extension enum",k:i,e:"\\{",eE:!0,c:[e.inherit(e.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/})]},{cN:"preprocessor",b:"(@assignment|@class_protocol|@exported|@final|@lazy|@noreturn|@NSCopying|@NSManaged|@objc|@optional|@required|@auto_closure|@noreturn|@IBAction|@IBDesignable|@IBInspectable|@IBOutlet|@infix|@prefix|@postfix)"}]}});hljs.registerLanguage("ruby",function(e){var c="[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?",r="and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor",b={cN:"yardoctag",b:"@[A-Za-z]+"},a={cN:"value",b:"#<",e:">"},n=[e.C("#","$",{c:[b]}),e.C("^\\=begin","^\\=end",{c:[b],r:10}),e.C("^__END__","\\n$")],s={cN:"subst",b:"#\\{",e:"}",k:r},t={cN:"string",c:[e.BE,s],v:[{b:/'/,e:/'/},{b:/"/,e:/"/},{b:/`/,e:/`/},{b:"%[qQwWx]?\\(",e:"\\)"},{b:"%[qQwWx]?\\[",e:"\\]"},{b:"%[qQwWx]?{",e:"}"},{b:"%[qQwWx]?<",e:">"},{b:"%[qQwWx]?/",e:"/"},{b:"%[qQwWx]?%",e:"%"},{b:"%[qQwWx]?-",e:"-"},{b:"%[qQwWx]?\\|",e:"\\|"},{b:/\B\?(\\\d{1,3}|\\x[A-Fa-f0-9]{1,2}|\\u[A-Fa-f0-9]{4}|\\?\S)\b/}]},i={cN:"params",b:"\\(",e:"\\)",k:r},d=[t,a,{cN:"class",bK:"class module",e:"$|;",i:/=/,c:[e.inherit(e.TM,{b:"[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?"}),{cN:"inheritance",b:"<\\s*",c:[{cN:"parent",b:"("+e.IR+"::)?"+e.IR}]}].concat(n)},{cN:"function",bK:"def",e:" |$|;",r:0,c:[e.inherit(e.TM,{b:c}),i].concat(n)},{cN:"constant",b:"(::)?(\\b[A-Z]\\w*(::)?)+",r:0},{cN:"symbol",b:e.UIR+"(\\!|\\?)?:",r:0},{cN:"symbol",b:":",c:[t,{b:c}],r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{cN:"variable",b:"(\\$\\W)|((\\$|\\@\\@?)(\\w+))"},{b:"("+e.RSR+")\\s*",c:[a,{cN:"regexp",c:[e.BE,s],i:/\n/,v:[{b:"/",e:"/[a-z]*"},{b:"%r{",e:"}[a-z]*"},{b:"%r\\(",e:"\\)[a-z]*"},{b:"%r!",e:"![a-z]*"},{b:"%r\\[",e:"\\][a-z]*"}]}].concat(n),r:0}].concat(n);s.c=d,i.c=d;var o="[>?]>",l="[\\w#]+\\(\\w+\\):\\d+:\\d+>",u="(\\w+-)?\\d+\\.\\d+\\.\\d(p\\d+)?[^>]+>",N=[{b:/^\s*=>/,cN:"status",starts:{e:"$",c:d}},{cN:"prompt",b:"^("+o+"|"+l+"|"+u+")",starts:{e:"$",c:d}}];return{aliases:["rb","gemspec","podspec","thor","irb"],k:r,c:n.concat(N).concat(d)}});hljs.registerLanguage("css",function(e){var c="[a-zA-Z-][a-zA-Z0-9_-]*",a={cN:"function",b:c+"\\(",rB:!0,eE:!0,e:"\\("},r={cN:"rule",b:/[A-Z\_\.\-]+\s*:/,rB:!0,e:";",eW:!0,c:[{cN:"attribute",b:/\S/,e:":",eE:!0,starts:{cN:"value",eW:!0,eE:!0,c:[a,e.CSSNM,e.QSM,e.ASM,e.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]};return{cI:!0,i:/[=\/|']/,c:[e.CBCM,r,{cN:"id",b:/\#[A-Za-z0-9_-]+/},{cN:"class",b:/\.[A-Za-z0-9_-]+/,r:0},{cN:"attr_selector",b:/\[/,e:/\]/,i:"$"},{cN:"pseudo",b:/:(:)?[a-zA-Z0-9\_\-\+\(\)"']+/},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:!0,eE:!0,r:0,c:[a,e.ASM,e.QSM,e.CSSNM]}]},{cN:"tag",b:c,r:0},{cN:"rules",b:"{",e:"}",i:/\S/,r:0,c:[e.CBCM,r]}]}});hljs.registerLanguage("objectivec",function(e){var t={cN:"built_in",b:"(AV|CA|CF|CG|CI|MK|MP|NS|UI)\\w+"},i={keyword:"int float while char export sizeof typedef const struct for union unsigned long volatile static bool mutable if do return goto void enum else break extern asm case short default double register explicit signed typename this switch continue wchar_t inline readonly assign readwrite self @synchronized id typeof nonatomic super unichar IBOutlet IBAction strong weak copy in out inout bycopy byref oneway __strong __weak __block __autoreleasing @private @protected @public @try @property @end @throw @catch @finally @autoreleasepool @synthesize @dynamic @selector @optional @required",literal:"false true FALSE TRUE nil YES NO NULL",built_in:"BOOL dispatch_once_t dispatch_queue_t dispatch_sync dispatch_async dispatch_once"},o=/[a-zA-Z@][a-zA-Z0-9_]*/,n="@interface @class @protocol @implementation";return{aliases:["m","mm","objc","obj-c"],k:i,l:o,i:"</",c:[t,e.CLCM,e.CBCM,e.CNM,e.QSM,{cN:"string",v:[{b:'@"',e:'"',i:"\\n",c:[e.BE]},{b:"'",e:"[^\\\\]'",i:"[^\\\\][^']"}]},{cN:"preprocessor",b:"#",e:"$",c:[{cN:"title",v:[{b:'"',e:'"'},{b:"<",e:">"}]}]},{cN:"class",b:"("+n.split(" ").join("|")+")\\b",e:"({|$)",eE:!0,k:n,l:o,c:[e.UTM]},{cN:"variable",b:"\\."+e.UIR,r:0}]}});
-(function($window, $ember, $jQuery) {
+// ==========================================================================
+// Project:   Ember EasyForm
+// Copyright: Copyright 2013 DockYard, LLC. and contributors.
+// License:   Licensed under MIT license (see license.js)
+// ==========================================================================
 
-    "use strict";
+// Version: 1.0.0.beta.1
 
-    /**
-     * @module App
-     * @class EmberDropletController
-     * @type Ember.Mixin
-     * @extends Ember.Mixin
-     */
-    $window.DropletController = $ember.Mixin.create({
+// Copyright: Copyright 2013 DockYard, LLC. and contributors.
 
-        /**
-         * @property mimeTypes
-         * @type {Array}
-         */
-        mimeTypes: ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'text/plain'],
+var EasyFormShims;
 
-        /**
-         * @property extensions
-         * @type {Array}
-         */
-        extensions: ['jpeg', 'jpg', 'gif', 'png'],
+( function() {
 
-        /**
-         * Contains a list of headers to be included in the request made by
-         * uploadAllFiles()
-         *
-         * @property requestHeaders
-         * @type {Object}
-         */
-        requestHeaders: {},
+    EasyFormShims = {
 
-        /**
-         * Contains a dictionary of extra POST data to be included in the
-         * request made by uploadAllFiles()
-         *
-         * @property postData
-         * @type {Object}
-         */
-        postData: {},
+        callHelper: function( helperName, context, params, options, env ) {
+            env = env ? env : options;
 
-        /**
-         * Contains a list of files, both valid, deleted, and invalid.
-         *
-         * @property files
-         * @type {Array}
-         * @default []
-         */
-        files: [],
+            return Ember.Handlebars.helpers[helperName].helperFunction.call(
+              context, params, options.hash, options, options
+            );
+        },
 
-        /**
-         * @property uploadStatus
-         * @type {Object}
-         */
-        uploadStatus: $ember.computed(function computedFn() {
-            return { uploading: false, percentComplete: 0, error: false };
-        }),
+        getBinding: function( options, propertyName ) {
+            propertyName += 'Binding';
 
-        /**
-         * Clears the file array for each instantiation.
-         *
-         * @constructor
-         * @method init
-         * @return {void}
-         */
+            return this.getProperty( options, propertyName );
+        },
+
+        getProperty: function( options, name ) {
+            var property = options.hash[name];
+
+            return options.data.view.getStream( property ).value();
+        },
+
+        viewHelper: function( context, View, options ) {
+            return this.callHelper( 'view', context, [View], options );
+        },
+
+        emberInputHelper: function( context, options ) {
+            var env = options;
+
+            env.helpers = Ember.Handlebars.helpers;
+
+            return this.callHelper( 'ember-input', context, [], options, env );
+        },
+    }
+
+} )();
+
+( function() {
+
+    Ember.EasyForm = Ember.Namespace.create( {
+        VERSION: '1.0.0.beta.1'
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Config = Ember.Namespace.create( {
+        _wrappers: {
+            'default': {
+                formClass: '',
+                fieldErrorClass: 'fieldWithErrors',
+                inputClass: 'input',
+                errorClass: 'error',
+                hintClass: 'hint',
+                labelClass: '',
+                inputTemplate: 'easyForm/input',
+                errorTemplate: 'easyForm/error',
+                labelTemplate: 'easyForm/label',
+                hintTemplate: 'easyForm/hint',
+                wrapControls: false,
+                controlsWrapperClass: '',
+                buttonClass: ''
+            }
+        },
+        modulePrefix: 'appkit',
+        _inputTypes: {},
+        _templates: {},
+        registerWrapper: function( name, wrapper ) {
+            this._wrappers[name] = Ember.$.extend( {}, this._wrappers['default'], wrapper );
+        },
+        getWrapper: function( name ) {
+            var wrapper = this._wrappers[name];
+            Ember.assert( "The wrapper '" + name + "' was not registered.", wrapper );
+            return wrapper;
+        },
+        registerInputType: function( name, type ) {
+            this._inputTypes[name] = type;
+        },
+        getInputType: function( name ) {
+            return this._inputTypes[name];
+        },
+        registerTemplate: function( name, template ) {
+            this._templates[name] = template;
+        },
+        getTemplate: function( name ) {
+            return this._templates[name];
+        }
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.registerHelper( 'error-field', function( property, options ) {
+        options = Ember.EasyForm.processOptions( property, options );
+
+        if ( options.hash.propertyBinding ) {
+            options.hash.property = EasyFormShims.getBinding( options, 'property' );
+        }
+
+        return EasyFormShims.viewHelper( this, Ember.EasyForm.Error, options );
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.registerHelper( 'form-for', function( object, options ) {
+        var parentView = options.data.view;
+
+        EasyFormShims.viewHelper( this, Ember.EasyForm.Form, options );
+
+        var newView = parentView._childViews[parentView._childViews.length - 1];
+
+        newView._keywords.formForModelPath = object;
+
+        return newView;
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.registerHelper( 'hint-field', function( property, options ) {
+        options = Ember.EasyForm.processOptions( property, options );
+
+        if ( options.hash.text || options.hash.textBinding ) {
+            return EasyFormShims.viewHelper( this, Ember.EasyForm.Hint, options );
+        }
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.helpers['ember-input'] = Ember.Handlebars.helpers['input'];
+
+    Ember.Handlebars.registerHelper( 'ef-input', function( property, options ) {
+        if ( arguments.length === 1 ) {
+            options = property;
+
+            return EasyFormShims.emberInputHelper( this, options );
+        }
+
+        options = Ember.EasyForm.processOptions( property, options );
+        options.hash.isBlock = !!( options.fn );
+
+        return EasyFormShims.viewHelper( this, Ember.EasyForm.Input, options );
+    } );
+
+} )();
+
+
+( function() {
+    var get = Ember.get,
+        set = Ember.set;
+
+    Ember.Handlebars.registerHelper( 'input-field', function( property, options ) {
+        options = Ember.EasyForm.processOptions( property, options );
+
+        if ( options.hash.propertyBinding ) {
+            options.hash.property = EasyFormShims.getBinding( options, 'property' );
+        }
+
+        if ( options.hash.inputOptionsBinding ) {
+            options.hash.inputOptions = EasyFormShims.getBinding( options, 'inputOptions' );
+        }
+
+        var modelPath = options.data.view.getStream( 'formForModelPath' ).value();
+
+        options.hash.modelPath = modelPath;
+
+        property = options.hash.property;
+
+        var modelPropertyPath = function( property ) {
+            if ( !property ) { return null; }
+
+            var startsWithKeyword = !!options.data.view._keywords[property.split( '.' )[0]];;
+
+            if ( startsWithKeyword ) {
+                return property;
+            }
+
+            if ( modelPath ) {
+                return modelPath + '.' + property;
+            } else {
+                return property;
+            }
+        };
+
+        options.hash.valueBinding = modelPropertyPath( property );
+
+        var context = this,
+          propertyType = function( property ) {
+              var constructor = ( get( context, 'content' ) || context ).constructor;
+
+              if ( constructor.proto ) {
+                  return Ember.meta( constructor.proto(), false ).descs[property];
+              } else {
+                  return null;
+              }
+          };
+
+        options.hash.viewName = 'input-field-' + options.data.view.elementId;
+
+        if ( options.hash.inputOptions ) {
+            var inputOptions = options.hash.inputOptions, optionName;
+            for ( optionName in inputOptions ) {
+                if ( inputOptions.hasOwnProperty( optionName ) ) {
+                    options.hash[optionName] = inputOptions[optionName];
+                }
+            }
+            delete options.hash.inputOptions;
+        }
+
+        if ( options.hash.as === 'text' ) {
+            return EasyFormShims.viewHelper( context, Ember.EasyForm.TextArea, options );
+        } else if ( options.hash.as === 'select' ) {
+            delete ( options.hash.valueBinding );
+
+            options.hash.contentBinding = modelPropertyPath( options.hash.collection );
+            options.hash.selectionBinding = modelPropertyPath( options.hash.selection );
+            options.hash.valueBinding = modelPropertyPath( options.hash.value );
+
+            if ( Ember.isNone( options.hash.selectionBinding ) && Ember.isNone( options.hash.valueBinding ) ) {
+                options.hash.selectionBinding = modelPropertyPath( property );
+            }
+
+            return EasyFormShims.viewHelper( context, Ember.EasyForm.Select, options );
+        } else if ( options.hash.as === 'checkbox' ) {
+            if ( Ember.isNone( options.hash.checkedBinding ) ) {
+                options.hash.checkedBinding = modelPropertyPath( property );
+            }
+
+            return EasyFormShims.viewHelper( context, Ember.EasyForm.Checkbox, options );
+        } else {
+            if ( !options.hash.as ) {
+                if ( property.match( /password/ ) ) {
+                    options.hash.type = 'password';
+                } else if ( property.match( /email/ ) ) {
+                    options.hash.type = 'email';
+                } else if ( property.match( /url/ ) ) {
+                    options.hash.type = 'url';
+                } else if ( property.match( /color/ ) ) {
+                    options.hash.type = 'color';
+                } else if ( property.match( /^tel/ ) ) {
+                    options.hash.type = 'tel';
+                } else if ( property.match( /search/ ) ) {
+                    options.hash.type = 'search';
+                } else {
+                    if ( propertyType( property ) === 'number' || typeof ( get( context, property ) ) === 'number' ) {
+                        options.hash.type = 'number';
+                    } else if ( propertyType( property ) === 'date' || ( !Ember.isNone( get( context, property ) ) && get( context, property ).constructor === Date ) ) {
+                        options.hash.type = 'date';
+                    } else if ( propertyType( property ) === 'boolean' || ( !Ember.isNone( get( context, property ) ) && get( context, property ).constructor === Boolean ) ) {
+                        options.hash.checkedBinding = property;
+                        return EasyFormShims.viewHelper( context, Ember.EasyForm.Checkbox, options );
+                    }
+                }
+            } else {
+                var inputType = Ember.EasyForm.Config.getInputType( options.hash.as );
+                if ( inputType ) {
+                    return EasyFormShims.viewHelper( context, inputType, options );
+                }
+
+                options.hash.type = options.hash.as;
+            }
+            return EasyFormShims.viewHelper( context, Ember.EasyForm.TextField, options );
+        }
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.registerHelper( 'label-field', function( property, options ) {
+        options = Ember.EasyForm.processOptions( property, options );
+        options.hash.viewName = 'label-field-' + options.data.view.elementId;
+        return EasyFormShims.viewHelper( this, Ember.EasyForm.Label, options );
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.Handlebars.registerHelper( 'submit', function( value, options ) {
+        if ( typeof ( value ) === 'object' ) {
+            options = value;
+            value = undefined;
+        }
+        options.hash.context = this;
+        options.hash.value = value || 'Submit';
+        return ( options.hash.as === 'button' ) ?
+          EasyFormShims.viewHelper( this, Ember.EasyForm.Button, options )
+          :
+          EasyFormShims.viewHelper( this, Ember.EasyForm.Submit, options );
+    } );
+
+} )();
+
+( function() {
+
+} )();
+
+( function() {
+    Ember.EasyForm.BaseView = Ember.View.extend( {
+        classNameBindings: ['property'],
+        wrapper: function() {
+            var wrapperView = this.nearestWithProperty( 'wrapper' );
+            if ( wrapperView ) {
+                return wrapperView.get( 'wrapper' );
+            } else {
+                return 'default';
+            }
+        }.property(),
+        wrapperConfig: function() {
+            return Ember.EasyForm.Config.getWrapper( this.get( 'wrapper' ) );
+        }.property( 'wrapper' ),
+        templateForName: function( name ) {
+            var template;
+
+            if ( this.container ) {
+                template = this.container.lookup( 'template:' + name );
+            }
+
+            return template || Ember.EasyForm.Config.getTemplate( name );
+        },
+        formForModel: function() {
+            var formForModelPath = this._keywords.formForModelPath;
+
+            if ( formForModelPath === 'context' || formForModelPath === 'controller' || formForModelPath === 'this' ) {
+                return this.get( 'context' );
+            } else if ( formForModelPath ) {
+                return this.get( 'context.' + formForModelPath );
+            } else {
+                return this.get( 'context' );
+            }
+        }.property()
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Checkbox = Ember.Checkbox.extend();
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Error = Ember.EasyForm.BaseView.extend( {
+        tagName: 'span',
+        classNameBindings: ['wrapperConfig.errorClass'],
         init: function() {
-            $ember.set(this, 'files', []);
             this._super();
+            Ember.Binding.from( 'formForModel.errors.' + this.property ).to( 'errors' ).connect( this );
         },
+        templateName: Ember.computed.oneWay( 'wrapperConfig.errorTemplate' ),
+        errorText: Ember.computed.oneWay( 'errors.firstObject' )
+    } );
 
-        /**
-         * @property actions
-         * @type {Object}
-         */
-        actions: {
+} )();
 
-            /**
-             * @method addedFiles
-             * @param fileList {Array}
-             * @return {void}
-             */
-            addedFiles: function addedFiles(fileList) {
-                $ember.tryInvoke(this, 'didAddFiles', [fileList]);
-            },
 
-            /**
-             * Adds a valid file to the collection.
-             *
-             * @method addValidFile
-             * @param file {File}
-             * @return {Object}
-             */
-            addValidFile: function addValidFile(file) {
-                return this._addFile(file, true);
-            },
 
-            /**
-             * Adds an invalid file to the collection.
-             *
-             * @method addInvalidFile
-             * @param file {File}
-             * @return {Object}
-             */
-            addInvalidFile: function addInvalidFile(file) {
-                return this._addFile(file, false);
-            },
+( function() {
+    Ember.EasyForm.Form = Ember.EasyForm.BaseView.extend( {
+        tagName: 'form',
+        attributeBindings: ['novalidate'],
+        classNameBindings: ['wrapperConfig.formClass'],
+        novalidate: 'novalidate',
+        wrapper: 'default',
+        init: function() {
+            this._super();
+            this.action = this.action || 'submit';
+        },
+        submit: function( event ) {
+            var _this = this,
+                promise;
 
-            /**
-             * Deletes a file from the collection.
-             *
-             * @method deleteFile
-             * @param file
-             * @return {Object}
-             */
-            deleteFile: function deleteFile(file) {
-                $ember.set(file, 'deleted', true);
-                return file;
-            },
+            if ( event ) {
+                event.preventDefault();
+            }
 
-            /**
-             * Clears all of the files from the collection.
-             *
-             * @method clearAllFiles
-             * @return {void}
-             */
-            clearAllFiles: function clearAllFiles() {
-                $ember.set(this, 'files', []);
-            },
-
-            /**
-             * Aborts the current upload
-             *
-             * @method abortUpload
-             * @return {Boolean} returns true if it aborted successfully, return false if there are no files to upload.
-             */
-            abortUpload: function abortUpload() {
-                
-                var jqXhr = $ember.get(this, 'lastJqXhr');
-                
-                if (jqXhr && $ember.get(this, 'uploadStatus.uploading')) {
-                    jqXhr.abort();
-                    $ember.set(this, 'uploadStatus.uploading', false);
+            if ( Ember.isNone( this.get( 'formForModel.validate' ) ) ) {
+                this.get( 'controller' ).send( this.action );
+            } else {
+                if ( !Ember.isNone( this.get( 'formForModel' ).validate ) ) {
+                    promise = this.get( 'formForModel' ).validate();
+                } else {
+                    promise = this.get( 'formForModel.content' ).validate();
                 }
-                
-            },
-
-            /**
-             * Uploads all of the files that haven't been uploaded yet, but are valid files.
-             *
-             * @method uploadAllFiles
-             * @return {Object|Boolean} jQuery promise, or false if there are no files to upload.
-             */
-            uploadAllFiles: function uploadAllFiles() {
-
-                /**
-                 * @property defaultOptions
-                 * @type {Object}
-                 */
-                var defaultOptions = {
-                    fileSizeHeader: true,
-                    useArray: true,
-                    method: 'post'
-                };
-
-                if ($ember.get(this, 'validFiles').length === 0) {
-                    // Determine if there are even files to upload.
-                    return false;
-                }
-
-                // Find the URL, set the uploading status, and create our promise.
-                var url             = $ember.get(this, 'dropletUrl'),
-                    options         = $ember.get(this, 'dropletOptions') || defaultOptions,
-                    postData        = this.get('postData'),
-                    requestHeaders  = this.get('requestHeaders');
-
-                $ember.set(this, 'uploadStatus.uploading', true);
-                $ember.set(this, 'uploadStatus.error', false);
-
-                // Assert that we have the URL specified in the controller that implements the mixin.
-                $ember.assert('You must specify the `dropletUrl` parameter in order to upload files.', !!url);
-
-                // Create a new form data instance based on file and postData.
-                var formData = this._getFormData(postData, options.useArray);
-
-                var method = options.method || defaultOptions.method;
-
-                var headers = {};
-
-                if (options.fileSizeHeader) {
-
-                    // Set the request size, and then we can upload the files!
-                    headers['X-File-Size'] = this._getSize();
-
-                }
-
-                // Assign any request headers specified in the controller.
-                for (var index in requestHeaders) {
-
-                    if ((requestHeaders.hasOwnProperty(index)) || (index in requestHeaders)) {
-                        headers[index] = requestHeaders[index];
+                promise.then( function() {
+                    if ( _this.get( 'formForModel.isValid' ) ) {
+                        _this.get( 'controller' ).send( _this.action );
                     }
-
-                }
-
-                var jqXhr = $jQuery.ajax({
-                    url: url,
-                    method: method,
-                    data: formData,
-                    headers: headers,
-                    processData: false,
-                    contentType: false,
-
-                    xhr: function xhrHook() {
-
-                        var xhr = $jQuery.ajaxSettings.xhr();
-
-                        // Add all of the event listeners.
-                        this._addProgressListener(xhr.upload);
-                        this._addSuccessListener(xhr.upload);
-                        this._addErrorListener(xhr.upload);
-                        $ember.set(this, 'lastRequest', xhr);
-
-                        return xhr;
-
-                    }.bind(this)
-                });
-
-                $ember.set(this, 'lastJqXhr', jqXhr);
-
-                // Return the promise.
-                return new $ember.RSVP.Promise(function(resolve, reject) {
-                  
-                    jqXhr.done(resolve).fail(reject);
-
-                }).then($ember.run.bind(this, function(response) {
-
-                    // Invoke the `didUploadFiles` callback if it exists.
-                    $ember.tryInvoke(this, 'didUploadFiles', [response]);
-                    return response;
-
-                }), $ember.run.bind(this, function ajaxError(jqXHR, textStatus, errorThrown) {
-                  
-                    // As an error occurred, we need to revert everything.
-                    var args = { jqXHR: jqXHR, textStatus: textStatus, errorThrown: errorThrown};
-                    $ember.set(this, 'uploadStatus.uploading', false);
-                    $ember.set(this, 'uploadStatus.error', args);
-                  
-                }));
+                } );
             }
-
-        },
-
-        /**
-        * Creates a FormData object based on the valid files and postData provided.
-        *
-        * @method _getFormData
-        * @param postData {Object}
-        * @param useArray {Boolean} If false, use `file` as the field name for files. Otherwise, use `file[]`.
-        * @return {FormData}
-        * @private
-        */
-        _getFormData: function _getFormData(postData, useArray) {
-
-            // Create a new form data instance.
-            var formData = new $window.FormData();
-
-            // Node.js is clever enough to deduce an array of images, whereas Ruby/PHP require the
-            // specifying of an array-like name.
-            var fieldName = useArray ? 'file[]' : 'file';
-
-            // Iterate over each file, and append it to the form data.
-            $ember.EnumerableUtils.forEach($ember.get(this, 'validFiles'), function(file) {
-                formData.append(fieldName, file.file);
-            }, this);
-
-            // Add any extra POST data specified in the controller
-            for (var index in postData) {
-                if (postData.hasOwnProperty(index)) {
-                    formData.append(index, postData[index]);
-                }
-            }
-
-            return formData;
-
-        },
-
-        /**
-         * Clears the request event handlers and cancels the upload
-         *
-         * @property willDestroy
-         * @return {void}
-         */
-        willDestroy: function willDestroy() {
-
-            this._super.apply(this, arguments);
-            var lastRequest = this.get('lastRequest');
-
-            if (lastRequest) {
-                lastRequest.upload.onprogress = undefined;
-                lastRequest.upload.onload = undefined;
-                lastRequest.upload.onerror = undefined;
-                this.send('abortUpload');
-            }
-
-        },
-
-        /**
-         * Finds a list of files that aren't deleted, and are of a valid MIME type.
-         *
-         * @property validFiles
-         * @return {Array}
-         */
-        validFiles: $ember.computed(function computedFn() {
-            return this._filesByProperties({ valid: true, deleted: false, uploaded: false });
-        }).property('files.length', 'files.@each.deleted', 'files.@each.uploaded'),
-
-        /**
-         * Finds a list of files that have an unsupported MIME type.
-         *
-         * @property invalidFiles
-         * @return {Array}
-         */
-        invalidFiles: $ember.computed(function computedFn() {
-            return this._filesByProperties({ valid: false });
-        }).property('files.length', 'files.@each.deleted'),
-
-        /**
-         * Finds a list of files that have been successfully uploaded.
-         *
-         * @property uploadedFiles
-         * @return {Array}
-         */
-        uploadedFiles: $ember.computed(function computedFn() {
-            return this._filesByProperties({ uploaded: true });
-        }).property('files.length', 'files.@each.uploaded'),
-
-        /**
-         * Finds a list of files that have been deleted by the user.
-         *
-         * @property deletedFiles
-         * @return {Array}
-         */
-        deletedFiles: $ember.computed(function computedFn() {
-            return this._filesByProperties({ deleted: true });
-        }).property('files.length', 'files.@each.deleted'),
-
-        /**
-         * Accepts a map of properties that each file must have.
-         *
-         * @method _filesByProperties
-         * @param maps {Object}
-         * @return {Array}
-         * @private
-         */
-        _filesByProperties: function _filesByProperties(maps) {
-
-            // Iterate over each of the files.
-            return $ember.get(this, 'files').filter(function(file) {
-
-                for (var property in maps) {
-
-                    if ((maps.hasOwnProperty(property)) || (property in maps)) {
-
-                        // If the current property doesn't match what we're after from the map,
-                        // then the file is invalid.
-                        if (file[property] !== maps[property]) {
-                            return false;
-                        }
-
-                    }
-
-                }
-
-                // Voila! We have a good file that matches our criteria.
-                return true;
-
-            });
-
-        },
-
-        /**
-         * Determine the size of the request.
-         *
-         * @method _getSize
-         * @return {Number}
-         * @private
-         */
-        _getSize: function _getSize() {
-
-            var size = 0;
-
-            // Iterate over all of the files to determine the size of all valid files.
-            $ember.EnumerableUtils.forEach($ember.get(this, 'validFiles'), function(file) {
-                size += file.file.size;
-            });
-
-            return size;
-
-        },
-
-        /**
-         * @method _addSuccessListener
-         * @param request
-         * @private
-         */
-        _addSuccessListener: function _addSuccessListener(request) {
-
-            // Once the files have been successfully uploaded.
-            request.onload = $ember.run.bind(this, function() {
-                // Set the `uploaded` parameter to true once we've successfully // uploaded the files.
-                $ember.EnumerableUtils.forEach($ember.get(this, 'validFiles'), function(file) {
-                    $ember.set(file, 'uploaded', true);
-                });
-
-                // We want to revert the upload status.
-                $ember.set(this, 'uploadStatus.uploading', false);
-            });
-
-        },
-
-        /**
-         * @method _addErrorListener
-         * @param request
-         * @return {void}
-         * @private
-         */
-        _addErrorListener: function _addErrorListener(request) {
-
-            request.onerror = $ember.run.bind(this, function() {
-                // As an error occurred, we need to revert everything.
-                $ember.set(this, 'uploadStatus.uploading', false);
-                $ember.set(this, 'uploadStatus.error', true);
-            });
-
-        },
-
-        /**
-         * @method _addProgressListener
-         * @param request
-         * @return {void}
-         * @private
-         */
-        _addProgressListener: function _addProgressListener(request) {
-
-            request.onprogress = $ember.run.bind(this, function(event) {
-
-                if (!event.lengthComputable) {
-
-                    // There's not much we can do if the request is not computable.
-                    return;
-
-                }
-
-                // Calculate the percentage remaining.
-                var percentageLoaded = (event.loaded / this._getSize()) * 100;
-                $ember.set(this, 'uploadStatus.percentComplete', Math.round(percentageLoaded));
-
-            });
-
-        },
-
-        /**
-         * Adds a file based on whether it's valid or invalid.
-         *
-         * @method _addFile
-         * @param file {File}
-         * @param valid {Boolean}
-         * @return {Object}
-         * @private
-         */
-        _addFile: function _addFile(file, valid) {
-
-            // Extract the file's extension which allows us to style accordingly.
-            var fileExt   = file.name.substr((~-file.name.lastIndexOf(".") >>> 0) + 2),
-                className = 'extension-%@'.fmt(fileExt).toLowerCase();
-
-            // Create the record with its default parameters, and then add it to the collection.
-            var record = { file: file, valid: valid, uploaded: false, deleted: false, className: className };
-            $ember.get(this, 'files').pushObject(record);
-
-            // Voila!
-            return record;
-
         }
+    } );
 
-    });
+} )();
 
-})(window, window.Ember, window.jQuery);
-;(function($window, $ember) {
 
-    "use strict";
 
-    /**
-     * @property MultipleInput
-     * @type {Object}
-     */
-    var MultipleInput = {
+( function() {
+    Ember.EasyForm.Hint = Ember.EasyForm.BaseView.extend( {
+        tagName: 'span',
+        classNameBindings: ['wrapperConfig.hintClass'],
+        templateName: Ember.computed.oneWay( 'wrapperConfig.hintTemplate' ),
+        hintText: Ember.computed.oneWay( 'text' )
+    } );
 
-        /**
-         * @property tagName
-         * @type {String}
-         * @default "input"
-         */
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Input = Ember.EasyForm.BaseView.extend( {
+        init: function() {
+            this._super();
+            this.classNameBindings.push( 'showError:' + this.get( 'wrapperConfig.fieldErrorClass' ) );
+            Ember.defineProperty( this, 'showError', Ember.computed.and( 'canShowValidationError', 'formForModel.errors.' + this.property + '.firstObject' ) );
+            if ( !this.isBlock ) {
+                this.set( 'templateName', this.get( 'wrapperConfig.inputTemplate' ) );
+            }
+        },
+        setupValidationDependencies: function() {
+            var keys = this.get( 'formForModel._dependentValidationKeys' ), key;
+            if ( keys ) {
+                for ( key in keys ) {
+                    if ( keys[key].contains( this.property ) ) {
+                        this._keysForValidationDependencies.pushObject( key );
+                    }
+                }
+            }
+        }.on( 'init' ),
+        _keysForValidationDependencies: Ember.A(),
+        dependentValidationKeyCanTrigger: false,
+        tagName: 'div',
+        classNames: ['string'],
+        classNameBindings: ['wrapperConfig.inputClass'],
+        didInsertElement: function() {
+            var name = 'label-field-' + this.elementId,
+                label = this.get( name );
+            if ( !label ) { return; }
+            this.set( name + '.for', this.get( 'input-field-' + this.elementId + '.elementId' ) );
+        },
+        concatenatedProperties: ['inputOptions', 'bindableInputOptions'],
+        inputOptions: ['as', 'collection', 'optionValuePath', 'optionLabelPath', 'selection', 'value', 'multiple', 'name'],
+        bindableInputOptions: ['placeholder', 'prompt', 'disabled'],
+        defaultOptions: {
+            name: function() {
+                if ( this.property ) {
+                    return this.property;
+                }
+            }
+        },
+        inputOptionsValues: function() {
+            var options = {}, i, key, keyBinding, value, inputOptions = this.inputOptions, bindableInputOptions = this.bindableInputOptions, defaultOptions = this.defaultOptions;
+            for ( i = 0; i < inputOptions.length; i++ ) {
+                key = inputOptions[i];
+                if ( this[key] ) {
+                    if ( typeof ( this[key] ) === 'boolean' ) {
+                        this[key] = key;
+                    }
+
+                    options[key] = this[key];
+                }
+            }
+            for ( i = 0; i < bindableInputOptions.length; i++ ) {
+                key = bindableInputOptions[i];
+                keyBinding = key + 'Binding';
+                if ( this[key] || this[keyBinding] ) {
+                    options[keyBinding] = 'view.' + key;
+                }
+            }
+
+            for ( key in defaultOptions ) {
+                if ( !defaultOptions.hasOwnProperty( key ) ) { continue; }
+                if ( options[key] ) { continue; }
+
+                if ( value = defaultOptions[key].apply( this ) ) {
+                    options[key] = value;
+                }
+            }
+
+            return options;
+        }.property(),
+        focusOut: function() {
+            this.set( 'hasFocusedOut', true );
+            this.showValidationError();
+        },
+        showValidationError: function() {
+            if ( this.get( 'hasFocusedOut' ) ) {
+                if ( Ember.isEmpty( this.get( 'formForModel.errors.' + this.property ) ) ) {
+                    this.set( 'canShowValidationError', false );
+                } else {
+                    this.set( 'canShowValidationError', true );
+                }
+            }
+        },
+        input: function() {
+            this._keysForValidationDependencies.forEach( function( key ) {
+                this.get( 'parentView.childViews' ).forEach( function( view ) {
+                    if ( view.property === key ) {
+                        view.showValidationError();
+                    }
+                }, this );
+            }, this );
+        }
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Label = Ember.EasyForm.BaseView.extend( {
+        tagName: 'label',
+        attributeBindings: ['for'],
+        classNameBindings: ['wrapperConfig.labelClass'],
+        labelText: function() {
+            return this.get( 'text' ) || Ember.EasyForm.humanize( this.get( 'property' ) );
+        }.property( 'text', 'property' ),
+        templateName: Ember.computed.oneWay( 'wrapperConfig.labelTemplate' )
+    } );
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Select = Ember.Select.extend();
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.Submit = Ember.EasyForm.BaseView.extend( {
         tagName: 'input',
-
-        /**
-         * @property classNames
-         * @type {String}
-         * @default "files"
-         */
-        classNames: 'files',
-
-        /**
-         * @property attributeBindings
-         * @type {Array}
-         */
-        attributeBindings: ['disabled', 'name', 'type', 'multiple'],
-
-        /**
-         * @property file
-         * @type {String}
-         * @default "file"
-         */
-        type: 'file',
-
-        /**
-         * @property multiple
-         * @type {String}
-         * @default "multiple"
-         */
-        multiple: 'multiple',
-
-        /**
-         * Invoked when the content of the INPUT changes.
-         *
-         * @method change
-         * @return {Boolean}
-         */
-        change: function() {
-            var files = this.get('element').files;
-            return this.get('parentView').traverseFiles(files);
+        attributeBindings: ['type', 'value', 'disabled'],
+        classNameBindings: ['wrapperConfig.buttonClass'],
+        type: 'submit',
+        disabled: function() {
+            return !this.get( 'formForModel.isValid' );
+        }.property( 'formForModel.isValid' ),
+        init: function() {
+            this._super();
+            this.set( 'value', this.value );
         }
+    } );
 
+} )();
+
+
+( function() {
+    Ember.EasyForm.TextArea = Ember.TextArea.extend();
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.TextField = Ember.TextField.extend();
+
+} )();
+
+
+
+( function() {
+
+} )();
+
+
+( function() {
+
+} )();
+
+
+
+( function() {
+    Ember.EasyForm.humanize = function( string ) {
+        return string.underscore().split( '_' ).join( ' ' ).capitalize();
     };
 
-    /**
-     * @property SingleInput
-     * @type {Object}
-     */
-    var SingleInput      = $ember.copy(MultipleInput);
-    SingleInput.multiple = false;
+    Ember.EasyForm.eachTranslatedAttribute = function( object, fn ) {
+        var isTranslatedAttribute = /(.+)Translation$/,
+            isTranslatedAttributeMatch;
 
-    /**
-     * @module App
-     * @class DropletView
-     * @type Ember.View
-     * @extends Ember.View
-     */
-    $window.DropletView = $ember.View.extend({
-
-        /**
-         * @property classNames
-         * @type {Array}
-         * @default ['droppable']
-         */
-        classNames: ['droppable'],
-
-        /**
-         * @property ImagePreview
-         * @type {Ember.View}
-         */
-        ImagePreview: $ember.View.extend({
-
-            /**
-             * @property tagName
-             * @type {String}
-             * @default "img"
-             */
-            tagName: 'img',
-
-            /**
-             * @property attributeBindings
-             * @type {Array}
-             * @default ['src']
-             */
-            attributeBindings: ['src'],
-
-            /**
-             * @property src
-             * @type {String}
-             * @default null
-             */
-            src: null,
-
-            /**
-             * @property image
-             * @type {String}
-             * @default null
-             */
-            image: null,
-
-            /**
-             * Invoked when the view is inserted into the DOM.
-             *
-             * @method didInsertElement
-             * @return {void}
-             */
-            didInsertElement: function() {
-
-                // Initialise the FileReader, and find the image that was passed into
-                // the view when instantiating it.
-                var reader  = new $window.FileReader(),
-                    image   = $ember.get(this, 'image.file');
-
-                // Ensure that the file we're dealing with is an image.
-                if (!image.type.match(/^image\//i)) {
-
-                    // If it isn't then we'll need to destroy the view immediately.
-                    this.destroy();
-                    return;
-
-                }
-
-                // Invoked when the image preview has been loaded.
-                reader.onload = $ember.run.bind(this, function (event) {
-
-                    if (this.get('isDestroyed') === true) {
-                        // If the view has already been destroyed, then we can't
-                        // load in the image preview.
-                        return;
-                    }
-
-                    // Otherwise we're free to set the SRC attribute to the image's data.
-                    $ember.set(this, 'src', event.target.result);
-
-                });
-
-                // Begin the reading of the image.
-                reader.readAsDataURL(image);
-
+        for ( var key in object ) {
+            isTranslatedAttributeMatch = key.match( isTranslatedAttribute );
+            if ( isTranslatedAttributeMatch ) {
+                fn.call( object, isTranslatedAttributeMatch[1], Ember.I18n.t( object[key] ) );
             }
+        }
+    };
 
-        }),
-
-        /**
-         * @property MultipleInput
-         * @type {Ember.View}
-         */
-        MultipleInput: $ember.View.extend(MultipleInput),
-
-        /**
-         * @property SingleInput
-         * @type {Ember.View}
-         */
-        SingleInput: $ember.View.extend(SingleInput),
-
-        /**
-         * Invoked when the user drops a file onto the droppable area.
-         *
-         * @method drop
-         * @param event {jQuery.Event}
-         * @param [files = []] {Array}
-         * @return {Boolean}
-         */
-        drop: function(event, files) {
-            this._preventDefaultBehaviour(event);
-            return this.traverseFiles(event.dataTransfer.files || files);
-        },
-
-        /**
-         * Accepts a FileList object, and traverses them to determine if they're valid, adding them
-         * as either valid or invalid.
-         *
-         * @method traverseFiles
-         * @param files {FileList}
-         * @return {boolean}
-         */
-        traverseFiles: function(files) {
-
-            // Find the controller, and the `mimeTypes` and `extensions` property.
-            var controller  = $ember.get(this, 'controller'),
-                mimeTypes   = $ember.get(controller, 'mimeTypes') || [],
-                extensions  = $ember.get(controller, 'extensions'),
-                options     = $ember.get(controller, 'dropletOptions') || { limit: Infinity},
-                addedFiles  = [];
-
-            for (var index = 0, numFiles = files.length; index < numFiles; index++) {
-
-                if (!files.hasOwnProperty(index) && (!(index in files))) {
-                    continue;
-                }
-
-                var file        = files[index],
-                    fileExt     = file.name.substr((~-file.name.lastIndexOf('.') >>> 0) + 2),
-                    assumeValid = $ember.get(controller, 'mimeTypes') === '*';
-
-                // Determine if the file is valid based on its MIME type or extension, and we haven't exceeded
-                // the user defined limit for the amount of files to upload in one go.
-                var invalidMime   = ($.inArray(file.type, mimeTypes) === -1) && ($.inArray(fileExt, extensions) === -1),
-                    currentLength = $ember.get(controller, 'validFiles').length,
-                    fileSizeLimit = controller.get('fileSizeLimit');
-
-                if (!assumeValid && (invalidMime || currentLength === options.limit)) {
-
-                    // If it isn't valid, then we'll add it as an invalid file.
-                    controller.send('addInvalidFile', file);
-                    addedFiles.push(file);
-                    continue;
-
-                }
-
-                if (fileSizeLimit != null && file.size >= fileSizeLimit) {
-                    controller.send('addInvalidFile', file);
-                    continue;
-                }
-
-                // Otherwise the file has a valid MIME type or extension, and therefore be added as a good file.
-                controller.send('addValidFile', file);
-                addedFiles.push(file);
-
+    Ember.EasyForm.processOptions = function( property, options ) {
+        if ( options ) {
+            if ( Ember.I18n ) {
+                var eachTranslatedAttribute = Ember.I18n.eachTranslatedAttribute || Ember.EasyForm.eachTranslatedAttribute;
+                eachTranslatedAttribute( options.hash, function( attribute, translation ) {
+                    options.hash[attribute] = translation;
+                    delete options.hash[attribute + 'Translation'];
+                } );
             }
-
-            // Initialise the event for adding files.
-            controller.send('addedFiles', addedFiles);
-
-            return true;
-
-        },
-
-        /**
-         * Prevents default behaviour and propagation on nodes where it's undesirable.
-         *
-         * @method _preventDefaultBehaviour
-         * @param event {jQuery.Event}
-         * @return {void}
-         * @private
-         */
-        _preventDefaultBehaviour: function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-        },
-
-        /**
-         * @method dragOver
-         * @param event {jQuery.Event}
-         * @return {void}
-         */
-        dragOver: function(event) {
-            this._preventDefaultBehaviour(event);
-        },
-
-        /**
-         * @method dragEnter
-         * @param event {jQuery.Event}
-         * @return {void}
-         */
-        dragEnter: function(event) {
-            this._preventDefaultBehaviour(event);
-        },
-
-        /**
-         * @method dragLeave
-         * @param event {jQuery.Event}
-         * @return {void}
-         */
-        dragLeave: function(event) {
-            this._preventDefaultBehaviour(event);
+            options.hash.property = property;
+        } else {
+            options = property;
         }
 
-    });
+        return options;
+    };
 
-})(window, window.Ember);
+} )();
+
+
+( function() {
+
+} )();
+/**
+ * Trumbowyg v2.0.0-beta.2 - A lightweight WYSIWYG editor
+ * Trumbowyg core file
+ * ------------------------
+ * @link http://alex-d.github.io/Trumbowyg
+ * @license MIT
+ * @author Alexandre Demode (Alex-D)
+ *         Twitter : @AlexandreDemode
+ *         Website : alex-d.fr
+ */
+
+jQuery.trumbowyg = {
+    langs: {
+        en: {
+            viewHTML:       "View HTML",
+
+            formatting:     "Formatting",
+            p:              "Paragraph",
+            blockquote:     "Quote",
+            code:           "Code",
+            header:         "Header",
+
+            bold:           "Bold",
+            italic:         "Italic",
+            strikethrough:  "Stroke",
+            underline:      "Underline",
+
+            strong:         "Strong",
+            em:             "Emphasis",
+            del:            "Deleted",
+
+            unorderedList:  "Unordered list",
+            orderedList:    "Ordered list",
+
+            insertImage:    "Insert Image",
+            insertVideo:    "Insert Video",
+            link:           "Link",
+            createLink:     "Insert link",
+            unlink:         "Remove link",
+
+            justifyLeft:    "Align Left",
+            justifyCenter:  "Align Center",
+            justifyRight:   "Align Right",
+            justifyFull:    "Align Justify",
+
+            horizontalRule: "Insert horizontal rule",
+            removeformat:   "Remove format",
+
+            fullscreen:     "fullscreen",
+
+            close:          "Close",
+
+            submit:         "Confirm",
+            reset:          "Cancel",
+
+            required:       "Required",
+            description:    "Description",
+            title:          "Title",
+            text:           "Text"
+        }
+    },
+
+    // User default options
+    opts: {},
+
+    btnsGrps: {
+        design:     ['bold', 'italic', 'underline', 'strikethrough'],
+        semantic:   ['strong', 'em', 'del'],
+        justify:    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        lists:      ['unorderedList', 'orderedList']
+    }
+};
+
+
+
+(function(navigator, window, document, $, undefined){
+    'use strict';
+
+    // @param : o are options
+    // @param : p are params
+    $.fn.trumbowyg = function(o, p){
+        if(o === Object(o) || !o){
+            return this.each(function(){
+                if(!$(this).data('trumbowyg'))
+                    $(this).data('trumbowyg', new Trumbowyg(this, o));
+            });
+        }
+        if(this.length === 1){
+            try {
+                var t = $(this).data('trumbowyg');
+                switch(o){
+                    // Modal box
+                    case 'openModal':
+                        return t.openModal(p.title, p.content);
+                    case 'closeModal':
+                        return t.closeModal();
+                    case 'openModalInsert':
+                        return t.openModalInsert(p.title, p.fields, p.callback);
+
+                    // Selection
+                    case 'saveSelection':
+                        return t.saveSelection();
+                    case 'getSelection':
+                        return t.selection;
+                    case 'getSelectedText':
+                        return t.getSelectedText();
+                    case 'restoreSelection':
+                        return t.restoreSelection();
+
+                    // Destroy
+                    case 'destroy':
+                        return t.destroy();
+
+                    // Empty
+                    case 'empty':
+                        return t.empty();
+
+                    // Public options
+                    case 'lang':
+                        return t.lang;
+
+                    // HTML
+                    case 'html':
+                        return t.html(p);
+                }
+            } catch(e){}
+        }
+
+        return false;
+    };
+
+    // @param : editorElem is the DOM element
+    // @param : o are options
+    var Trumbowyg = function(editorElem, o){
+        var t = this;
+        // Get the document of the element. It use to makes the plugin
+        // compatible on iframes.
+        t.doc = editorElem.ownerDocument || document;
+        // jQuery object of the editor
+        t.$ta = $(editorElem); // $ta : Textarea
+        t.$c = $(editorElem); // $c : creator
+
+        // Extend with options
+        o = $.extend(true, {}, o, $.trumbowyg.opts);
+
+        // Localization management
+        if(typeof o.lang === 'undefined' || typeof $.trumbowyg.langs[o.lang] === 'undefined')
+            t.lang = $.trumbowyg.langs.en;
+        else
+            t.lang = $.extend(true, {}, $.trumbowyg.langs.en, $.trumbowyg.langs[o.lang]);
+
+        // Header translation
+        var h = t.lang.header;
+
+        // Defaults Options
+        t.o = $.extend(true, {}, {
+            lang: 'en',
+            dir: 'ltr',
+
+            closable: false,
+            fullscreenable: true,
+            fixedBtnPane: false,
+            fixedFullWidth: false,
+            autogrow: false,
+
+            prefix: 'trumbowyg-',
+
+            // WYSIWYG only
+            semantic: true,
+            resetCss: false,
+            removeformatPasted: false,
+
+            btns: [
+                'viewHTML',
+                '|', 'formatting',
+                '|', 'btnGrp-design',
+                '|', 'link',
+                '|', 'insertImage',
+                '|', 'btnGrp-justify',
+                '|', 'btnGrp-lists',
+                '|', 'horizontalRule',
+                '|', 'removeformat'
+            ],
+            btnsAdd: [],
+
+            /**
+             * When the button is associated to a empty object
+             * func and title attributs are defined from the button key value
+             *
+             * For example
+             *      foo: {}
+             * is equivalent to :
+             *      foo: {
+             *          func: 'foo',
+             *          title: this.lang.foo
+             *      }
+             */
+            btnsDef: {
+                viewHTML: {
+                    func: 'toggle'
+                },
+
+                p: {
+                    func: 'formatBlock'
+                },
+                blockquote: {
+                    func: 'formatBlock'
+                },
+                h1: {
+                    func: 'formatBlock',
+                    title: h + ' 1'
+                },
+                h2: {
+                    func: 'formatBlock',
+                    title: h + ' 2'
+                },
+                h3: {
+                    func: 'formatBlock',
+                    title: h + ' 3'
+                },
+                h4: {
+                    func: 'formatBlock',
+                    title: h + ' 4'
+                },
+
+                bold: {
+                    key: 'B'
+                },
+                italic: {
+                    key: 'I'
+                },
+                underline: {},
+                strikethrough: {},
+
+                strong: {
+                    func: 'bold',
+                    key: 'B'
+                },
+                em: {
+                    func: 'italic',
+                    key: 'I'
+                },
+                del: {
+                    func: 'strikethrough'
+                },
+
+                createLink: {
+                    key: 'K'
+                },
+                unlink: {},
+
+                insertImage: {},
+
+                justifyLeft: {},
+                justifyCenter: {},
+                justifyRight: {},
+                justifyFull: {},
+
+                unorderedList: {
+                    func: 'insertUnorderedList'
+                },
+                orderedList: {
+                    func: 'insertOrderedList'
+                },
+
+                horizontalRule: {
+                    func: 'insertHorizontalRule'
+                },
+
+                removeformat: {},
+
+                // Dropdowns
+                formatting: {
+                    dropdown: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4']
+                },
+                link: {
+                    dropdown: ['createLink', 'unlink']
+                }
+            }
+        }, o);
+
+        if(o.btns)
+            t.o.btns = o.btns;
+        else if(t.o.semantic)
+            t.o.btns[4] = 'btnGrp-semantic';
+
+        // Keyboard shortcuts are load in this array
+        t.keys = [];
+
+        t.init();
+    };
+
+    Trumbowyg.prototype = {
+        init: function(){
+            var t = this;
+            t.height = t.$ta.height();
+
+            t.buildEditor();
+            t.buildBtnPane();
+
+            t.fixedBtnPaneEvents();
+
+            t.buildOverlay();
+        },
+
+        buildEditor: function(){
+            var t = this,
+                prefix = t.o.prefix,
+                html = '';
+
+            t.$box = $('<div/>', {
+                'class': prefix + 'box ' + prefix + 'editor-visible ' + prefix + t.o.lang + ' trumbowyg'
+            });
+
+            // $ta = Textarea
+            // $ed = Editor
+            t.isTextarea = t.$ta.is('textarea');
+            if(t.isTextarea){
+                html = t.$ta.val();
+                t.$ed = $('<div/>');
+                t.$box
+                    .insertAfter(t.$ta)
+                    .append(t.$ed, t.$ta);
+            } else {
+                t.$ed = t.$ta;
+                html = t.$ed.html();
+
+                t.$ta = $('<textarea/>', {
+                    name: t.$ta.attr('id'),
+                    height: t.height
+                }).val(html);
+
+                t.$box
+                    .insertAfter(t.$ed)
+                    .append(t.$ta, t.$ed);
+                t.syncCode();
+            }
+
+            t.$ta
+                .addClass(prefix + 'textarea')
+                .attr('tabindex', -1)
+            ;
+
+            t.$ed
+                .addClass(prefix + 'editor')
+                .attr({
+                    'contenteditable': true,
+                    'dir': t.lang._dir || t.o.dir
+                })
+                .html(html)
+            ;
+
+            if(t.$c.is('[placeholder]')){
+                t.$ed.attr('placeholder', t.$c.attr('placeholder'));
+            }
+
+            if(t.o.resetCss){
+                t.$ed.addClass(prefix + 'reset-css');
+            }
+
+            if(!t.o.autogrow){
+                t.$ta.add(t.$ed).css({
+                    height: t.height,
+                    overflow: 'auto'
+                });
+            }
+
+            if(t.o.semantic){
+                t.$ed.html(
+                    html.replace('<br>', '</p><p>')
+                        .replace('&nbsp;', ' ')
+                );
+                t.semanticCode();
+            }
+
+
+            t._ctrl = false;
+            t.$ed
+            .on('dblclick', 'img', function(){
+                var $img = $(this);
+                t.openModalInsert(t.lang.insertImage, {
+                    url: {
+                        label: 'URL',
+                        value: $img.attr('src'),
+                        required: true
+                    },
+                    alt: {
+                        label: t.lang.description,
+                        value: $img.attr('alt')
+                    }
+                }, function(v){
+                    return $img.attr({
+                        src: v.url,
+                        alt: v.alt
+                    });
+                });
+                return false;
+            })
+            .on('keydown', function(e){
+                t._composition = (e.which === 229);
+
+                if(e.ctrlKey){
+                    t._ctrl = true;
+                    var k = t.keys[String.fromCharCode(e.which).toUpperCase()];
+
+                    try {
+                        t.execCmd(k.func, k.param);
+                        return false;
+                    } catch(e){}
+                }
+            })
+            .on('keyup', function(e){
+                if(!t._ctrl && e.which !== 17 && !t._composition){
+                    t.semanticCode(false, e.which === 13);
+                    t.$c.trigger('tbwchange');
+                }
+
+                setTimeout(function(){
+                    t._ctrl = false;
+                }, 200);
+            })
+            .on('focus', function(){
+                t.$c.trigger('tbwfocus');
+            })
+            .on('blur', function(){
+                t.syncCode();
+                t.$c.trigger('tbwblur');
+            })
+            .on('paste', function(e){
+                t.$c.trigger('tbwpaste', e);
+
+                if(t.o.removeformatPasted){
+                    e.preventDefault();
+
+                    try {
+                        // IE
+                        var text = window.clipboardData.getData("Text");
+
+                        try {
+                            // <= IE10
+                            t.doc.selection.createRange().pasteHTML(text);
+                        } catch(err){
+                            // IE 11
+                            t.doc.getSelection().getRangeAt(0).insertNode(document.createTextNode(text));
+                        }
+                    } catch(err) {
+                        // Not IE
+                        t.execCmd('insertText', (e.originalEvent || e).clipboardData.getData('text/plain'));
+                    }
+                }
+            });
+
+            $(t.doc).on('keydown', function(e){
+                if(e.which === 27){
+                    t.closeModal();
+                    return false;
+                }
+            });
+        },
+
+
+        // Build button pane, use o.btns and o.btnsAdd options
+        buildBtnPane: function(){
+            var t = this,
+                prefix = t.o.prefix;
+
+            if(t.o.btns === false)
+                return;
+
+            t.$btnPane = $('<ul/>', {
+                'class': prefix + 'button-pane'
+            });
+
+            $.each(t.o.btns.concat(t.o.btnsAdd), function(i, btn){
+                // Managment of group of buttons
+                try {
+                    var b = btn.split('btnGrp-');
+                    if(b[1] !== undefined)
+                        btn = $.trumbowyg.btnsGrps[b[1]];
+                } catch(e){}
+
+                if(!$.isArray(btn))
+                    btn = [btn];
+
+                $.each(btn, function(i, b){
+                    try { // Prevent buildBtn error
+                        var $li = $('<li/>');
+
+                        if(b === '|') // It's a separator
+                            $li.addClass(prefix + 'separator');
+                        else if(t.isSupportedBtn(b)) // It's a supported button
+                            $li.append(t.buildBtn(b));
+
+                        t.$btnPane.append($li);
+                    } catch(e){}
+                });
+            });
+
+            // Build right li for fullscreen and close buttons
+            var $liRight = $('<li/>', {
+                'class': prefix + 'not-disable ' + prefix + 'buttons-right'
+            });
+
+            // Add the fullscreen button
+            if(t.o.fullscreenable)
+                $liRight.append(
+                    t.buildRightBtn('fullscreen')
+                    .on('click', function(){
+                        var cssClass = prefix + 'fullscreen';
+                        t.$box.toggleClass(cssClass);
+
+                        if(t.$box.hasClass(cssClass)){
+                            $('body').addClass(prefix + 'body-fullscreen');
+                            $.each([t.$ta, t.$ed], function(){
+                                $(this).css({
+                                    height: 'calc(100% - 35px)',
+                                    overflow: 'auto'
+                                });
+                            });
+                            t.$btnPane.css('width', '100%');
+                        } else {
+                            $('body').removeClass(prefix + 'body-fullscreen');
+                            t.$box.removeAttr('style');
+                            if(!t.o.autogrow)
+                                $.each([t.$ta, t.$ed], function(){
+                                    $(this).css('height', t.height);
+                                });
+                        }
+                        $(window).trigger('scroll');
+                    })
+                );
+
+            // Build and add close button
+            if(t.o.closable)
+                $liRight
+                    .append(
+                        t.buildRightBtn('close')
+                        .on('click', function(){
+                            if(t.$box.hasClass(prefix + 'fullscreen'))
+                                $('body').css('overflow', 'auto');
+                            t.destroy();
+                            t.$c.trigger('tbwclose');
+                        })
+                    );
+
+
+            // Add right li only if isn't empty
+            if($liRight.not(':empty'))
+                t.$btnPane.append($liRight);
+
+            t.$box.prepend(t.$btnPane);
+        },
+
+
+        // Build a button and his action
+        buildBtn: function(n){ // n is name of the button
+            var t = this,
+                prefix = t.o.prefix,
+                btn = t.o.btnsDef[n],
+                d = btn.dropdown,
+                textDef = t.lang[n] || n,
+
+                $btn = $('<button/>', {
+                    type: 'button',
+                    'class': prefix + n +'-button' + (btn.ico ? ' '+ prefix + btn.ico +'-button' : ''),
+                    text: btn.text || btn.title || textDef,
+                    title: btn.title || btn.text || textDef + ((btn.key) ? ' (Ctrl + ' + btn.key + ')' : ''),
+                    tabindex: -1,
+                    mousedown: function(){
+                        if(!d || $('.'+n+'-'+prefix + 'dropdown', t.$box).is(':hidden'))
+                            $('body', t.doc).trigger('mousedown');
+
+                        if(t.$btnPane.hasClass(prefix + 'disable') && !$(this).hasClass(prefix + 'active') && !$(this).parent().hasClass(prefix + 'not-disable'))
+                            return false;
+
+                        t.execCmd((d ? 'dropdown' : false) || btn.func || n,
+                                  btn.param || n);
+
+                        return false;
+                    }
+                });
+
+            if(d){
+                $btn.addClass(prefix + 'open-dropdown');
+                var c = prefix + 'dropdown',
+                    dd = $('<div/>', { // the dropdown
+                        'class': n + '-' + c + ' ' + c + ' ' + prefix + 'fixed-top'
+                    });
+                $.each(d, function(i, def){
+                    if(t.o.btnsDef[def] && t.isSupportedBtn(def))
+                        dd.append(t.buildSubBtn(def));
+                });
+                t.$box.append(dd.hide());
+            } else if(btn.key){
+                t.keys[btn.key] = {
+                    func: btn.func || n,
+                    param: btn.param || n
+                };
+            }
+
+            return $btn;
+        },
+        // Build a button for dropdown menu
+        // @param n : name of the subbutton
+        buildSubBtn: function(n){
+            var t = this,
+                b = t.o.btnsDef[n];
+
+            if(b.key){
+                t.keys[b.key] = {
+                    func: b.func || n,
+                    param: b.param || n
+                };
+            }
+
+            return $('<button/>', {
+                type: 'button',
+                'class': t.o.prefix + n +'-dropdown-button' + (b.ico ? ' '+ t.o.prefix + b.ico +'-button' : ''),
+                text: b.text || b.title || t.lang[n] || n,
+                title: ((b.key) ? ' (Ctrl + ' + b.key + ')' : null),
+                style: b.style || null,
+                mousedown: function(){
+                    $('body', t.doc).trigger('mousedown');
+
+                    t.execCmd(b.func || n,
+                              b.param || n);
+
+                    return false;
+                }
+            });
+        },
+        // Build a button for right li
+        // @param n : name of the right button
+        buildRightBtn: function(n){
+            var l = this.lang[n];
+            return $('<button/>', {
+                type: 'button',
+                'class': this.o.prefix + n + '-button',
+                title: l,
+                text: l,
+                tabindex: -1
+            });
+        },
+        // Check if button is supported
+        isSupportedBtn: function(b){
+            try {
+                return this.o.btnsDef[b].isSupported();
+            } catch(e){}
+            return true;
+        },
+
+        // Build overlay for modal box
+        buildOverlay: function(){
+            var t = this;
+            t.$overlay = $('<div/>', {
+                'class': t.o.prefix + 'overlay'
+            }).css({
+                top: t.$btnPane.outerHeight(),
+                height: (t.$ed.outerHeight() + 1) + 'px'
+            }).appendTo(t.$box);
+            return t.$overlay;
+        },
+        showOverlay: function(){
+            var t = this;
+            $(window).trigger('scroll');
+            t.$overlay.fadeIn(200);
+            t.$box.addClass(t.o.prefix + 'box-blur');
+        },
+        hideOverlay: function(){
+            var t = this;
+            t.$overlay.fadeOut(50);
+            t.$box.removeClass(t.o.prefix + 'box-blur');
+        },
+
+        // Management of fixed button pane
+        fixedBtnPaneEvents: function(){
+            var t = this,
+                fixedFullWidth = t.o.fixedFullWidth,
+                box = t.$box;
+            if(!t.o.fixedBtnPane)
+                return;
+
+            t.isFixed = false;
+
+            $(window)
+            .on('scroll resize', function(){
+                if(!box)
+                    return;
+
+                t.syncCode();
+
+                var scrollTop = $(window).scrollTop(),
+                    offset = box.offset().top + 1,
+                    bp = t.$btnPane,
+                    oh = bp.outerHeight();
+
+                if((scrollTop - offset > 0) && ((scrollTop - offset - t.height) < 0)){
+                    if(!t.isFixed){
+                        t.isFixed = true;
+                        bp.css({
+                            position: 'fixed',
+                            top: 0,
+                            left: fixedFullWidth ? '0' : 'auto',
+                            zIndex: 7
+                        });
+                        $([t.$ta, t.$ed]).css({ marginTop: bp.height() });
+                    }
+                    bp.css({
+                        width: fixedFullWidth ? '100%' : ((box.width()-1) + 'px')
+                    });
+
+                    $('.' + t.o.prefix + 'fixed-top', box).css({
+                        position: fixedFullWidth ? 'fixed' : 'absolute',
+                        top: fixedFullWidth ? oh : oh + (scrollTop - offset) + 'px',
+                        zIndex: 15
+                    });
+                } else if(t.isFixed) {
+                    t.isFixed = false;
+                    bp.removeAttr('style');
+                    $([t.$ta, t.$ed]).css({ marginTop: 0 });
+                    $('.' + t.o.prefix + 'fixed-top', box).css({
+                        position: 'absolute',
+                        top: oh
+                    });
+                }
+            });
+        },
+
+
+
+        // Destroy the editor
+        destroy: function(){
+            var t = this,
+                prefix = t.o.prefix,
+                height = t.height,
+                html = t.html();
+
+            if(t.isTextarea)
+                t.$box.after(
+                    t.$ta.css({ height: height })
+                        .val(html)
+                        .removeClass(prefix + 'textarea')
+                        .show()
+                );
+            else
+                t.$box.after(
+                    t.$ed
+                        .css({ height: height })
+                        .removeClass(prefix + 'editor')
+                        .removeAttr('contenteditable')
+                        .html(html)
+                        .show()
+                );
+
+            t.$box.remove();
+            t.$c.removeData('trumbowyg');
+        },
+
+
+
+        // Empty the editor
+        empty: function(){
+            this.$ta.val('');
+            this.syncCode(true);
+        },
+
+
+
+        // Function call when click on viewHTML button
+        toggle: function(){
+            var t = this,
+                prefix = t.o.prefix;
+            t.semanticCode(false, true);
+            t.$box.toggleClass(prefix + 'editor-hidden ' + prefix + 'editor-visible');
+            t.$btnPane.toggleClass(prefix + 'disable');
+            $('.'+prefix + 'viewHTML-button', t.$btnPane).toggleClass(prefix + 'active');
+            if(t.$box.hasClass(prefix + 'editor-visible'))
+                t.$ta.attr('tabindex', -1);
+            else
+                t.$ta.removeAttr('tabindex');
+        },
+
+        // Open dropdown when click on a button which open that
+        dropdown: function(name){
+            var t = this,
+                d = t.doc,
+                prefix = t.o.prefix,
+                $dd = $('.'+name+'-'+prefix + 'dropdown', t.$box),
+                $btn = $('.'+prefix+name+'-button', t.$btnPane);
+
+            if($dd.is(':hidden')){
+                var o = $btn.offset().left;
+                $btn.addClass(prefix + 'active');
+
+                $dd.css({
+                    position: 'absolute',
+                    top: t.$btnPane.outerHeight(),
+                    left: (t.o.fixedFullWidth && t.isFixed) ? o+'px' : (o - t.$btnPane.offset().left)+'px'
+                }).show();
+
+                $(window).trigger('scroll');
+
+                $('body', d).on('mousedown', function(){
+                    $('.' + prefix + 'dropdown', d).hide();
+                    $('.' + prefix + 'active', d).removeClass(prefix + 'active');
+                    $('body', d).off('mousedown');
+                });
+            } else
+                $('body', d).trigger('mousedown');
+        },
+
+
+
+
+        // HTML Code management
+        html: function(html){
+            var t = this;
+            if(html){
+                t.$ta.val(html);
+                t.syncCode(true);
+                return t;
+            } else
+                return t.$ta.val();
+        },
+        syncCode: function(force){
+            var t = this;
+            if(!force && t.$ed.is(':visible'))
+                t.$ta.val(t.$ed.html());
+            else
+                t.$ed.html(t.$ta.val());
+
+            if(t.o.autogrow){
+                t.height = t.$ed.height();
+                if(t.height != t.$ta.css('height')){
+                    t.$ta.css({ height: t.height });
+                    t.$c.trigger('tbwresize');
+                }
+            }
+        },
+
+        // Analyse and update to semantic code
+        // @param force : force to sync code from textarea
+        // @param full  : wrap text nodes in <p>
+        semanticCode: function(force, full){
+            var t = this;
+            t.syncCode(force);
+
+            if(t.o.semantic){
+                t.saveSelection();
+
+                t.semanticTag('b', 'strong');
+                t.semanticTag('i', 'em');
+                t.semanticTag('strike', 'del');
+
+                if(full){
+                    // Wrap text nodes in p
+                    t.$ed.contents()
+                    .filter(function(){
+                        // Only non-empty text nodes
+                        return this.nodeType === 3 && $.trim(this.nodeValue).length > 0;
+                    }).wrap('<p></p>').end()
+
+                    // Remove all br
+                    .filter('br').remove();
+
+                    t.semanticTag('div', 'p');
+                }
+
+                t.$ta.val(t.$ed.html());
+
+                t.restoreSelection();
+            }
+        },
+        semanticTag: function(oldTag, newTag){
+            $(oldTag, this.$ed).each(function(){
+                $(this).replaceWith(function(){
+                    return '<'+newTag+'>' + $(this).html() + '</'+newTag+'>';
+                });
+            });
+        },
+
+
+        // Function call when user click on "Insert Link"
+        createLink: function(){
+            var t = this;
+            t.saveSelection();
+            t.openModalInsert(t.lang.createLink, {
+                url: {
+                    label: 'URL',
+                    required: true
+                },
+                title: {
+                    label: t.lang.title,
+                    value: t.getSelectedText()
+                },
+                text: {
+                    label: t.lang.text,
+                    value: t.getSelectedText()
+                }
+            }, function(v){ // v is value
+                t.execCmd('createLink', v.url);
+                var l = $('a[href="'+v.url+'"]:not([title])', t.$box);
+                if(v.text.length > 0)
+                    l.text(v.text);
+
+                if(v.title.length > 0)
+                    l.attr('title', v.title);
+
+                return true;
+            });
+        },
+        insertImage: function(){
+            var t = this;
+            t.saveSelection();
+            t.openModalInsert(t.lang.insertImage, {
+                url: {
+                    label: 'URL',
+                    required: true
+                },
+                alt: {
+                    label: t.lang.description,
+                    value: t.getSelectedText()
+                }
+            }, function(v){ // v are values
+                t.execCmd('insertImage', v.url);
+                $('img[src="'+v.url+'"]:not([alt])', t.$box).attr('alt', v.alt);
+                return true;
+            });
+        },
+
+
+        /*
+         * Call method of trumbowyg if exist
+         * else try to call anonymous function
+         * and finaly native execCommand
+         */
+        execCmd: function(cmd, param){
+            var t = this;
+            if(cmd != 'dropdown')
+                t.$ed.focus();
+
+            try {
+                t[cmd](param);
+            } catch(e){
+                try {
+                    cmd(param, t);
+                } catch(e2){
+                    if(cmd == 'insertHorizontalRule')
+                        param = null;
+                    else if(cmd == 'formatBlock' && (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0))
+                        param = '<' + param + '>';
+
+                    t.doc.execCommand(cmd, false, param);
+                }
+            }
+            t.syncCode();
+        },
+
+
+        // Open a modal box
+        openModal: function(title, content){
+            var t = this,
+                prefix = t.o.prefix;
+
+            // No open a modal box when exist other modal box
+            if($('.' + prefix + 'modal-box', t.$box).length > 0)
+                return false;
+
+            t.saveSelection();
+            t.showOverlay();
+
+            // Disable all btnPane btns
+            t.$btnPane.addClass(prefix + 'disable');
+
+            // Build out of ModalBox, it's the mask for animations
+            var $modal = $('<div/>', {
+                'class': prefix + 'modal ' + prefix + 'fixed-top'
+            }).css({
+                top: (t.$btnPane.height() + 1) + 'px'
+            }).appendTo(t.$box);
+
+            // Click on overflay close modal by cancelling them
+            t.$overlay.one('click', function(){
+                $modal.trigger(prefix + 'cancel');
+                return false;
+            });
+
+            // Build the form
+            var $form = $('<form/>', {
+                action: '',
+                html: content
+            })
+            .on('submit', function(){
+                $modal.trigger(prefix + 'confirm');
+                return false;
+            })
+            .on('reset', function(){
+                $modal.trigger(prefix + 'cancel');
+                return false;
+            });
+
+
+            // Build ModalBox and animate to show them
+            var $box = $('<div/>', {
+                'class': prefix + 'modal-box',
+                html: $form
+            })
+            .css({
+                top: '-' + t.$btnPane.outerHeight() + 'px',
+                opacity: 0
+            })
+            .appendTo($modal)
+            .animate({
+                top: 0,
+                opacity: 1
+            }, 100);
+
+
+            // Append title
+            $('<span/>', {
+                text: title,
+                'class': prefix + 'modal-title'
+            }).prependTo($box);
+
+
+            // Focus in modal box
+            $('input:first', $box).focus();
+
+
+            // Append Confirm and Cancel buttons
+            t.buildModalBtn('submit', $box);
+            t.buildModalBtn('reset', $box);
+
+
+            $(window).trigger('scroll');
+
+            return $modal;
+        },
+        // @param n is name of modal
+        buildModalBtn: function(n, $modal){
+            var t = this,
+                prefix = t.o.prefix;
+
+            return $('<button/>', {
+                'class': prefix + 'modal-button ' + prefix + 'modal-' + n,
+                type: n,
+                text: t.lang[n] || n
+            }).appendTo($('form', $modal));
+        },
+        // close current modal box
+        closeModal: function(){
+            var t = this,
+                prefix = t.o.prefix;
+
+            t.$btnPane.removeClass(prefix + 'disable');
+            t.$overlay.off();
+
+            // Find the modal box
+            var $mb = $('.' + prefix + 'modal-box', t.$box);
+
+            $mb.animate({
+                top: '-' + $mb.height()
+            }, 100, function(){
+                $mb.parent().remove();
+                t.hideOverlay();
+            });
+
+            t.restoreSelection();
+        },
+        // Preformated build and management modal
+        openModalInsert: function(title, fields, cmd){
+            var t = this,
+                prefix  = t.o.prefix,
+                lg = t.lang,
+                html = '';
+
+            for(var f in fields){
+                var fd = fields[f], // field definition
+                    l = fd.label,
+                    n = (fd.name) ? fd.name : f;
+
+                html += '<label><input type="'+(fd.type || 'text')+'" name="'+n+'" value="'+(fd.value || '')+'"><span class="'+prefix+'input-infos"><span>'+
+                            ((!l) ? (lg[f] ? lg[f] : f) : (lg[l] ? lg[l] : l))+
+                            '</span></span></label>';
+            }
+
+            return t.openModal(title, html)
+            .on(prefix + 'confirm', function(){
+                var $form = $('form', $(this)),
+                    valid = true,
+                    v = {}; // values
+
+                for(var f in fields){
+                    var $field = $('input[name="'+f+'"]', $form);
+
+                    v[f] = $.trim($field.val());
+
+                    // Validate value
+                    if(fields[f].required && v[f] === ''){
+                        valid = false;
+                        t.addErrorOnModalField($field, t.lang.required);
+                    } else if(fields[f].pattern && !fields[f].pattern.test(v[f])){
+                        valid = false;
+                        t.addErrorOnModalField($field, fields[f].patternError);
+                    }
+                }
+
+                if(valid){
+                    t.restoreSelection();
+
+                    if(cmd(v, fields)){
+                        t.syncCode();
+                        t.closeModal();
+                        $(this).off(prefix + 'confirm');
+                    }
+                }
+            })
+            .one(prefix + 'cancel', function(){
+                $(this).off(prefix + 'confirm');
+                t.closeModal();
+            });
+        },
+        addErrorOnModalField: function($field, err){
+            var prefix = this.o.prefix,
+                $label = $field.parent();
+
+            $field
+            .on('change keyup', function(){
+                $label.removeClass(prefix + 'input-error');
+            });
+
+            $label
+            .addClass(prefix + 'input-error')
+            .find('input+span')
+            .append(
+                $('<span/>', {
+                    'class': prefix +'msg-error',
+                    text: err
+                })
+            );
+        },
+
+
+
+
+        // Selection management
+        saveSelection: function(){
+            var t = this,
+                ds = t.doc.selection;
+
+            t.selection = null;
+            if(window.getSelection){
+                var s = window.getSelection();
+                if(s.getRangeAt && s.rangeCount)
+                    t.selection = s.getRangeAt(0);
+            } else if(ds && ds.createRange)
+                t.selection = ds.createRange();
+        },
+        restoreSelection: function(){
+            var t = this,
+                range = t.selection;
+
+            if(range){
+                if(window.getSelection){
+                    var s = window.getSelection();
+                    s.removeAllRanges();
+                    s.addRange(range);
+                } else if(t.doc.selection && range.select)
+                    range.select();
+            }
+        },
+        getSelectedText: function(){
+            var s = this.selection;
+            return (s.text !== undefined) ? s.text : s+'';
+        }
+    };
+})(navigator, window, document, jQuery);
+
+/*! ember-droplet by Adam Timberlake created on 2015-04-07 */
+!function(a,b,c){"use strict";a.DropletController=b.Mixin.create({mimeTypes:["image/jpeg","image/jpg","image/gif","image/png","text/plain"],extensions:["jpeg","jpg","gif","png"],requestHeaders:{},postData:{},files:[],uploadStatus:b.computed(function(){return{uploading:!1,percentComplete:0,error:!1}}),init:function(){b.set(this,"files",[]),this._super()},actions:{addedFiles:function(a){b.tryInvoke(this,"didAddFiles",[a])},addValidFile:function(a){return this._addFile(a,!0)},addInvalidFile:function(a){return this._addFile(a,!1)},deleteFile:function(a){return b.set(a,"deleted",!0),a},clearAllFiles:function(){b.set(this,"files",[])},abortUpload:function(){var a=b.get(this,"lastJqXhr");a&&b.get(this,"uploadStatus.uploading")&&(a.abort(),b.set(this,"uploadStatus.uploading",!1))},uploadAllFiles:function(){var a={fileSizeHeader:!0,useArray:!0,method:"post"};if(0===b.get(this,"validFiles").length)return!1;var d=b.get(this,"dropletUrl"),e=b.get(this,"dropletOptions")||a,f=this.get("postData"),g=this.get("requestHeaders");b.set(this,"uploadStatus.uploading",!0),b.set(this,"uploadStatus.error",!1),b.assert("You must specify the `dropletUrl` parameter in order to upload files.",!!d);var h=this._getFormData(f,e.useArray),i=e.method||a.method,j={};e.fileSizeHeader&&(j["X-File-Size"]=this._getSize());for(var k in g)(g.hasOwnProperty(k)||k in g)&&(j[k]=g[k]);var l=c.ajax({url:d,method:i,data:h,headers:j,processData:!1,contentType:!1,xhr:function(){var a=c.ajaxSettings.xhr();return this._addProgressListener(a.upload),this._addSuccessListener(a.upload),this._addErrorListener(a.upload),b.set(this,"lastRequest",a),a}.bind(this)});return b.set(this,"lastJqXhr",l),new b.RSVP.Promise(function(a,b){l.done(a).fail(b)}).then(b.run.bind(this,function(a){return b.tryInvoke(this,"didUploadFiles",[a]),a}),b.run.bind(this,function(a,c,d){var e={jqXHR:a,textStatus:c,errorThrown:d};b.set(this,"uploadStatus.uploading",!1),b.set(this,"uploadStatus.error",e)}))}},_getFormData:function(c,d){var e=new a.FormData,f=d?"file[]":"file";b.EnumerableUtils.forEach(b.get(this,"validFiles"),function(a){e.append(f,a.file)},this);for(var g in c)c.hasOwnProperty(g)&&e.append(g,c[g]);return e},willDestroy:function(){this._super.apply(this,arguments);var a=this.get("lastRequest");a&&(a.upload.onprogress=void 0,a.upload.onload=void 0,a.upload.onerror=void 0,this.send("abortUpload"))},validFiles:b.computed(function(){return this._filesByProperties({valid:!0,deleted:!1,uploaded:!1})}).property("files.length","files.@each.deleted","files.@each.uploaded"),invalidFiles:b.computed(function(){return this._filesByProperties({valid:!1})}).property("files.length","files.@each.deleted"),uploadedFiles:b.computed(function(){return this._filesByProperties({uploaded:!0})}).property("files.length","files.@each.uploaded"),deletedFiles:b.computed(function(){return this._filesByProperties({deleted:!0})}).property("files.length","files.@each.deleted"),_filesByProperties:function(a){return b.get(this,"files").filter(function(b){for(var c in a)if((a.hasOwnProperty(c)||c in a)&&b[c]!==a[c])return!1;return!0})},_getSize:function(){var a=0;return b.EnumerableUtils.forEach(b.get(this,"validFiles"),function(b){a+=b.file.size}),a},_addSuccessListener:function(a){a.onload=b.run.bind(this,function(){b.EnumerableUtils.forEach(b.get(this,"validFiles"),function(a){b.set(a,"uploaded",!0)}),b.set(this,"uploadStatus.uploading",!1)})},_addErrorListener:function(a){a.onerror=b.run.bind(this,function(){b.set(this,"uploadStatus.uploading",!1),b.set(this,"uploadStatus.error",!0)})},_addProgressListener:function(a){a.onprogress=b.run.bind(this,function(a){if(a.lengthComputable){var c=a.loaded/this._getSize()*100;b.set(this,"uploadStatus.percentComplete",Math.round(c))}})},_addFile:function(a,c){var d=a.name.substr((~-a.name.lastIndexOf(".")>>>0)+2),e="extension-%@".fmt(d).toLowerCase(),f={file:a,valid:c,uploaded:!1,deleted:!1,className:e};return b.get(this,"files").pushObject(f),f}})}(window,window.Ember,window.jQuery),function(a,b){"use strict";var c={tagName:"input",classNames:"files",attributeBindings:["disabled","name","type","multiple"],type:"file",multiple:"multiple",change:function(){var a=this.get("element").files;return this.get("parentView").traverseFiles(a)}},d=b.copy(c);d.multiple=!1,a.DropletView=b.View.extend({classNames:["droppable"],ImagePreview:b.View.extend({tagName:"img",attributeBindings:["src"],src:null,image:null,didInsertElement:function(){var c=new a.FileReader,d=b.get(this,"image.file");return d.type.match(/^image\//i)?(c.onload=b.run.bind(this,function(a){this.get("isDestroyed")!==!0&&b.set(this,"src",a.target.result)}),void c.readAsDataURL(d)):void this.destroy()}}),MultipleInput:b.View.extend(c),SingleInput:b.View.extend(d),drop:function(a,b){return this._preventDefaultBehaviour(a),this.traverseFiles(a.dataTransfer.files||b)},traverseFiles:function(a){for(var c=b.get(this,"controller"),d=b.get(c,"mimeTypes")||[],e=b.get(c,"extensions"),f=b.get(c,"dropletOptions")||{limit:1/0},g=[],h=0,i=a.length;i>h;h++)if(a.hasOwnProperty(h)||h in a){var j=a[h],k=j.name.substr((~-j.name.lastIndexOf(".")>>>0)+2),l="*"===b.get(c,"mimeTypes"),m=-1===$.inArray(j.type,d)&&-1===$.inArray(k,e),n=b.get(c,"validFiles").length,o=c.get("fileSizeLimit");l||!m&&n!==f.limit?null!=o&&j.size>=o?c.send("addInvalidFile",j):(c.send("addValidFile",j),g.push(j)):(c.send("addInvalidFile",j),g.push(j))}return c.send("addedFiles",g),!0},_preventDefaultBehaviour:function(a){a.preventDefault(),a.stopPropagation()},dragOver:function(a){this._preventDefaultBehaviour(a)},dragEnter:function(a){this._preventDefaultBehaviour(a)},dragLeave:function(a){this._preventDefaultBehaviour(a)}})}(window,window.Ember);

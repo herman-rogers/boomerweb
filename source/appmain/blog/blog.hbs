@@ -45,8 +45,8 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            {{#each post in controller.loadPosts}}
 
+            {{#each post in controller.loadPosts}}
             <!-- EDIT MAIN FORM -->
             {{#if isEditing}}
             <h1>
@@ -75,7 +75,7 @@
             <h1>
                 <small>Post Body</small>
             </h1>
-            <p>{{textarea class="form-control" value=post.post_body rows="15"}}</p>
+            <p>{{ef-input post.post_body as='wysiwyg' rows='15'}}</p>
 
             <!-- DELETE BUTTONS -->
             {{#if post.enableDelete}}
@@ -110,13 +110,14 @@
             <hr>
             {{#if post.expanded}}
             <p>
-                <button class="btn btn-primary" {{action 'toggleExpand' post}}>
+                <button class="btn btn-default" {{action 'toggleExpand' post}}>
                     Hide
                     &nbsp;
                     <span class="glyphicon glyphicon-minus-sign"></span>
                 </button>
             </p>
             <p>{{post.post_body}}</p>
+
             {{else}}
             <p>
                 <button class="btn btn-primary" {{action 'toggleExpand' post}}>

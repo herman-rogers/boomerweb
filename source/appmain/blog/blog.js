@@ -18,7 +18,13 @@ App.BlogView = Ember.View.extend( {
 
     templateName: 'blog',
 
+    //didInsertElement: function() {
+    //    // From http://highlightjs.org/usage/ see Custom Initialization
+    //    this.$( 'pre code' ).each( function( i, e ) { hljs.highlightBlock( e ) } );
+    //}
+
 } );
+
 
 App.BlogController = Ember.ArrayController.extend( {
 
@@ -54,7 +60,7 @@ App.BlogController = Ember.ArrayController.extend( {
         return this.get( 'model' );
     },
 
-    postLimit: 3,
+    postLimit: 6,
 
     postIndex: 3,
 

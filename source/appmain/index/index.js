@@ -123,3 +123,57 @@ App.IndexController = Ember.Controller.extend( {
     }
 
 } );
+
+
+Ember.EasyForm.WYSIWYG = Ember.EasyForm.TextArea.extend( {
+
+    renderEditor: function() {
+        var _this = this;
+
+        _this.$().trumbowyg()
+            .on( 'tbwchange', function() {
+                console.log('CHANGE');
+                //_this.set( 'value', $( '.trumbowyg-editor' ).html() )
+            } );
+    }.on( 'didInsertElement' ),
+} );
+
+Ember.EasyForm.Config.registerInputType( 'wysiwyg', Ember.EasyForm.WYSIWYG );
+
+/**
+ * WYSIWYG Editor Initialization
+ */
+//Ember.EasyForm.WYSIWYG = Ember.EasyForm.TextArea.extend( {
+
+//    renderEditor: function() {
+//        var _this = this;
+
+//        _this.$().trumbowyg( {
+//            //    color: true,
+//            //    fsize: true,
+//            //    format: false,
+//            //    indent: false,
+//            //    outdent: false,
+//            //    placeholder: _this.get( 'placeholder' ),
+//            //    source: false, // Code
+//            //    sub: false, // Subscript
+//            //    strike: false,
+//            //    sup: false, // Superscript
+
+//            tbwchange: function() {
+//                Em.run.debounce( _this, _this.changed, 200 );
+//            }
+//        } 
+//    )}.on( 'didInsertElement' ),
+
+//    changed: function() {
+//        this.set( 'value', $( '.jqte_editor' ).html() );
+//    }.on( 'tbwchange' ),
+
+//    keyDown: function( e ) {
+//        console.log('KEY DOWN EVEN');
+//    }
+
+//} );
+
+Ember.EasyForm.Config.registerInputType( 'wysiwyg', Ember.EasyForm.WYSIWYG );

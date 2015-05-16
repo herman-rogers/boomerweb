@@ -55,13 +55,14 @@
                 &nbsp;
                 <span class="glyphicon glyphicon-camera fa-lg"></span>
                 {{/link-to}}
-            <hr />
+                <hr />
             </div>
             {{/if}}
         </div>
     </div>
 
     {{#each project in controller}}
+
     <!-- EDIT MAIN FORM -->
     {{#if isEditing}}
     <div class="row">
@@ -69,9 +70,9 @@
             <img class="img-responsive" {{bind-attr src=project.image}} alt="">
             <hr />
             {{#each image in controller.images}}
-            <a class="btn" {{action 'selectImage' image project}}>
+            <button class="btn" {{action 'selectImage' image project}}>
                 <img class="thumbnail profile-img-card pull-left" src={{image.image_url}} alt="">
-            </a>
+            </button>
             {{/each}}
         </div>
         <div class="col-md-5">
@@ -112,6 +113,7 @@
                 <small>Project Code Link</small>
             </h2>
             <p class="lead">{{input class="form-control" value=project.code_link}}</p>
+
             <!-- DELETE BUTTONS -->
             {{#if project.enableDelete}}
             <a class="btn btn-warning" {{action 'cancelDelete' project}}>
@@ -139,9 +141,7 @@
     <div class="row">
         <div class="col-md-7">
             <p><span class="glyphicon glyphicon-time"></span> Updated on <b>{{date-format project.updated_at}}</b></p>
-            <a href="#">
-                <img class="img-responsive" {{bind-attr src=project.image}} alt="">
-            </a>
+            <img class="img-responsive" {{bind-attr src=project.image}} alt="">
         </div>
         <div class="col-md-5">
             <h3>
