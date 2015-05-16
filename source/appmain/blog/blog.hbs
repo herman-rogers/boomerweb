@@ -108,7 +108,25 @@
             <hr>
             <img class="img-responsive" {{bind-attr src=post.image}} alt="">
             <hr>
+            {{#if post.expanded}}
+            <p>
+                <button class="btn btn-primary" {{action 'toggleExpand' post}}>
+                    Hide
+                    &nbsp;
+                    <span class="glyphicon glyphicon-minus-sign"></span>
+                </button>
+            </p>
             <p>{{post.post_body}}</p>
+            {{else}}
+            <p>
+                <button class="btn btn-primary" {{action 'toggleExpand' post}}>
+                    Expand
+                    &nbsp;
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </button>
+            </p>
+            {{truncate post.post_body limit=50}}
+            {{/if}}
             {{/if}}
             <hr>
             {{/each}}

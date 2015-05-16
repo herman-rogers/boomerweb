@@ -33,11 +33,11 @@ App.BlogController = Ember.ArrayController.extend( {
     // Twitter Functions
     tweets: function() {
         return this.store.find( 'tweet' );
-    }.property( ),
+    }.property(),
 
     toggleTweetsLoaded: function() {
         this.set( 'loadingTweets', false );
-    }.observes('tweets.[]'),
+    }.observes( 'tweets.[]' ),
 
     twitterPost: function() {
         return this.store.createRecord( 'tweet' );
@@ -76,7 +76,7 @@ App.BlogController = Ember.ArrayController.extend( {
         var postIndex = this.get( 'postIndex' );
         var cache = this.get( 'model' ).content.length;
         return postIndex > cache;
-    }.property( 'postIndex'),
+    }.property( 'postIndex' ),
 
     // Blog Editing Properties
     isEditing: false,
@@ -98,7 +98,7 @@ App.BlogController = Ember.ArrayController.extend( {
         }
     }.observes( 'currentState', 'loggedIn' ),
 
-    images: function(){
+    images: function() {
         return this.store.find( 'image' );
     }.property(),
 
@@ -116,8 +116,30 @@ App.BlogController = Ember.ArrayController.extend( {
 
     actions: {
 
+        /**
+         * General Form Actions
+         */
+
         selectImage: function( image, project ) {
             project.set( 'image', image.get( 'image_url' ) );
+        },
+
+        toggleExpand: function( post ) {
+            post.toggleProperty( 'expanded' );
+        },
+
+        postToTwitter: function() {
+            var tweet = this.get( 'twitterPost' );
+
+            tweet.save().then( function() {
+                //Reload the model properly
+                this.send( 'pushNotifications', 'Tweet Posted', false );
+                this.destroyAndCreateNewTweet();
+            }.bind( this ), function( response ) {
+                var errors = this.formValidation( response );
+                this.send( 'pushNotifications', errors, true );
+                this.destroyAndCreateNewTweet();
+            }.bind( this ) );
         },
 
         loadMorePosts: function() {
@@ -129,6 +151,10 @@ App.BlogController = Ember.ArrayController.extend( {
             var setNewLimit = postIndex + this.get( 'postLimit' );
             this.set( 'postIndex', setNewLimit );
         },
+
+        /**
+         * Form Edit Actions
+         */
 
         editState: function() {
             this.set( 'currentState', 'EDITING' );
@@ -176,23 +202,6 @@ App.BlogController = Ember.ArrayController.extend( {
                 this.send( 'pushNotifications', 'Failed To Delete Post', true );
             }.bind( this ) );
         },
-
-        postToTwitter: function() {
-            var tweet = this.get( 'twitterPost' );
-            if ( tweet.get( 'text' ) ) {
-                var tagPost = tweet.get( 'text' ) + ' #boomerweb';
-                tweet.set( 'text', tagPost );
-            }
-            tweet.save().then( function() {
-                //Reload the model properly
-                this.send( 'pushNotifications', 'Tweet Posted', false );
-                this.destroyAndCreateNewTweet();
-            }.bind( this ), function( response ) {
-                var errors = this.formValidation( response );
-                this.send( 'pushNotifications', errors, true );
-                this.destroyAndCreateNewTweet();
-            }.bind( this ) );
-        }
 
     }
 

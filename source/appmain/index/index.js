@@ -13,14 +13,14 @@
 
         willTransition: function( transition ) {
             var currentTransition = transition.targetName;
-            if ( currentTransition == 'index.index' ) {
+            if ( currentTransition === 'index.index' ) {
                 this.transitionTo( 'portfolio' );
             }
         },
 
-        //error: function( error, transition ) {
-        //    this.transitionTo( '/notfound' );
-        //}
+        error: function( error, transition ) {
+            this.transitionTo( '/notfound' );
+        }
 
     }
 } );

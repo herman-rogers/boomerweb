@@ -1,22 +1,16 @@
-﻿App.PhotomanagerRoute = Ember.Route.extend( {
-
-    // Authenticate user before loading route
-    beforeModel: function( controller ) {
-        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
-        if ( !loggedIn ) {
-            return Ember.RSVP.reject( 'Unauthorized Access' );
-        }
-    },
+﻿App.PhotomanagerRoute = Ember.Route.extend( App.AuthentificationMixin, {
 
     model: function() {
         return this.store.find( 'image' );
     },
 
     actions: {
+
         refreshImages: function() {
             this.refresh();
-            window.scrollTo(0,0);
+            window.scrollTo( 0, 0 );
         }
+
     }
 
 } );
@@ -30,16 +24,6 @@ App.PhotomanagerView = Ember.View.extend( {
 } );
 
 App.PhotomanagerController = Ember.Controller.extend( DropletController, {
-
-    needs: ['index'],
-
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
-    moveFromPageIfLoggedOut: function() {
-        if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute( 'blog' );
-        }
-    }.observes( 'loggedIn' ).on( 'init' ),
 
     mimeTypes: ['image/bmp'],
 
@@ -57,7 +41,7 @@ App.PhotomanagerController = Ember.Controller.extend( DropletController, {
 
     imagesLoaded: function() {
         this.set( 'loadingImages', false );
-    }.observes('model'),
+    }.observes( 'model' ),
 
     didUploadFiles: function didUploadFiles( response ) {
         this.send( 'refreshImages' );

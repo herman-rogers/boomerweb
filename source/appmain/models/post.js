@@ -8,5 +8,6 @@ App.Post = DS.Model.extend( {
     created_at: attr(),
 
     enableDelete: false,
+    expanded: false,
 
 } );

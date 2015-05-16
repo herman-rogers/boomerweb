@@ -1,12 +1,4 @@
-﻿App.AddpostRoute = Ember.Route.extend( {
-
-    // Authenticate user before loading route
-    beforeModel: function( controller ) {
-        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
-        if ( !loggedIn ) {
-            return Ember.RSVP.reject( 'Unauthorized Access' );
-        }
-    },
+﻿App.AddpostRoute = Ember.Route.extend( App.AuthentificationMixin, {
 
     model: function() {
         return this.store.createRecord( 'post' );
@@ -26,23 +18,14 @@
 } );
 
 App.AddpostView = Ember.View.extend( {
+
     templateName: 'addpost'
 
 } );
 
 App.AddpostController = Ember.Controller.extend( {
 
-    needs: ['index'],
-
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
     twitterPost: null,
-
-    moveFromPageIfLoggedOut: function() {
-        if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute( 'blog' );
-        }
-    }.observes( 'loggedIn' ).on( 'init' ),
 
     images: function() {
         return this.store.find( 'image' );

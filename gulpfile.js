@@ -9,27 +9,29 @@ var addsrc = require( 'gulp-add-src' );
 var htmlbars = require( 'gulp-htmlbars' );
 var tap = require( 'gulp-tap' );
 
-gulp.task( 'watch', function () {
+gulp.task( 'watch', function() {
     gulp.watch( 'styles/**/*.css', ['styles'] );
     gulp.watch( 'source/**/*.{js,hbs}', ['scripts'] );
 } );
 
 // CSS Build Tasks
-gulp.task( 'styles', function () {
+gulp.task( 'styles', function() {
     return gulp.src( 'styles/**/*.css' )
     .pipe( concat( 'appstyles.css' ) )
     .pipe( gulp.dest( 'app/dist/styles' ) );
 } );
 
 // JS Build Tasks
-gulp.task( 'scripts', ['templates'], function () {
-    return gulp.src( 'source/**/*.js' )
+gulp.task( 'scripts', ['templates'], function() {
+    return gulp.src( 'source/appinit/**/*.js' )
+    .pipe( addsrc.append( 'source/mixins/**/*.js' ) )
+    .pipe( addsrc.append( 'source/appmain/**/*.js' ) )
     .pipe( addsrc.prepend( 'app/dist/js/templates.js' ) )
     .pipe( concat( 'appbuild.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
 } );
 
-gulp.task( 'libraries', function () {
+gulp.task( 'libraries', function() {
     return gulp.src( 'bower_components/jquery/dist/jquery.js' )
         .pipe( addsrc.append( 'bower_components/ember/ember-template-compiler.js' ) )
         .pipe( addsrc.append( 'bower_components/ember/ember.debug.js' ) )
@@ -40,10 +42,10 @@ gulp.task( 'libraries', function () {
         .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
         .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.js' ) )
         .pipe( concat( 'libraries.js' ) )
-        .pipe( gulp.dest('app/dist/js') )
+        .pipe( gulp.dest( 'app/dist/js' ) )
 } );
 
-var getTemplateNameFromPath = function ( path ) {
+var getTemplateNameFromPath = function( path ) {
     // if exist replace \ with /
     while ( path.indexOf( "\\" ) !== -1 ) {
         path = path.replace( "\\", "/" );
@@ -63,13 +65,13 @@ var getTemplateNameFromPath = function ( path ) {
     return finalTemplateName;
 };
 
-gulp.task( 'templates', function () {
+gulp.task( 'templates', function() {
     return gulp.src( 'source/**/*.hbs' )
         .pipe( htmlbars( {
             isHTMLBars: true,
             templateCompiler: require( './bower_components/ember/ember-template-compiler' )
         } ) )
-        .pipe( tap( function ( file ) {
+        .pipe( tap( function( file ) {
             var templateName = getTemplateNameFromPath( file.path.toString() );
             var currentFile = file.contents.toString();
             currentFile = currentFile.replace( "export default",

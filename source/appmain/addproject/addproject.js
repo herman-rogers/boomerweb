@@ -1,12 +1,4 @@
-﻿App.AddprojectRoute = Ember.Route.extend( {
-
-    // Authenticate user before loading route
-    beforeModel: function( controller ) {
-        var loggedIn = this.controllerFor( 'Addproject' ).get( 'loggedIn' );
-        if ( !loggedIn ) {
-            return Ember.RSVP.reject( 'Unauthorized Access' );
-        }
-    },
+﻿App.AddprojectRoute = Ember.Route.extend( App.AuthentificationMixin, {
 
     model: function() {
         return this.store.createRecord( 'project' );
@@ -33,19 +25,9 @@ App.AddprojectView = Ember.View.extend( {
 
 App.AddprojectController = Ember.Controller.extend( {
 
-    needs: ['index'],
-
-    loggedIn: Ember.computed.alias( 'controllers.index.loggedIn' ),
-
     twitterPost: null,
 
     projectTypes: ['games', 'tools', 'software'],
-
-    moveFromPageIfLoggedOut: function() {
-        if ( !this.get( 'loggedIn' ) ) {
-            this.transitionToRoute( 'portfolio' );
-        }
-    }.observes( 'loggedIn' ).on( 'init' ),
 
     images: function() {
         return this.store.find( 'image' );
