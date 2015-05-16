@@ -30,3 +30,7 @@ Ember.Handlebars.helper( 'truncate', function( text, options ) {
     text = text.substr( 0, limit - 3 ) + "...";
     return text;
 } );
+
+Ember.Handlebars.helper( 'formatted-text', function( text ) {
+    return new Ember.Handlebars.SafeString(text);
+} );
