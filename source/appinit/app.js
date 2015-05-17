@@ -2,10 +2,6 @@
 var attr = DS.attr;
 var appPath = window.location.origin + window.location.pathname;
 
-//Initialize Highlight.js for
-//blog code syntax highlight
-//hljs.initHighlightingOnLoad();
-
 App = Ember.Application.create( {
     LOG_TRANSITIONS: true,
     rootElement: '#application'

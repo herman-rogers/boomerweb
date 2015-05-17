@@ -19,8 +19,6 @@ App.BlogView = Ember.View.extend( {
     templateName: 'blog',
 
     didInsertElement: function() {
-        console.log( 'NEW EVENT IN VIEW' );
-        // From http://highlightjs.org/usage/ see Custom Initialization
         $( 'pre code' ).each( function( i, e ) {
             hljs.highlightBlock( e )
         } );
