@@ -51,8 +51,6 @@ gulp.task( 'libraries', function() {
         .pipe( addsrc.append( 'bower_components/jquery-cookie/jquery.cookie.js' ) )
         .pipe( addsrc.append( 'bower_components/moment/moment.js' ) )
         .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
-        .pipe( addsrc.append( 'bower_components/easyform/easyform.js' ) )
-        .pipe( addsrc.append( 'bower_components/jqueryte/jquery-te-1.4.0.min.js' ) )
         .pipe( addsrc.append( 'bower_components/trumbowyg-2.0.0-beta/dist/trumbowyg.js' ) )
         .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.min.js' ) )
         .pipe( concat( 'libraries.js' ) )
@@ -74,9 +72,6 @@ var getTemplateNameFromPath = function( path ) {
     var finalTemplateName = filenameWithoutExtension;
     if ( folderNameInWhichFileResides === "components" ) {
         finalTemplateName = "components/" + finalTemplateName;
-    }
-    else if ( folderNameInWhichFileResides === "easyForm" ) {
-        finalTemplateName = "easyForm/" + finalTemplateName;
     }
 
     return finalTemplateName;

@@ -1,4 +1,40 @@
-﻿<div class="container">
+﻿{{#if loggedIn}}
+<div class="toolbar">
+    <div class="container">
+        <!-- EDIT AND ADD PROJECTS BUTTONS -->
+        {{#if isEditing}}
+        <button class="btn btn-warning" {{action 'cancelState'}}>
+            Cancel
+            &nbsp;
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-primary" {{action 'saveEdits'}}>
+            Save
+            &nbsp;
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        {{else}}
+        {{#link-to 'addproject' class="btn btn-primary" }}
+        Add Project
+        &nbsp;
+        <span class="glyphicon glyphicon-plus"></span>
+        {{/link-to}}
+        <button class="btn btn-primary" {{action 'editState'}}>
+            Edit Projects
+            &nbsp;
+            <span class="glyphicon glyphicon-edit"></span>
+        </button>
+        {{/if}}
+        {{#link-to 'photomanager' class="btn btn-primary"}}
+        Photo Manager
+        &nbsp;
+        <span class="glyphicon glyphicon-camera fa-lg"></span>
+        {{/link-to}}
+    </div>
+</div>
+{{/if}}
+
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -24,40 +60,6 @@
                     </a>
                 </div>
             </h1>
-            {{#if loggedIn}}
-            <div class="col-md-7">
-                <!-- EDIT AND ADD PROJECTS BUTTONS -->
-                {{#if isEditing}}
-                <button class="btn btn-warning" {{action 'cancelState'}}>
-                    Cancel
-                    &nbsp;
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-                <button class="btn btn-primary" {{action 'saveEdits'}}>
-                    Save
-                    &nbsp;
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </button>
-                {{else}}
-                {{#link-to 'addproject' class="btn btn-primary" }}
-                Add Project
-                &nbsp;
-                <span class="glyphicon glyphicon-plus"></span>
-                {{/link-to}}
-                <button class="btn btn-primary" {{action 'editState'}}>
-                    Edit Projects
-                    &nbsp;
-                    <span class="glyphicon glyphicon-edit"></span>
-                </button>
-                {{/if}}
-                {{#link-to 'photomanager' class="btn btn-primary"}}
-                Photo Manager
-                &nbsp;
-                <span class="glyphicon glyphicon-camera fa-lg"></span>
-                {{/link-to}}
-                <hr />
-            </div>
-            {{/if}}
         </div>
     </div>
 

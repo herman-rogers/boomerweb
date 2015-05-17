@@ -31,6 +31,17 @@ footer .footer-below {
     background-color: #222;
 }
 
+.toolbar {
+    position:fixed;
+    z-index: 1000;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    background-color: #222;
+}
+
 .active {
     font-weight: bold;
 }

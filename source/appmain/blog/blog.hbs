@@ -1,46 +1,46 @@
-﻿<div class="container">
+﻿{{#if loggedIn}}
+<div class="toolbar">
+    <div class="container">
+        <!-- EDIT AND ADD POSTS BUTTONS -->
+        {{#if isEditing}}
+        <button class="btn btn-warning" {{action 'cancelState'}}>
+            Cancel
+            &nbsp;
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-primary" {{action 'saveEdits'}}>
+            Save
+            &nbsp;
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        {{else}}
+        {{#link-to 'addpost'class="btn btn-primary" }}
+        Add Post
+        &nbsp;
+        <span class="glyphicon glyphicon-plus"></span>
+        {{/link-to}}
+        <button class="btn btn-primary" {{action 'editState'}}>
+            Edit Posts
+            &nbsp;
+            <span class="glyphicon glyphicon-edit"></span>
+        </button>
+        {{/if}}
+        {{#link-to 'photomanager' class="btn btn-primary"}}
+        Photo Manager
+        &nbsp;
+        <span class="glyphicon glyphicon-camera fa-lg"></span>
+        {{/link-to}}
+    </div>
+</div>
+{{/if}}
+
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 DevBlog
                 <small>Tech Talk</small>
             </h1>
-            <div class="col-md-5">
-                {{#if loggedIn}}
-
-                <!-- EDIT AND ADD POSTS BUTTONS -->
-                {{#if isEditing}}
-                <button class="btn btn-warning" {{action 'cancelState'}}>
-                    Cancel
-                    &nbsp;
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-                <button class="btn btn-primary" {{action 'saveEdits'}}>
-                    Save
-                    &nbsp;
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </button>
-                {{else}}
-                {{#link-to 'addpost'class="btn btn-primary" }}
-                Add Post
-                &nbsp;
-                <span class="glyphicon glyphicon-plus"></span>
-                {{/link-to}}
-                <button class="btn btn-primary" {{action 'editState'}}>
-                    Edit Posts
-                    &nbsp;
-                    <span class="glyphicon glyphicon-edit"></span>
-                </button>
-                {{/if}}
-                {{#link-to 'photomanager' class="btn btn-primary"}}
-                Photo Manager
-                &nbsp;
-                <span class="glyphicon glyphicon-camera fa-lg"></span>
-                {{/link-to}}
-                <hr>
-                {{/if}}
-
-            </div>
         </div>
     </div>
     <div class="row">
@@ -75,7 +75,7 @@
             <h1>
                 <small>Post Body</small>
             </h1>
-            <p>{{ef-input post.post_body as='wysiwyg' rows='15'}}</p>
+            <p>{{text-editor value=post.post_body rows='15'}}</p>
 
             <!-- DELETE BUTTONS -->
             {{#if post.enableDelete}}
@@ -121,7 +121,7 @@
             {{else}}
             <p>
                 <button class="btn btn-primary" {{action 'toggleExpand' post}}>
-                    Expand
+                    Read More
                     &nbsp;
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </button>

@@ -3,7 +3,7 @@
     actions: {
 
         beforeModel: function() {
-            this.transitionTo('portfolio');
+            this.transitionTo( 'portfolio' );
         },
 
         pushNotifications: function( message, error ) {
@@ -57,7 +57,7 @@ App.IndexController = Ember.Controller.extend( {
         var currentNotifications = this.get( 'currentNotifications' );
         var notification = new this.notification;
         var test = error ? 'Failure' : 'Success';
-        
+
         notification.setProperties( {
             title: test,
             message: message,
@@ -124,56 +124,29 @@ App.IndexController = Ember.Controller.extend( {
 
 } );
 
-
-Ember.EasyForm.WYSIWYG = Ember.EasyForm.TextArea.extend( {
+Ember.WYSIWYG = Ember.TextArea.extend( {
 
     renderEditor: function() {
         var _this = this;
 
-        _this.$().trumbowyg()
-            .on( 'tbwchange', function() {
-                console.log('CHANGE');
-                //_this.set( 'value', $( '.trumbowyg-editor' ).html() )
-            } );
+        _this.$().trumbowyg( {
+            btns: ['viewHTML',
+              '|', 'formatting',
+              '|', 'btnGrp-design',
+              '|', 'link',
+              '|', 'btnGrp-justify',
+              '|', 'btnGrp-lists',
+              '|', 'horizontalRule']
+
+        } ).on( 'tbwfocus tbwchange twbpaste cut', function() {
+            setTimeout( function() {
+                if ( _this ) {
+                    _this.set( 'value', $( '.trumbowyg-editor' ).html() );
+                }
+            }, 100 );
+        } );
     }.on( 'didInsertElement' ),
+
 } );
 
-Ember.EasyForm.Config.registerInputType( 'wysiwyg', Ember.EasyForm.WYSIWYG );
-
-/**
- * WYSIWYG Editor Initialization
- */
-//Ember.EasyForm.WYSIWYG = Ember.EasyForm.TextArea.extend( {
-
-//    renderEditor: function() {
-//        var _this = this;
-
-//        _this.$().trumbowyg( {
-//            //    color: true,
-//            //    fsize: true,
-//            //    format: false,
-//            //    indent: false,
-//            //    outdent: false,
-//            //    placeholder: _this.get( 'placeholder' ),
-//            //    source: false, // Code
-//            //    sub: false, // Subscript
-//            //    strike: false,
-//            //    sup: false, // Superscript
-
-//            tbwchange: function() {
-//                Em.run.debounce( _this, _this.changed, 200 );
-//            }
-//        } 
-//    )}.on( 'didInsertElement' ),
-
-//    changed: function() {
-//        this.set( 'value', $( '.jqte_editor' ).html() );
-//    }.on( 'tbwchange' ),
-
-//    keyDown: function( e ) {
-//        console.log('KEY DOWN EVEN');
-//    }
-
-//} );
-
-Ember.EasyForm.Config.registerInputType( 'wysiwyg', Ember.EasyForm.WYSIWYG );
+Ember.Handlebars.helper( 'text-editor', Ember.WYSIWYG );

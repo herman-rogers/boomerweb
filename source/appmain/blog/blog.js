@@ -18,10 +18,13 @@ App.BlogView = Ember.View.extend( {
 
     templateName: 'blog',
 
-    //didInsertElement: function() {
-    //    // From http://highlightjs.org/usage/ see Custom Initialization
-    //    this.$( 'pre code' ).each( function( i, e ) { hljs.highlightBlock( e ) } );
-    //}
+    didInsertElement: function() {
+        console.log( 'NEW EVENT IN VIEW' );
+        // From http://highlightjs.org/usage/ see Custom Initialization
+        $( 'pre code' ).each( function( i, e ) {
+            hljs.highlightBlock( e )
+        } );
+    }.on( 'click' ),
 
 } );
 
@@ -131,6 +134,7 @@ App.BlogController = Ember.ArrayController.extend( {
         },
 
         toggleExpand: function( post ) {
+            this.get( 'didInsertElement' );
             post.toggleProperty( 'expanded' );
         },
 
