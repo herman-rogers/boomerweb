@@ -24,11 +24,12 @@ Ember.Handlebars.helper( 'post-length', function( postText ) {
 
 Ember.Handlebars.helper( 'truncate', function( text, options ) {
     var limit = options.hash.limit || 50;
+
     if ( text.length < limit ) {
         return text;
     }
-    text = text.substr( 0, limit - 3 ) + "...";
-    return text;
+    formatText = text.substr( 0, (limit - 3) ) + '...';
+    return formatText;
 } );
 
 Ember.Handlebars.helper( 'formatted-text', function( text ) {

@@ -6,6 +6,7 @@
 var gulp = require( 'gulp' );
 var concat = require( 'gulp-concat' );
 var addsrc = require( 'gulp-add-src' );
+var uglify = require( 'gulp-uglify' );
 
 /**
  * Compiled Ember Handlebars Dependencies
@@ -20,7 +21,7 @@ gulp.task( 'watch', function() {
 
 /**
  * CSS Build Tasks
- */ 
+ */
 gulp.task( 'styles', function() {
     return gulp.src( 'styles/**/*.css' )
     .pipe( concat( 'appstyles.css' ) )
@@ -31,30 +32,31 @@ gulp.task( 'styles', function() {
  * JS Build Tasks
  * Initilization: Templates | App | Mixins |
  *                Components | Main Source
- */ 
+ */
 gulp.task( 'scripts', ['templates'], function() {
     return gulp.src( 'source/appinit/**/*.js' )
     .pipe( addsrc.append( 'source/mixins/**/*.js' ) )
     .pipe( addsrc.append( 'source/components/**/*.js' ) )
     .pipe( addsrc.append( 'source/appmain/**/*.js' ) )
     .pipe( addsrc.prepend( 'app/dist/js/templates.js' ) )
+    .pipe( uglify() )
     .pipe( concat( 'appbuild.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
 } );
 
 gulp.task( 'libraries', function() {
-    return gulp.src( 'bower_components/jquery/dist/jquery.js' )
+    return gulp.src( 'bower_components/jquery/dist/jquery.min.js' )
         .pipe( addsrc.append( 'bower_components/ember/ember-template-compiler.js' ) )
-        .pipe( addsrc.append( 'bower_components/ember/ember.debug.js' ) )
-        .pipe( addsrc.append( 'bower_components/ember-data/ember-data.js' ) )
+        .pipe( addsrc.append( 'bower_components/ember/ember.min.js' ) )
+        .pipe( addsrc.append( 'bower_components/ember-data/ember-data.min.js' ) )
         .pipe( addsrc.append( 'bower_components/bootstrap/bootstrap.min.js' ) )
         .pipe( addsrc.append( 'bower_components/jquery-cookie/jquery.cookie.js' ) )
-        .pipe( addsrc.append( 'bower_components/moment/moment.js' ) )
+        .pipe( addsrc.append( 'bower_components/moment/min/moment.min.js' ) )
         .pipe( addsrc.append( 'bower_components/highlight/highlight.pack.js' ) )
-        .pipe( addsrc.append( 'bower_components/trumbowyg-2.0.0-beta/dist/trumbowyg.js' ) )
+        .pipe( addsrc.append( 'bower_components/trumbowyg-2.0.0-beta/dist/trumbowyg.min.js' ) )
         .pipe( addsrc.append( 'node_modules/ember-droplet/dist/ember-droplet.min.js' ) )
         .pipe( concat( 'libraries.js' ) )
-        .pipe( gulp.dest( 'app/dist/js' ) )
+        .pipe( gulp.dest( 'app/dist/js' ) );
 } );
 
 var getTemplateNameFromPath = function( path ) {
