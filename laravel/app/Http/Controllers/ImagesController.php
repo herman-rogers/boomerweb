@@ -16,7 +16,7 @@
            */
           public function index()
           {   
-              $filePath = storage_path() . '\\images\\';
+              $filePath = storage_path() . '/images/';
               $scannedDirectory = array_diff(scandir($filePath), array('..', '.'));
               $relativeHTMLPath = '../laravel/storage/images/';
 
