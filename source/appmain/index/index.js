@@ -1,5 +1,9 @@
 ﻿App.IndexRoute = Ember.Route.extend( {
 
+    redirect: function() {
+        this.transitionTo('portfolio');
+    },
+
     actions: {
 
         beforeModel: function() {
@@ -9,13 +13,6 @@
         pushNotifications: function( message, error ) {
             var controller = this.controllerFor( 'index' );
             controller.pushNotification( message, error );
-        },
-
-        willTransition: function( transition ) {
-            var currentTransition = transition.targetName;
-            if ( currentTransition === 'index.index' ) {
-                this.transitionTo( 'portfolio' );
-            }
         },
 
         error: function( error, transition ) {

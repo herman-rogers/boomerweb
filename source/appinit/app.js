@@ -6,14 +6,15 @@ var devEnvironment = false;
 var restApi = 'app/api';
 var loginRoute = 'app/login';
 var logoutRoute = 'app/logout';
+var imagesRoute = 'app/api/images';
 
 //Dev environment setup for XAMPP
 if ( devEnvironment ) {
     restApi = 'boomerweb/app/api';
     loginRoute = 'login';
     logoutRoute = 'logout';
+    imagesRoute = 'api/images';
 }
-
 
 App = Ember.Application.create( {
     rootElement: '#application'

@@ -29,7 +29,7 @@ App.PhotomanagerController = Ember.Controller.extend( DropletController, {
 
     concatenatedProperties: ['mimeTypes'],
 
-    dropletUrl: 'api/images',
+    dropletUrl: imagesRoute,
 
     selectedImage: null,
 
@@ -55,7 +55,7 @@ App.PhotomanagerController = Ember.Controller.extend( DropletController, {
             image.destroyRecord().then( function() {
                 $.ajax( {
                     context: this,
-                    url: 'api/images',
+                    url: imagesRoute,
                     type: 'DELETE',
                     data: { image_url: imageUrl },
                     success: function( result ) {
