@@ -88,7 +88,7 @@ App.IndexController = Ember.Controller.extend( {
                         password: data.password
                     }
                 };
-                $.post( appPath + 'login', postData ).done( function( response ) {
+                $.post( loginRoute, postData ).done( function( response ) {
                     var sessionData = ( response.session || {} );
                     App.Session.setProperties( {
                         authToken: sessionData.auth_token,
@@ -109,7 +109,7 @@ App.IndexController = Ember.Controller.extend( {
         logout: function() {
             var self = this;
             $.ajax( {
-                url: appPath + 'logout',
+                url: logoutRoute,
                 type: 'POST'
             } ).always( function( response ) {
                 App.Session.setProperties( {

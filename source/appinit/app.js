@@ -1,6 +1,19 @@
 ﻿//Main Instance of Ember Application
 var attr = DS.attr;
 var appPath = window.location.origin + window.location.pathname;
+var devEnvironment = false;
+
+var restApi = 'app/api';
+var loginRoute = 'app/login';
+var logoutRoute = 'app/logout';
+
+//Dev environment setup for XAMPP
+if ( devEnvironment ) {
+    restApi = 'boomerweb/app/api';
+    loginRoute = 'login';
+    logoutRoute = 'logout';
+}
+
 
 App = Ember.Application.create( {
     rootElement: '#application'
@@ -8,7 +21,8 @@ App = Ember.Application.create( {
 
 // Datastore configuration
 App.ApplicationAdapter = DS.RESTAdapter.extend( {
-    namespace: 'boomerweb/app/api'
+    //server app/api
+    namespace: restApi
 } );
 
 App.ApplicationStore = DS.Store.extend( {
