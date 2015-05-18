@@ -38,7 +38,7 @@ gulp.task( 'scripts', ['templates'], function() {
     .pipe( addsrc.append( 'source/mixins/**/*.js' ) )
     .pipe( addsrc.append( 'source/components/**/*.js' ) )
     .pipe( addsrc.append( 'source/appmain/**/*.js' ) )
-    .pipe( addsrc.prepend( 'app/dist/js/templates.js' ) )
+    .pipe( addsrc.prepend( 'source/templates/templates.js' ) )
     .pipe( uglify() )
     .pipe( concat( 'appbuild.js' ) )
     .pipe( gulp.dest( 'app/dist/js' ) );
@@ -93,7 +93,7 @@ gulp.task( 'templates', function() {
             file.contents = new Buffer( currentFile );
         } ) )
         .pipe( concat( 'templates.js' ) )
-        .pipe( gulp.dest( 'app/dist/js/' ) );
+        .pipe( gulp.dest( 'source/templates' ) );
 } );
 
 gulp.task( 'default', ['libraries', 'scripts', 'styles'] );
