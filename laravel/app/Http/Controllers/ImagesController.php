@@ -57,7 +57,7 @@
            */
           public function store(Request $request)
           {
-              return \Input::file('file')->move(storage_path() . '\\images\\',
+              return \Input::file('file')->move(storage_path() . '/images/',
                   \Input::file('file')->getClientOriginalName());
           }
           
@@ -70,7 +70,7 @@
           public function destroy(Request $request)
           {
               $imageName = $request->input('image_url');
-              $filePath = storage_path() . '\\images\\' . $imageName;
+              $filePath = storage_path() . '/images/' . $imageName;
               if( \File::exists($filePath)) {
                   \File::delete($filePath);
               }
