@@ -22,7 +22,6 @@ App = Ember.Application.create( {
 
 // Datastore configuration
 App.ApplicationAdapter = DS.RESTAdapter.extend( {
-    //server app/api
     namespace: restApi
 } );
 

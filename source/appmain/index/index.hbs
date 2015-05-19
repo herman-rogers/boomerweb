@@ -42,6 +42,22 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="card card-container">
         <h1>Login</h1>
+        {{#each error in controller.errors}}
+        <div class="container">
+            <div class="row">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-hand-right"></span><strong>Failure</strong>
+                    <hr class="message-inner-separator">
+                    <p>
+                        <b>{{error.field}}: {{error.value}}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             {{input type="email" class="form-control" id="inputEmail" placeholder="Email Address" value=email}}

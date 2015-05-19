@@ -1,14 +1,13 @@
 ﻿App.IndexRoute = Ember.Route.extend( {
 
-    redirect: function() {
-        this.transitionTo('portfolio');
+    redirect: function( model, transition ) {
+        var target = transition.targetName;
+        if ( target === '/' || target === 'index.index' ) {
+            this.transitionTo( 'portfolio' );
+        }
     },
 
     actions: {
-
-        beforeModel: function() {
-            this.transitionTo( 'portfolio' );
-        },
 
         pushNotifications: function( message, error ) {
             var controller = this.controllerFor( 'index' );
@@ -35,6 +34,8 @@ App.IndexController = Ember.Controller.extend( {
 
     // Login functions
     modalLogin: false,
+
+    errors: [],
 
     loggedIn: function() {
         return App.Session.get( 'authToken' );
@@ -63,10 +64,23 @@ App.IndexController = Ember.Controller.extend( {
         currentNotifications.pushObject( notification );
     },
 
+    formValidation: function( response ) {
+        var jsonResponse = response.responseJSON.error;
+        var errors = Ember.keys( jsonResponse ).map( function( key ) {
+            var jsonResponseValue = jsonResponse[key];
+            if ( Array.isArray( jsonResponseValue ) ) {
+                jsonResponseValue = jsonResponseValue.join( '' );
+            }
+            return { field: key, value: jsonResponseValue };
+        }.bind( this ) );
+        return errors;
+    },
+
     actions: {
 
         // Login Actions
         showModalLogin: function() {
+            this.set( 'errors', [] );
             this.set( 'modalLogin', true );
         },
 
@@ -77,30 +91,31 @@ App.IndexController = Ember.Controller.extend( {
         login: function() {
             var self = this;
             var data = this.getProperties( 'email', 'password' );
-            if ( !Ember.isEmpty( data.email ) &&
-                !Ember.isEmpty( data.password ) ) {
-                var postData = {
-                    session: {
-                        email: data.email,
-                        password: data.password
-                    }
-                };
-                $.post( loginRoute, postData ).done( function( response ) {
-                    var sessionData = ( response.session || {} );
-                    App.Session.setProperties( {
-                        authToken: sessionData.auth_token,
-                        authAccountId: sessionData.account_id
-                    } );
-                    var attemptedTransition = App.Session.get( 'attemptedTransition' );
-                    if ( attemptedTransition ) {
-                        attemptedTransition.retry();
-                        App.Session.set( 'attemptedTransition', null );
-                    }
-                    self.send( 'hideModalLogin' );
-                    self.send( 'pushNotifications',
-                        'You Have Successfully Logged In', false );
+            var postData = {
+                session: {
+                    email: data.email,
+                    password: data.password
+                }
+            };
+            $.post( loginRoute, postData ).done( function( response ) {
+                var sessionData = ( response.session || {} );
+                App.Session.setProperties( {
+                    authToken: sessionData.auth_token,
+                    authAccountId: sessionData.account_id
                 } );
-            }
+                var attemptedTransition = App.Session.get( 'attemptedTransition' );
+                if ( attemptedTransition ) {
+                    attemptedTransition.retry();
+                    App.Session.set( 'attemptedTransition', null );
+                }
+                self.send( 'hideModalLogin' );
+                self.send( 'pushNotifications',
+                    'You Have Successfully Logged In', false );
+            } )
+            .fail( function( response ) {
+                var error = this.formValidation( response );
+                this.set( 'errors', error );
+            }.bind(this) );
         },
 
         logout: function() {
@@ -127,6 +142,7 @@ Ember.WYSIWYG = Ember.TextArea.extend( {
         var _this = this;
 
         _this.$().trumbowyg( {
+            id: 'test',
             btns: ['viewHTML',
               '|', 'formatting',
               '|', 'btnGrp-design',
@@ -135,10 +151,10 @@ Ember.WYSIWYG = Ember.TextArea.extend( {
               '|', 'btnGrp-lists',
               '|', 'horizontalRule']
 
-        } ).on( 'tbwfocus tbwchange twbpaste cut', function() {
+        } ).on( 'tbwchange tbwpaste tbwfocus', function() {
             setTimeout( function() {
                 if ( _this ) {
-                    _this.set( 'value', $( '.trumbowyg-editor' ).html() );
+                    _this.set( 'value', _this.$().trumbowyg( 'html' ) );
                 }
             }, 100 );
         } );
