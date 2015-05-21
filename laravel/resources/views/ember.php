@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../app/dist/styles/appstyles.css" rel="stylesheet">
     <link href="../app/dist/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <title>BoomerWeb</title>
+    <title>boomer.ly</title>
 </head>
 <body>
     <!-- ADD NEW LIBRARIES TO THE GULP.JS FILE -->
@@ -45,8 +45,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About BoomerWeb</h3>
-                        <p>BoomerWeb showcases the pursuit of learning everything about coding.</p>
+                        <h3>About boomer.ly</h3>
+                        <p>boomer.ly showcases the pursuit of learning everything about coding.</p>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; BoomerWeb 2012-2015
+                        Copyright &copy; boomer.ly 2012-2015
                     </div>
                 </div>
             </div>
