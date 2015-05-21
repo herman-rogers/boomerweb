@@ -43,6 +43,7 @@ class ProjectController extends Controller {
                     'description' => $project->description,
                     'project_link' => $project->project_link,
                     'code_link' => $project->code_link,
+                    'download_link' => $project->download_link,
                     'updated_at' => $project->updated_at,
 			    ];
 			}
@@ -114,6 +115,7 @@ class ProjectController extends Controller {
                 'description' => $projects->description,
                 'project_link' => $projects->project_link,
                 'code_link' => $projects->code_link,
+                'download_link' => $projects->download_link,
             ];
             
         } catch (\Exception $e) {

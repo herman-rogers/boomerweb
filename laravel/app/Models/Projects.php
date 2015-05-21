@@ -17,7 +17,7 @@ class Projects extends Model {
 	 * @var array
 	 */
 	protected $fillable = ['type', 'name', 'subheading', 'image', 'description', 
-        'project_link', 'code_link' ];
+        'project_link', 'code_link', 'download_link' ];
 
 }
 
