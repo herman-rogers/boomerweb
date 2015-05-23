@@ -4,6 +4,7 @@ php_flag magic_quotes_gpc off
 Options -MultiViews
 
 RewriteEngine on
+AddType application/vnd.unity unity3d
 
 # Make sure BASIC auth works.
 RewriteCond %{HTTP:Authorization} ^(.+)$

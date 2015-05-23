@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration {
             $table->string('description');
             $table->text('project_link')->nullable();
             $table->text('code_link')->nullable();
+            $table->text('download_link')->nullable();
             $table->timestamps();
         });
 	}
