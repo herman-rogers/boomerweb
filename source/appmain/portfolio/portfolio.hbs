@@ -72,9 +72,9 @@
             <img class="img-responsive" {{bind-attr src=project.image}} alt="">
             <hr />
             {{#each image in controller.images}}
-            <button class="btn" {{action 'selectImage' image project}}>
+            <a class="btn" {{action 'selectImage' image project}}>
                 <img class="thumbnail profile-img-card pull-left" src={{image.image_url}} alt="">
-            </button>
+            </a>
             {{/each}}
         </div>
         <div class="col-md-5">
@@ -82,6 +82,22 @@
                 <small>Title</small>
             </h2>
             <h3>{{input class="form-control" type='text' value=project.name}}</h3>
+            <h2>
+                <small>Project Type</small>
+            </h2>
+            <p>
+                <div class="dropdown">
+                    <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                        {{project.type}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                        {{#each type in projectTypes}}
+                        <li><a href="#" {{action 'editProjectType' project type}}>{{type}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </p>
             <h2>
                 <small>Version Number</small>
             </h2>
@@ -92,30 +108,21 @@
             </h2>
             <p class="lead">{{textarea class="form-control" value=project.description rows="10"}}</p>
             <h2>
+                <small>Download Link</small>
+            </h2>
+            <p class="lead">
+                {{input class="form-control" value=project.download_link}}
+            </p>
+            <h2>
+                <small>Code Link</small>
+            </h2>
+            <p class="lead">{{input class="form-control" value=project.code_link}}</p>
+            <h2>
                 <small>Main Project Link</small>
             </h2>
             <p class="lead">
                 {{input class="form-control" value=project.project_link}}
             </p>
-            <h2>
-                <small>Project Type</small>
-            </h2>
-            <div class="dropdown">
-                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
-                    {{project.type}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    {{#each type in projectTypes}}
-                    <li><a href="#" {{action 'editProjectType' project type}}>{{type}}</a></li>
-                    {{/each}}
-                </ul>
-            </div>
-            <h2>
-                <small>Project Code Link</small>
-            </h2>
-            <p class="lead">{{input class="form-control" value=project.code_link}}</p>
-
             <!-- DELETE BUTTONS -->
             {{#if project.enableDelete}}
             <a class="btn btn-warning" {{action 'cancelDelete' project}}>
@@ -135,6 +142,7 @@
                 <span class="glyphicon glyphicon-trash"></span>
             </a>
             {{/if}}
+            <hr />
         </div>
     </div>
     <!-- DISPLAY PROJECTS NORMALLY -->
@@ -156,6 +164,13 @@
             <h5></h5>
             <p>{{project.description}}</p>
             <hr />
+            {{#if project.download_link}}
+            <a class="btn btn-primary" href={{project.download_link}}>
+                Download
+                &nbsp;
+                <span class="glyphicon glyphicon-download-alt"></span>
+            </a>
+            {{/if}}
             {{#if project.code_link}}
             <a class="btn btn-primary" href={{project.code_link}}>
                 View Code

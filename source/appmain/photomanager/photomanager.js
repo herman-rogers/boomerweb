@@ -25,10 +25,6 @@ App.PhotomanagerView = Ember.View.extend( {
 
 App.PhotomanagerController = Ember.Controller.extend( DropletController, {
 
-    mimeTypes: ['image/bmp'],
-
-    concatenatedProperties: ['mimeTypes'],
-
     dropletUrl: imagesRoute,
 
     selectedImage: null,
