@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../app/dist/styles/appstyles.css" rel="stylesheet">
     <link href="../app/dist/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="shortcut icon" type="image/png" href="../app/dist/images/favicon.ico">
     <title>Boomer Rogers</title>
 </head>
 <body>
