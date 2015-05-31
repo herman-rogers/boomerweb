@@ -1,5 +1,5 @@
 ﻿/**
- * Main gulp tasks that compiles the App Javascript
+ * Main gulp tasks that compiles the Ember Application
  * And the Ember Handle bar templates
  * 
  */

@@ -1,7 +1,7 @@
 ﻿//Main Instance of Ember Application
 var attr = DS.attr;
 var appPath = window.location.origin + window.location.pathname;
-var devEnvironment = false;
+var devEnvironment = true;
 
 var restApi = 'app/api';
 var loginRoute = 'app/login';
