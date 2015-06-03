@@ -25,10 +25,10 @@ footer .footer-above {
 
 footer .footer-below {
     bottom: 0;
-    padding-top: 40px;
+    padding-top: 50px;
     padding-bottom: 30px;
     color: #FFF;
-    background-color: #333;
+    background-image: url(../images/black.png);
 }
 
 .toolbar {
@@ -36,10 +36,11 @@ footer .footer-below {
     z-index: 1000;
     bottom: 0;
     width: 100%;
+    height:100px;
     padding-top: 10px;
     padding-bottom: 10px;
     color: #FFF;
-    background-color: #333;
+    background-image: url(../images/black.png);
 }
 
 .active {
@@ -107,18 +108,22 @@ footer .footer-below {
 @keyframes fade {
     0% {
         opacity: 0;
+        top: -50%;
     }
 
     10% {
         opacity: 1;
+        top: 10%;
     }
 
     90% {
         opacity: 1;
+        top: 10%;
     }
 
     100% {
         opacity: 0;
+        top: -50%;
     }
 }
 
